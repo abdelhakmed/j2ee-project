@@ -2,6 +2,7 @@
     Document   : login
     Created on : 27 mars 2010, 11:35:45
     Author     : Lou
+Fragment de page pour afficher le formulaire de login
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

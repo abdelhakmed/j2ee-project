@@ -137,6 +137,10 @@ public class Question {
         assert invariant();
     }
 
+    /**
+     * Indique si la question a plusieurs réponses
+     * @return true si plusieurs réponses, false sinon
+     */
     public boolean hasMultipleResponse() {
         return (reponses.size() > 1);
     }

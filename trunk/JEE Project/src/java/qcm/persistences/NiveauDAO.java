@@ -7,7 +7,7 @@ import java.util.HashMap;
 import qcm.models.Niveau;
 
 /**
- *
+ * DAO pour les niveaux
  * @author marya
  */
 public class NiveauDAO extends ModeleDAO {

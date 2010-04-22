@@ -1,7 +1,7 @@
 package qcm.models;
 
 /**
- *
+ * Définit un thème de questionnaire
  * @author maria Rabarison et Lou Ferrand
  */
 public class Theme {
@@ -94,5 +94,4 @@ public class Theme {
         hash = 29 * hash + (this.libelle != null ? this.libelle.hashCode() : 0);
         return hash;
     }
-
 }

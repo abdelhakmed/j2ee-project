@@ -2,6 +2,7 @@
     Document   : logout
     Created on : 21 avr. 2010, 18:59:53
     Author     : marya
+Vue de déconnexion de l'application
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -13,7 +13,7 @@ import qcm.models.Questionnaire;
 import qcm.models.Reponse;
 
 /**
- *
+ * Gère les accès à la base de données pour les Questionnaires
  * @author Lou
  */
 public class QuestionnaireDAO extends ModeleDAO {

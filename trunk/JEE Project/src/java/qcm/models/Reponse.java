@@ -129,9 +129,8 @@ public class Reponse {
         return true;
     }
 
-
     @Override
-    public String toString(){
-        return "["+libelle+"]";
+    public String toString() {
+        return "[" + libelle + "]";
     }
 }

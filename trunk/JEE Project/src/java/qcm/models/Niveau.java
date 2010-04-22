@@ -47,6 +47,10 @@ public class Niveau {
         assert invariant();
     }
 
+    /**
+     * Retourne le nombre de Questionnaires qui utilisent ce niveau
+     * @return le nombre de questionnaires
+     */
     public int getUtilisations() {
         return utilisations;
     }

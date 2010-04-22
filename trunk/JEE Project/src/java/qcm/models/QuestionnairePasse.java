@@ -1,16 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.models;
+
 import java.sql.Date;
 
 /**
- *
+ * Classe qui définit un questionnaire passé par un utilisateur (et finit)
+ * pour ensuite être enregistrer en base de données
  * @author marya
  */
 public class QuestionnairePasse {
+
     private int idQuestionnaire;
     private String libelleQuestionnaire;
     private int idUser;
@@ -27,15 +25,11 @@ public class QuestionnairePasse {
         this.temps = temps;
     }
 
-    
-
     public QuestionnairePasse(int idQuestionnaire, int idUser) {
         this.idQuestionnaire = idQuestionnaire;
         this.idUser = idUser;
     }
 
-
-    
     public Date getDate() {
         return date;
     }
@@ -91,9 +85,6 @@ public class QuestionnairePasse {
         this.temps = temps;
     }
 
-    
-
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -120,19 +111,14 @@ public class QuestionnairePasse {
         return hash;
     }
 
-
-    protected boolean invariant(){
+    protected boolean invariant() {
         assert getIdUser() > 0;
         assert getIdQuestionnaire() > 0;
         return true;
     }
 
-
-
-
     @Override
     public String toString() {
         return "[" + getIdQuestionnaire() + ":" + getIdUser() + ":" + getNote() + "]";
     }
-
 }

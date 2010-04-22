@@ -1,7 +1,7 @@
 package qcm.models;
 
 /**
- *
+ * Classe qui représente un utilisateur de l'application
  * @author Maria Rabarison et Lou Ferrand
  */
 public class User {
@@ -111,7 +111,6 @@ public class User {
         }
     }
 
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -154,5 +153,4 @@ public class User {
     public String toString() {
         return "[ " + getLogin() + " : " + getNom() + " : " + getPrenom() + " : " + getEmail() + " : " + getPassword() + "]";
     }
-
 }

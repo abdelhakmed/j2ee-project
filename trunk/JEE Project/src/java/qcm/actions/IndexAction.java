@@ -6,7 +6,7 @@ import qcm.models.User;
 import qcm.services.ActionHelper;
 
 /**
- *
+ * Classe d'action pour l'index (page d'accueil)
  * @author marya
  */
 public class IndexAction extends AbstractAction {
@@ -31,6 +31,7 @@ public class IndexAction extends AbstractAction {
                 User user = ActionHelper.checkUserByLoginAndPassWord(login, password);
                 if (user != null) {
                     request.getSession().setAttribute("user", user);
+                    System.out.println("USER = "+user);
                     page = "/user/accueil.jsp";
                 } else {
                     throw new UnknownUserException("Utilisateur inconnu : " + login);
