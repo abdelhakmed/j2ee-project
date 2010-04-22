@@ -6,7 +6,10 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Application</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/index</url-pattern>
+        <url-pattern>/passerQuestionnaire</url-pattern>
+        <url-pattern>/index/*</url-pattern>
+        <url-pattern>/passerquestionnaire/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
