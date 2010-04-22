@@ -2,7 +2,7 @@ package qcm.exceptions;
 
 /**
  *
- * @author marya
+ * @author Maria Rabarison et Lou Ferrand
  */
 public class UnauthorizedActionException extends Exception{
 
