@@ -11,6 +11,11 @@ import qcm.services.ActionHelper;
  */
 public class IndexAction extends AbstractAction {
 
+    /**
+     * Execute l'essai d'authentification si l'utilisateur n'est pas connecté
+     * @throws SQLException
+     * @throws UnknownUserException
+     */
     public void execute() throws SQLException, UnknownUserException {
 
         String page = "/scripts/login.jsp";

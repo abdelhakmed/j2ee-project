@@ -17,7 +17,7 @@ public class PasserQuestionnaireIndexAction extends AbstractAction{
 
     public void execute() throws SQLException{
         ActionHelper.setAttributeNiveaux(request);
-        
+         
     }
 
 

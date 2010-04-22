@@ -14,6 +14,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Logout</h1>
+        <h1>Vous vous êtes déconnecté.</h1>
     </body>
 </html>

@@ -5,7 +5,6 @@
 
 package qcm.actions;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -19,11 +18,15 @@ public interface Action {
      */
     public void execute() throws Exception;
 
-
+    /**
+     * Attribue la requete sur laquelle on demande l'action
+     * @param request
+     * @throws Exception
+     */
     public void setRequest(HttpServletRequest request) throws Exception;
 
     /**
-     * renvoie la page
+     * renvoie la vue à inclure
      * @return
      */
     public String getView();

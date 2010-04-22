@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import qcm.exceptions.UnknownUserException;
 import qcm.actions.Action;
 import qcm.router.Router;
 
@@ -46,6 +47,8 @@ public class Application extends HttpServlet {
         }catch(NullPointerException e){
             request.setAttribute("errorMessage","Cette page n'existe pas : "+uri);
         }catch(SQLException e){
+            request.setAttribute("errorMessage","Erreur interne");
+        }catch(UnknownUserException e){
             request.setAttribute("errorMessage","Erreur interne");
         }catch(Exception e){
             request.setAttribute("errorMessage","Unknown Exception");

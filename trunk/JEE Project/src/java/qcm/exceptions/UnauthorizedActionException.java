@@ -6,7 +6,7 @@ package qcm.exceptions;
  */
 public class UnauthorizedActionException extends Exception{
 
-    public UnauthorizedActionException(String message) {
+    public UnauthorizedActionException(String message) { 
         super(message);
     }
     
