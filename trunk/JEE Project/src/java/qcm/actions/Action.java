@@ -25,7 +25,7 @@ public interface Action {
      * renvoie la page
      * @return
      */
-    public String getPageToForward();
+    public String getView();
 
 
     public List<String> getErrorMessages();

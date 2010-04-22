@@ -40,7 +40,8 @@ public class Application extends HttpServlet {
             Action action= getActionByUri(uri);
             action.setRequest(request);
             action.execute();
-            forward = action.getPageToForward();
+            request.setAttribute("view", action.getView() );
+            forward = "/view.jsp";
         }catch(NullPointerException e){
             request.setAttribute("errorMessage","Cette page n'existe pas : "+uri);
         } finally { 
