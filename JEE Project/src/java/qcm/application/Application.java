@@ -6,6 +6,7 @@
 package qcm.application;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -44,6 +45,10 @@ public class Application extends HttpServlet {
             forward = "/view.jsp";
         }catch(NullPointerException e){
             request.setAttribute("errorMessage","Cette page n'existe pas : "+uri);
+        }catch(SQLException e){
+            request.setAttribute("errorMessage","Erreur interne");
+        }catch(Exception e){
+            request.setAttribute("errorMessage","Unknown Exception");
         } finally { 
             request.getRequestDispatcher(forward).forward(request, response);
         }

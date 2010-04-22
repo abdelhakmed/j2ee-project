@@ -17,10 +17,11 @@ public interface Action {
     /**
      * Execute l'action
      */
-    public void execute();
+    public void execute() throws Exception;
 
 
-    public void setRequest(HttpServletRequest request);
+    public void setRequest(HttpServletRequest request) throws Exception;
+
     /**
      * renvoie la page
      * @return
@@ -28,6 +29,5 @@ public interface Action {
     public String getView();
 
 
-    public List<String> getErrorMessages();
 
 }

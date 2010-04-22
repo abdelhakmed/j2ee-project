@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import qcm.services.QuestionnaireService;
+import qcm.services.Helper;
 
 /**
  * La classe Questionnaire est définie par un identifiant, un thème, un niveau,
@@ -244,8 +244,7 @@ public class Questionnaire {
 
 
     public void save() throws SQLException {
-        QuestionnaireService qstServ = new QuestionnaireService();
-        qstServ.save(this);
+        Helper.save(this);
     }
 
 
