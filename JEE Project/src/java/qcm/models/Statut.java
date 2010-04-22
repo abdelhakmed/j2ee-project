@@ -1,7 +1,7 @@
 package qcm.models;
 
 /**
- *
+ * Définit le statut d'un utilisateur
  * @author marya
  */
 public class Statut {
@@ -51,7 +51,4 @@ public class Statut {
         hash = 83 * hash + (this.libelle != null ? this.libelle.hashCode() : 0);
         return hash;
     }
-
-
-
 }

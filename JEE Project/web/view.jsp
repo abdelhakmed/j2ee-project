@@ -1,6 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String layout = (String) request.getAttribute("view");
+            /**
+             * Layout de l'application
+             */
+            String layout = (String) request.getAttribute("view");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -15,7 +18,7 @@
             <div id="body">
                 <jsp:include page="scripts/menu_left.jsp" />
                 <div id="contenu">
-                    <jsp:include page="<%= layout %>" />
+                    <jsp:include page="<%= layout%>" />
                 </div>
             </div>
 

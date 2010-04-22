@@ -2,6 +2,7 @@
     Document   : menu_left
     Created on : 27 mars 2010, 11:37:22
     Author     : Lou
+Menu de gauche à inclure
 --%>
 <%@page import="qcm.models.User" %>
 <%

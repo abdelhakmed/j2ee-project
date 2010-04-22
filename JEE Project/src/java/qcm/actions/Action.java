@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.actions;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
+ * Interface Action
  * @author marya
  */
 public interface Action {

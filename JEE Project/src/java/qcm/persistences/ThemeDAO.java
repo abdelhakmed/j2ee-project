@@ -4,18 +4,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import qcm.models.Theme;
 
 /**
- *
- * @author marya
+ * Gère les accès à la base de données pour les themes
+ * @author Maria Rabarison et Lou Ferrand
  */
 public class ThemeDAO extends ModeleDAO {
 
     public static List<Theme> getAll() throws SQLException {
-        List<Theme>themes = new ArrayList<Theme>();
+        List<Theme> themes = new ArrayList<Theme>();
         String sql = "SELECT theme.id_theme, theme.id_user, theme.libelle, theme.est_actif, COUNT(questionnaire.id_theme) AS compteur "
                 + "FROM theme "
                 + "LEFT OUTER JOIN questionnaire "

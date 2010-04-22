@@ -41,8 +41,8 @@ public class Questionnaire {
      * @param idNiveau
      */
     public Questionnaire(int idQuestionnaire, String libelle, Date dateCreation,
-            Integer limiteTemps, boolean estActif, int idTheme, 
-            int idUser, int idNiveau, ArrayList<Question> questions , int nbPasseParUser) {
+            Integer limiteTemps, boolean estActif, int idTheme,
+            int idUser, int idNiveau, ArrayList<Question> questions, int nbPasseParUser) {
         assert idQuestionnaire > 0;
         assert libelle != null && !libelle.trim().isEmpty();
         assert dateCreation != null;
@@ -56,19 +56,20 @@ public class Questionnaire {
         this.dateCreation = dateCreation;
         this.limiteTemps = limiteTemps;
         this.estActif = estActif;
-        
-        if(nbPasseParUser>0){
+
+        if (nbPasseParUser > 0) {
             this.estPasse = true;
-        }else{
+        } else {
             this.estPasse = false;
         }
-        
+
         this.idTheme = idTheme;
         this.idUser = idUser;
         this.idNiveau = idNiveau;
         this.questions = questions;
         assert invariant();
     }
+
     /**
      * Constructeur pour un nouveau questionnaire
      * @param idQuestionnaire
@@ -93,7 +94,7 @@ public class Questionnaire {
         this.idNiveau = idNiveau;
         this.questions = new ArrayList<Question>();
         this.estPasse = false;
-        this.limiteTemps=0;
+        this.limiteTemps = 0;
         assert invariant();
     }
 
@@ -119,8 +120,6 @@ public class Questionnaire {
     public boolean estPasse() {
         return estPasse;
     }
-
-    
 
     public int getIdNiveau() {
         return idNiveau;
@@ -199,11 +198,11 @@ public class Questionnaire {
         assert invariant();
     }
 
-    public void addQuestion(Question q){
+    public void addQuestion(Question q) {
         this.questions.add(q);
     }
 
-    public void removeQuestion(Question q){
+    public void removeQuestion(Question q) {
         this.questions.remove(q);
     }
 
@@ -242,11 +241,9 @@ public class Questionnaire {
         return "[" + libelle + ":" + idTheme + ":" + idNiveau + " : " + idUser + "]";
     }
 
-
     public void save() throws SQLException {
         Helper.save(this);
     }
-
 
     public int getNoteMax() {
         assert invariant();
@@ -259,7 +256,6 @@ public class Questionnaire {
         }
         return note;
     }
-
 
     public boolean invariant() {
         assert getLibelle() != null && !getLibelle().matches("^\\s*$");

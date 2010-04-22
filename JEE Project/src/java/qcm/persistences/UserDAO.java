@@ -9,7 +9,7 @@ import qcm.models.Statut;
 import qcm.models.User;
 
 /**
- *
+ * Gère les accès à la base de données pour les utilisateurs
  * @author marya
  */
 public class UserDAO extends ModeleDAO {

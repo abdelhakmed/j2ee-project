@@ -9,7 +9,7 @@ import java.util.Map;
 import qcm.services.Helper;
 
 /**
- *
+ * Classe QCM : un questionnaire passé par un utilisateur
  * @author Maria Rabarison et Lou Ferrand
  */
 public class Qcm {
@@ -28,7 +28,7 @@ public class Qcm {
         userReponses = new HashMap<Integer, List<Integer>>();
         this.questionnaire = Helper.getQuestionnaireById(questionnaire.getIdQuestionnaire());
         List<Question> questions = questionnaire.getQuestions();
-        for (int i = 0; i< questions.size(); i++) {
+        for (int i = 0; i < questions.size(); i++) {
             userReponses.put(questions.get(i).getIdQuestion(), new ArrayList<Integer>());
         }
         iterateur = userReponses.keySet().iterator();
@@ -61,18 +61,14 @@ public class Qcm {
     public Integer getQuestionSuivante() {
         Integer idQuestion = null;
         if (iterateur.hasNext()) {
-            idQuestion= iterateur.next();
+            idQuestion = iterateur.next();
         }
         return idQuestion;
     }
 
-    
-
     public Map<Integer, List<Integer>> getUserReponses() {
         return userReponses;
     }
-
-
 
     /**
      * 
@@ -121,8 +117,6 @@ public class Qcm {
         return true;
     }
 
-   
-
     public void save() throws SQLException {
         assert invariant();
         new Helper().save(this);
@@ -138,16 +132,16 @@ public class Qcm {
         assert invariant();
     }
 
-    private void setNote()throws SQLException {
+    private void setNote() throws SQLException {
         assert estFini;
         int score = 0;
         List<Integer> reponses = null;
         for (Integer idQuestion : userReponses.keySet()) {
             reponses = userReponses.get(idQuestion);
             for (Integer reponse : reponses) {
-                score+= Helper.getNoteByReponse(reponse);
+                score += Helper.getNoteByReponse(reponse);
             }
         }
-        note=score;
+        note = score;
     }
 }

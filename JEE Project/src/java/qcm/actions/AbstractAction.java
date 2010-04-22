@@ -1,13 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.actions;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
+ * Classe abstraite qui définit une action (implémente l'interface Action)
  * @author marya
  */
 public abstract class AbstractAction implements Action{

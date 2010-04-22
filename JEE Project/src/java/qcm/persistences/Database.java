@@ -18,26 +18,19 @@ public class Database {
     /**
      * URL de connexion a la base de données
      */
-    public static final String URL         = "jdbc:mysql://localhost/qcm";
+    public static final String URL = "jdbc:mysql://localhost/qcm";
     /**
      * Identifiant de l'utilisateur à fournir lors de la connexion
      */
-    public static final String USER        = "root";
+    public static final String USER = "root";
     /**
      * Mot de passe de l'utilisateur à fournir lors de la connexion
      */
-    public static final String PASSWORD    = "";
-
-
+    public static final String PASSWORD = "";
     private static Connection connexion;
 
-
-
-    public Database(){
-        
+    public Database() {
     }
-
-    
 
     /**
      * Fournit la connexion à la base de données
@@ -45,7 +38,7 @@ public class Database {
      * @throws java.sql.SQLException
      */
     public Connection getConnection() throws SQLException {
-        if(connexion==null){
+        if (connexion == null) {
             try {
                 Class.forName(DRIVER_NAME).newInstance();
                 connexion = DriverManager.getConnection(URL, USER, PASSWORD);

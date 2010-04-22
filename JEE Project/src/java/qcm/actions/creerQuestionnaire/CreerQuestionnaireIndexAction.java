@@ -6,7 +6,7 @@
 package qcm.actions.creerQuestionnaire;
 
 /**
- *
+ * Action index pour la creation d'un questionnaire
  * @author marya
  */
 public class CreerQuestionnaireIndexAction extends CreerQuestionnaireAction{

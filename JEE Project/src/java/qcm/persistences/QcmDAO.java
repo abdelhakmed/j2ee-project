@@ -9,7 +9,7 @@ import java.util.Map;
 import qcm.models.Qcm;
 
 /**
- *
+ * Gère les accès à la base de données pour les QCM
  * @author Maria Rabarison et Lou Ferrand
  * TODO : Changer limite_temps à celui du qcm
  */
@@ -33,7 +33,7 @@ public class QcmDAO extends ModeleDAO {
             for (Integer idQuestion : userReponses.keySet()) {
                 idContenu = QcmDAO.getIdContenu(idQuestionnaire, idQuestion);
                 reponses = userReponses.get(idQuestion);
-                for (int k = 0 ; k< reponses.size() ; k++) {
+                for (int k = 0; k < reponses.size(); k++) {
                     int idReponse = reponses.get(k);
                     System.out.println(ReponseDAO.getById(idReponse).getLibelle());
                     ordre.setInt(1, idContenu);
@@ -42,9 +42,9 @@ public class QcmDAO extends ModeleDAO {
                 }
             }
             sql = "INSERT INTO questionnaire_passe(id_questionnaire, id_user, note, date, temps) VALUES (?,?,?,NOW(),?)";
-                    System.out.println(sql);
+            System.out.println(sql);
             PreparedStatement ps = connexion.prepareStatement(sql);
-            ps.setInt(1,idQuestionnaire);
+            ps.setInt(1, idQuestionnaire);
             ps.setInt(2, idUser);
             ps.setInt(3, qcm.getNote());
             ps.setInt(4, qcm.getQuestionnaire().getLimiteTemps());

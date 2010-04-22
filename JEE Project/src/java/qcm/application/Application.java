@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.application;
 
 import java.io.IOException;
@@ -18,11 +13,12 @@ import qcm.actions.Action;
 import qcm.router.Router;
 
 /**
- *
+ * Controleur frontal de l'application, s'occupe de demander le mapping entre les
+ * URI et les actions
  * @author marya
  */
 public class Application extends HttpServlet {
-   
+
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -31,33 +27,32 @@ public class Application extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String forward = "/index.jsp";
-        String uri="";
+        String uri = "";
         try {
-            
+
             uri = request.getRequestURI();
-            uri = uri.substring(12,uri.length());
-            Action action= getActionByUri(uri);
+            uri = uri.substring(12, uri.length());
+            Action action = getActionByUri(uri);
             action.setRequest(request);
             action.execute();
-            request.setAttribute("view", action.getView() );
+            request.setAttribute("view", action.getView());
             forward = "/view.jsp";
-        }catch(NullPointerException e){
-            request.setAttribute("errorMessage","Cette page n'existe pas : "+uri);
-        }catch(SQLException e){
-            request.setAttribute("errorMessage","Erreur interne");
-        }catch(UnknownUserException e){
-            request.setAttribute("errorMessage","Erreur interne");
-        }catch(Exception e){
-            request.setAttribute("errorMessage","Unknown Exception");
-        } finally { 
+        } catch (NullPointerException e) {
+            request.setAttribute("errorMessage", "Cette page n'existe pas : " + uri);
+        } catch (SQLException e) {
+            request.setAttribute("errorMessage", "Erreur interne");
+        } catch (UnknownUserException e) {
+            request.setAttribute("errorMessage", "Erreur interne");
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", "Unknown Exception");
+        } finally {
             request.getRequestDispatcher(forward).forward(request, response);
         }
-    } 
+    }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
@@ -67,9 +62,9 @@ public class Application extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -80,7 +75,7 @@ public class Application extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -91,37 +86,17 @@ public class Application extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private Action getActionByUri(String uri){
+    }
+    
+    private Action getActionByUri(String uri) {
         Action action = null;
         try {
             action = (Action) Router.getActionByUri(uri).newInstance();
-         } catch (InstantiationException ex) {
+        } catch (InstantiationException ex) {
             Logger.getLogger(Router.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(Router.class.getName()).log(Level.SEVERE, null, ex);
         }
         return action;
     }
-
-
-    
-
-
-
-
 }

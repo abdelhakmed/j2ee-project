@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import qcm.models.Reponse;
 
 /**
- *
+ * Gère les accès à la base de données pour les réponses
  * @author Maria Rabarison et Lou Ferrand
  */
-public class ReponseDAO extends ModeleDAO{
+public class ReponseDAO extends ModeleDAO {
 
     public static Reponse getById(int idReponse) throws SQLException {
         Reponse reponse = null;
@@ -26,7 +26,4 @@ public class ReponseDAO extends ModeleDAO{
         rs.close();
         return reponse;
     }
-
-    
-
 }

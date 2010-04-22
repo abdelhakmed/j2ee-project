@@ -1,4 +1,7 @@
 <%
+            /**
+             * Fragment de page qui affiche les erreurs ou les messages destinés à l'utilisateur
+             */
             String message = (String) request.getAttribute("message");
             if (message != null) {
                 out.println("<div id='flash-message'>");
