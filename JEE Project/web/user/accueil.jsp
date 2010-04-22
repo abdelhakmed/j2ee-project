@@ -1,19 +1,28 @@
-<%-- 
-    Document   : accueil
-    Created on : 21 avr. 2010, 23:12:34
-    Author     : marya
---%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Accueil</h1>
-    </body>
-</html>
+
+    <h4>Accueil d'iQCM</h4>
+    <div class="start-qcm">
+        <a href="PasserQuestionnaire?action=afficherChoixThemesNiveau">Choisissez un questionnaire</a>
+    </div>
+<div id="statistiques">
+    <p>Voici les derniers questionnaire auxquels vous avez répondu :    </p>
+
+        <ul class="liste">
+            <li>blablabla</li>
+            <li>blablabla</li>
+            <li>blablabla</li>
+            <li>blablabla</li>
+            <li>blablabla</li>
+        </ul>
+    <p>Ces questionnaire peuvent vous intéresser :    </p>
+
+        <ul class="liste">
+            <li>blablabla</li>
+            <li>blablabla</li>
+            <li>blablabla</li>
+            <li>blablabla</li>
+            <li>blablabla</li>
+        </ul>
+</div>
+               

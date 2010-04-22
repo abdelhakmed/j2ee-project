@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="modele.User" %>
+<%@page import="qcm.models.User" %>
 <%
             User user = (User) request.getSession().getAttribute("user");
             if (user == null) {
