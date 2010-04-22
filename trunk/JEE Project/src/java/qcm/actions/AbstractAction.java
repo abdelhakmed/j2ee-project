@@ -17,19 +17,20 @@ public abstract class AbstractAction implements Action{
 
 
     protected HttpServletRequest request;
-    protected String forward;
-    protected List<String> errorMessages;
+    private String pageToForward;
+    private List<String> errorMessages;
 
 
 
-    protected AbstractAction(HttpServletRequest request){
-        this.request = request;
+    protected AbstractAction(){
         this.errorMessages = new ArrayList<String>();
     }
 
-    protected void setForward(String forward){
-        this.forward = forward;
+    public void setRequest(HttpServletRequest request){
+        this.request = request;
     }
+
+    
 
     protected void addErrorMessage(String errorMessage){
         errorMessages.add(errorMessage);
@@ -37,15 +38,27 @@ public abstract class AbstractAction implements Action{
 
     
 
-    public String getForward(){
-        return forward;
+    public String getPageToForward(){
+        return pageToForward;
     }
 
+    protected void setPageToForward(String forward){
+        this.pageToForward = forward;
+    }
 
     public List<String> getErrorMessages(){
         return errorMessages;
     }
 
+
+    /**
+     * Vérifie si la session de l'utilisateur a été initialisée
+     * @param request, Request sur laquelle on va testé l'existence de la session
+     * @return true si la session n'est pas null, false sinon
+     */
+    public boolean isUserAuthentificated() {
+        return request.getSession().getAttribute("user") != null;
+    }
 
     public abstract void execute();
 

@@ -6,6 +6,7 @@
 package qcm.actions;
 
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -18,6 +19,8 @@ public interface Action {
      */
     public void execute();
 
+
+    public void setRequest(HttpServletRequest request);
     /**
      * renvoie la page
      * @return
