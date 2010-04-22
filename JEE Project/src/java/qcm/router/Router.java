@@ -7,10 +7,7 @@ package qcm.router;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import qcm.actions.Action;
-import qcm.actions.AuthenticateAction;
+import qcm.actions.IndexAction;
 
 /**
  *
@@ -26,7 +23,7 @@ public class Router {
 
 
 
-        uriToAction.put("/index", AuthenticateAction.class);
+        uriToAction.put("/index", IndexAction.class);
     }
 
 

@@ -14,7 +14,7 @@ import qcm.services.UserService;
  *
  * @author marya
  */
-public class AuthenticateAction extends AbstractAction{
+public class IndexAction extends AbstractAction{
 
     
 
@@ -22,7 +22,6 @@ public class AuthenticateAction extends AbstractAction{
 
 
     public void execute(){
-System.out.println("login");
 
         String page = "index.jsp";
         UserService uS = new UserService();
@@ -53,7 +52,7 @@ System.out.println("login");
         }
         
         finally{
-            setPageToForward(page);
+            setView(page);
         }
     }
 

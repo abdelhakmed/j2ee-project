@@ -17,7 +17,7 @@ public abstract class AbstractAction implements Action{
 
 
     protected HttpServletRequest request;
-    private String pageToForward;
+    private String view;
     private List<String> errorMessages;
 
 
@@ -38,12 +38,12 @@ public abstract class AbstractAction implements Action{
 
     
 
-    public String getPageToForward(){
-        return pageToForward;
+    public String getView(){
+        return view;
     }
 
-    protected void setPageToForward(String forward){
-        this.pageToForward = forward;
+    protected void setView(String forward){
+        this.view = forward;
     }
 
     public List<String> getErrorMessages(){
