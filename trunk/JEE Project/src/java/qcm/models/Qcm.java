@@ -6,9 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import qcm.services.QcmService;
-import qcm.services.QuestionnaireService;
-import qcm.services.ReponseService;
+import qcm.services.Helper;
 
 /**
  *
@@ -26,10 +24,9 @@ public class Qcm {
     public Qcm(final int idQuestionnaire, final int idUser) {
         assert idQuestionnaire > 0;
         assert idUser > 0;
-        QuestionnaireService qstServ = new QuestionnaireService();
         this.idUser = idUser;
         userReponses = new HashMap<Integer, List<Integer>>();
-        this.questionnaire = qstServ.getQuestionnaireById(questionnaire.getIdQuestionnaire());
+        this.questionnaire = Helper.getQuestionnaireById(questionnaire.getIdQuestionnaire());
         List<Question> questions = questionnaire.getQuestions();
         for (int i = 0; i< questions.size(); i++) {
             userReponses.put(questions.get(i).getIdQuestion(), new ArrayList<Integer>());
@@ -128,7 +125,7 @@ public class Qcm {
 
     public void save() throws SQLException {
         assert invariant();
-        new QcmService().save(this);
+        new Helper().save(this);
         assert estFini();
     }
 
@@ -144,12 +141,11 @@ public class Qcm {
     private void setNote()throws SQLException {
         assert estFini;
         int score = 0;
-        ReponseService rspServ = new ReponseService();
         List<Integer> reponses = null;
         for (Integer idQuestion : userReponses.keySet()) {
             reponses = userReponses.get(idQuestion);
             for (Integer reponse : reponses) {
-                score+= rspServ.getNoteByReponse(reponse);
+                score+= Helper.getNoteByReponse(reponse);
             }
         }
         note=score;

@@ -7,7 +7,8 @@ package qcm.actions;
 
 import java.sql.SQLException;
 import qcm.models.User;
-import qcm.services.UserService;
+import qcm.services.ActionHelper;
+import qcm.services.Helper;
 
 /**
  *
@@ -20,39 +21,33 @@ public class IndexAction extends AbstractAction{
 
 
 
-    public void execute(){
+    public void execute() throws SQLException,Exception{
 
-        String page = "index.jsp";
-        UserService uS = new UserService();
-        try{
-            if(!isUserAuthentificated()){
-                String login = request.getParameter("login").toString();
-                String password = request.getParameter("password").toString();
-                if (login == null || login.trim().isEmpty()) {
-                    addErrorMessage("Veuillez renseigner votre login");
-                } else if (password == null || password.trim().isEmpty()) {
-                    addErrorMessage("Veuillez renseigner votre mot de passe");
-                }else{
-                    User user = (User) uS.checkUserByLoginAndPassWord(login,password);
-                    if(user != null){
-                        request.getSession().setAttribute("user", user);
-                        page = "/user/accueil.jsp";
-                    }else{
-                        addErrorMessage("Utilisateur inconnu : "+login);
-                    }
-                }
+        String page = "/scripts/login.jsp";
+        Helper helper = new Helper();
+       
+        if(!isUserAuthentificated()){
+            String login = request.getParameter("login").toString();
+            String password = request.getParameter("password").toString();
+            if (login == null || login.trim().isEmpty()) {
+                throw new Exception("Veuillez renseigner votre login");
+            } else if (password == null || password.trim().isEmpty()) {
+                throw new Exception("Veuillez renseigner votre mot de passe");
             }else{
-                page = "/user/accueil.jsp";
+                User user = ActionHelper.checkUserByLoginAndPassWord(login,password);
+                if(user != null){
+                    request.getSession().setAttribute("user", user);
+                    page = "/user/accueil.jsp";
+                }else{
+                    throw new Exception("Utilisateur inconnu : "+login);
+                }
             }
-            
+        }else{
+            page = "/user/accueil.jsp";
         }
-        catch(SQLException e){
-            addErrorMessage("Erreur interne, merci de recommencer ultérieurement");
-        }
+        setView(page);
+       
         
-        finally{
-            setView(page);
-        }
     }
 
 }

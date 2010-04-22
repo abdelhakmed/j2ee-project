@@ -18,25 +18,17 @@ public abstract class AbstractAction implements Action{
 
     protected HttpServletRequest request;
     private String view;
-    private List<String> errorMessages;
 
 
 
     protected AbstractAction(){
-        this.errorMessages = new ArrayList<String>();
     }
 
-    public void setRequest(HttpServletRequest request){
+    public void setRequest(HttpServletRequest request) throws Exception{
         this.request = request;
     }
 
-    
 
-    protected void addErrorMessage(String errorMessage){
-        errorMessages.add(errorMessage);
-    }
-
-    
 
     public String getView(){
         return view;
@@ -46,9 +38,6 @@ public abstract class AbstractAction implements Action{
         this.view = forward;
     }
 
-    public List<String> getErrorMessages(){
-        return errorMessages;
-    }
 
 
     /**
@@ -60,6 +49,6 @@ public abstract class AbstractAction implements Action{
         return request.getSession().getAttribute("user") != null;
     }
 
-    public abstract void execute();
+    public abstract void execute() throws Exception;
 
 }
