@@ -3,7 +3,8 @@ package qcm.persistences;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import qcm.models.Niveau;
 
 /**
@@ -12,8 +13,8 @@ import qcm.models.Niveau;
  */
 public class NiveauDAO extends ModeleDAO {
 
-    public static HashMap<Integer, Niveau> getAll() throws SQLException {
-        HashMap<Integer, Niveau> niveaux = new HashMap<Integer, Niveau>();
+    public static List<Niveau> getAll() throws SQLException {
+        List<Niveau> niveaux = new ArrayList<Niveau>();
         String sql = "SELECT niveau.id_niveau, niveau.libelle, niveau.est_actif, COUNT( questionnaire.id_niveau ) AS compteur "
                 + "FROM niveau "
                 + "LEFT OUTER JOIN questionnaire ON questionnaire.id_niveau = niveau.id_niveau "
@@ -26,7 +27,7 @@ public class NiveauDAO extends ModeleDAO {
                     rs.getString("libelle"),
                     rs.getInt("compteur"),
                     rs.getBoolean("est_actif"));
-            niveaux.put(niveau.getIdNiveau(), niveau);
+            niveaux.add(niveau);
         }
         rs.close();
         return niveaux;

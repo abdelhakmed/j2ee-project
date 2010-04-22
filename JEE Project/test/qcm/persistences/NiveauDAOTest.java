@@ -5,7 +5,7 @@
 
 package qcm.persistences;
 
-import java.util.HashMap;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,8 +45,8 @@ public class NiveauDAOTest {
     @Test
     public void testGetAll() throws Exception {
         System.out.println("getAll");
-        HashMap expResult = null;
-        HashMap result = NiveauDAO.getAll();
+        List expResult = null;
+        List result = NiveauDAO.getAll();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
