@@ -4,9 +4,6 @@
  */
 
 package qcm.actions;
-
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -24,6 +21,11 @@ public abstract class AbstractAction implements Action{
     protected AbstractAction(){
     }
 
+    /**
+     * Attribue la requete sur laquelle on demande l'action
+     * @param request
+     * @throws Exception
+     */
     public void setRequest(HttpServletRequest request) throws Exception{
         this.request = request;
     }

@@ -1,9 +1,3 @@
-<%--
-    Document   : accueil
-    Created on : 27 mars 2010, 11:46:04
-    Author     : Lou
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String layout = (String) request.getAttribute("view");

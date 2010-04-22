@@ -13,10 +13,10 @@
                 <h1><a href="index.jsp">iQCM</a></h1>
             </div>
             <ul id="menu">
-                <li><a href="Accueil">Accueil</a></li>
-                <li><a href="#">Actualité</a></li>
-                <li><a href="#">A propos</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="/index.html">Accueil</a></li>
+                <li><a href="/actualite.html">Actualité</a></li>
+                <li><a href="/apropos.html">A propos</a></li>
+                <li><a href="/contact.html">Contact</a></li>
             </ul>
             <div class="line"></div>
 

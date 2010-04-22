@@ -8,6 +8,8 @@ package qcm.router;
 import java.util.HashMap;
 import java.util.Map;
 import qcm.actions.IndexAction;
+import qcm.actions.creerQuestionnaire.CreerQuestionnaireIndexAction;
+import qcm.actions.passerQuestionnaire.PasserQuestionnaireIndexAction;
 
 /**
  *
@@ -24,6 +26,8 @@ public class Router {
 
 
         uriToAction.put("/index.html", IndexAction.class);
+        uriToAction.put("/passerQuestionnaire/index.html", PasserQuestionnaireIndexAction.class);
+        uriToAction.put("/creerQuestionnaire/index.html", CreerQuestionnaireIndexAction.class);
     }
 
 
