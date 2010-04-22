@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import qcm.actions.Action;
+import qcm.actions.AuthenticateAction;
 
 /**
  *
@@ -22,19 +23,15 @@ public class Router {
     static {
         uriToAction = new HashMap<String, Class>();
         actionToUri = new HashMap<Class, String>();
+
+
+
+        uriToAction.put("/index", AuthenticateAction.class);
     }
 
 
-    public static Action getActionByUri(String uri){
-        Action action = null;
-        try {
-            action = (Action) uriToAction.get(uri).newInstance();
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Router.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Router.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return action;
+    public static Class getActionByUri(String uri){
+        return uriToAction.get(uri);
     }
 
 

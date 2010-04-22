@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import qcm.persistences.ReponseDAO;
 import qcm.services.QcmService;
 import qcm.services.QuestionnaireService;
+import qcm.services.ReponseService;
 
 /**
  *
@@ -144,11 +144,12 @@ public class Qcm {
     private void setNote()throws SQLException {
         assert estFini;
         int score = 0;
+        ReponseService rspServ = new ReponseService();
         List<Integer> reponses = null;
         for (Integer idQuestion : userReponses.keySet()) {
             reponses = userReponses.get(idQuestion);
             for (Integer reponse : reponses) {
-                score += ReponseDAO.getById(reponse).getNote();
+                score+= rspServ.getNoteByReponse(reponse);
             }
         }
         note=score;

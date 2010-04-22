@@ -6,11 +6,14 @@
 package qcm.application;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import qcm.actions.Action;
+import qcm.router.Router;
 
 /**
  *
@@ -28,34 +31,20 @@ public class Application extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        String forward = "/index.jsp";
+        String uri="";
         try {
             
-            String uri = request.getRequestURI();
-            /**
-             * Action action= Router.getActionByUri(uri);
-             * action.execute();
-             * Result result = action.getResult();
-             * result.getPageTof...
-             * forward = action.getPageToForward();
-             *
-             */
-            System.out.println(uri);
-            out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet Application</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Servlet Application at " + request.getContextPath () + "</h1>");
-                out.println("Ici la servlet<br/>");
-                out.println("URL = "+uri);
-                out.println("</body>");
-                out.println("</html>");
-            
-            
-      
+            uri = request.getRequestURI();
+            uri = uri.substring(12,uri.length());
+            Action action= getActionByUri(uri);
+            action.setRequest(request);
+            action.execute();
+            forward = action.getPageToForward();
+        }catch(NullPointerException e){
+            request.setAttribute("errorMessage","Cette page n'existe pas : "+uri);
         } finally { 
-            out.close();
+            request.getRequestDispatcher(forward).forward(request, response);
         }
     } 
 
@@ -94,5 +83,36 @@ public class Application extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private Action getActionByUri(String uri){
+        Action action = null;
+        try {
+            action = (Action) Router.getActionByUri(uri).newInstance();
+         } catch (InstantiationException ex) {
+            Logger.getLogger(Router.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Router.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return action;
+    }
+
+
+    
+
+
+
 
 }
