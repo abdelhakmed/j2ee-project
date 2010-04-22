@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-                <form id="connexion_form" action="index" method="post" accept-charset="utf-8">
+                <form id="connexion_form" action="index.html" method="post" accept-charset="utf-8">
                     <fieldset id="connexion" class="">
                         <legend>Connexion</legend>
                         <%

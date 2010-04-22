@@ -6,7 +6,6 @@
 package qcm.actions;
 
 import java.sql.SQLException;
-import javax.servlet.http.HttpServletRequest;
 import qcm.models.User;
 import qcm.services.UserService;
 

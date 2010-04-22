@@ -23,7 +23,7 @@ public class Router {
 
 
 
-        uriToAction.put("/index", IndexAction.class);
+        uriToAction.put("/index.html", IndexAction.class);
     }
 
 

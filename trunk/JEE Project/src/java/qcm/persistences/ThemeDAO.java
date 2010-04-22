@@ -3,7 +3,9 @@ package qcm.persistences;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import qcm.models.Theme;
 
 /**
@@ -12,8 +14,8 @@ import qcm.models.Theme;
  */
 public class ThemeDAO extends ModeleDAO {
 
-    public static HashMap<Integer, Theme> getAll() throws SQLException {
-        HashMap<Integer, Theme> themes = new HashMap<Integer, Theme>();
+    public static List<Theme> getAll() throws SQLException {
+        List<Theme>themes = new ArrayList<Theme>();
         String sql = "SELECT theme.id_theme, theme.id_user, theme.libelle, theme.est_actif, COUNT(questionnaire.id_theme) AS compteur "
                 + "FROM theme "
                 + "LEFT OUTER JOIN questionnaire "
@@ -28,7 +30,7 @@ public class ThemeDAO extends ModeleDAO {
                     rs.getString("libelle"),
                     rs.getInt("compteur"),
                     rs.getBoolean("est_actif"));
-            themes.put(theme.getIdTheme(), theme);
+            themes.add(theme);
         }
         rs.close();
         return themes;
