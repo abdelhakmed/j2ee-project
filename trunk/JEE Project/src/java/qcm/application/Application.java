@@ -38,7 +38,7 @@ public class Application extends HttpServlet {
             uri = uri.substring(12, uri.length());
             Action action = getActionByUri(uri);
             if(action != null){
-                action.setRequest(request);
+                action.setRequestAndCheckAuthorization(request);
                 action.execute();
                 request.setAttribute("view", action.getView());
                 forward = "/view.jsp";
@@ -51,21 +51,15 @@ public class Application extends HttpServlet {
 
         } catch (ExpiredSessionException e) {
             request.setAttribute("errorMessage", e.getMessage());
-        } catch (NullPointerException e) {
-            request.setAttribute("errorMessage", "Cette page n'existe pas : " + uri);
-            forward = "/error.jsp";
-        } catch (SQLException e) {
-            request.setAttribute("errorMessage", "Erreur interne  :"+e.getMessage());
-            forward = "/error.jsp";
+            e.printStackTrace();
         } catch (UnknownUserException e) {
             request.setAttribute("errorMessage", "Erreur interne : "+e.getMessage());
             forward = "/error.jsp";
-        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             request.setAttribute("errorMessage", e.getMessage());
             forward = "/error.jsp";
-        } catch (Exception e) {
-            request.setAttribute("errorMessage", "Unknown Exception : "+e.getMessage());
-            forward = "/error.jsp";
+            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(forward).forward(request, response);
         }
