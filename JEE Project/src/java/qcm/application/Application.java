@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import qcm.exceptions.UnknownUserException;
 import qcm.actions.Action;
 import qcm.exceptions.ExpiredSessionException;
+import qcm.exceptions.UnauthorizedActionException;
 import qcm.router.Router;
 
 /**
@@ -53,6 +54,10 @@ public class Application extends HttpServlet {
             request.setAttribute("errorMessage", e.getMessage());
             e.printStackTrace();
         } catch (UnknownUserException e) {
+            request.setAttribute("errorMessage", "Erreur interne : "+e.getMessage());
+            forward = "/error.jsp";
+            e.printStackTrace();
+        } catch (UnauthorizedActionException e) {
             request.setAttribute("errorMessage", "Erreur interne : "+e.getMessage());
             forward = "/error.jsp";
             e.printStackTrace();
