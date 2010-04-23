@@ -7,7 +7,10 @@ package qcm.router;
 import java.util.HashMap;
 import java.util.Map;
 import qcm.actions.IndexAction;
+import qcm.actions.creerQuestionnaire.CreerQuestionnaireAjouterQuestionAction;
+import qcm.actions.creerQuestionnaire.CreerQuestionnaireAjouterReponsesAction;
 import qcm.actions.creerQuestionnaire.CreerQuestionnaireIndexAction;
+import qcm.actions.creerQuestionnaire.CreerQuestionnaireNouveauAction;
 import qcm.actions.mesQuestionnaires.MesQuestionnairesEditerAction;
 import qcm.actions.mesQuestionnaires.MesQuestionnairesIndexAction;
 import qcm.actions.mesResultats.MesResultatsCorrectionAction;
@@ -56,6 +59,9 @@ public class Router {
 
         //Créer un questionnaire
         uriToAction.put("/creerQuestionnaire/index.html", CreerQuestionnaireIndexAction.class);
+        uriToAction.put("/creerQuestionnaire/nouveau.html", CreerQuestionnaireNouveauAction.class);
+        uriToAction.put("/creerQuestionnaire/ajouterQuestion.html", CreerQuestionnaireAjouterQuestionAction.class);
+        uriToAction.put("/creerQuestionnaire/ajouterReponses.html", CreerQuestionnaireAjouterReponsesAction.class);
 
         //Administration
     }
