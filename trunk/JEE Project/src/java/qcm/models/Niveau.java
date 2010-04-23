@@ -6,7 +6,7 @@ package qcm.models;
  */
 public class Niveau {
 
-    private int idNiveau;
+    private Integer idNiveau;
     private String libelle;
     private int utilisations;
     private boolean estActif;

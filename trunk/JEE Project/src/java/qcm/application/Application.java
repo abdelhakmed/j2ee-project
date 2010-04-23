@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import qcm.exceptions.UnknownUserException;
 import qcm.actions.Action;
+import qcm.exceptions.ExpiredSessionException;
 import qcm.router.Router;
 
 /**
@@ -43,11 +44,15 @@ public class Application extends HttpServlet {
         } catch (NullPointerException e) {
             request.setAttribute("errorMessage", "Cette page n'existe pas : " + uri);
         } catch (SQLException e) {
-            request.setAttribute("errorMessage", "Erreur interne");
+            request.setAttribute("errorMessage", "Erreur interne  :"+e.getMessage());
         } catch (UnknownUserException e) {
-            request.setAttribute("errorMessage", "Erreur interne");
+            request.setAttribute("errorMessage", "Erreur interne : "+e.getMessage());
+        } catch (IllegalArgumentException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+        } catch (ExpiredSessionException e) {
+            request.setAttribute("errorMessage", e.getMessage());
         } catch (Exception e) {
-            request.setAttribute("errorMessage", "Unknown Exception");
+            request.setAttribute("errorMessage", "Unknown Exception : "+e.getMessage());
         } finally {
             request.getRequestDispatcher(forward).forward(request, response);
         }

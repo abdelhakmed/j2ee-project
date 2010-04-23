@@ -31,7 +31,6 @@ public class IndexAction extends AbstractAction {
                 User user = ActionHelper.checkUserByLoginAndPassWord(login, password);
                 if (user != null) {
                     request.getSession().setAttribute("user", user);
-                    System.out.println("USER = "+user);
                     page = "/user/accueil.jsp";
                 } else {
                     throw new UnknownUserException("Utilisateur inconnu : " + login);
