@@ -15,13 +15,10 @@ import qcm.services.ActionHelper;
  *
  * @author marya
  */
-public class PasserQuestionnaireCommencerAction extends AbstractAction{
+public class PasserQuestionnaireCommencerAction extends PasserQuestionnaireAction{
 
    public void execute() throws SQLException , UnauthorizedActionException ,ExpiredSessionException {
 
-        if(!isUserAuthentificated()){
-            throw new ExpiredSessionException("Merci de vous authentifier");
-        }
         int idQuestionnaire = Integer.parseInt(request.getParameter("questionnaire").toString());
         int idUser = ActionHelper.getIdUser(request);
         Qcm qcm = new Qcm(idQuestionnaire, idUser);

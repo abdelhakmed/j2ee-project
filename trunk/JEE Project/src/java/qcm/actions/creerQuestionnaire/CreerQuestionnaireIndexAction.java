@@ -5,11 +5,13 @@
 
 package qcm.actions.creerQuestionnaire;
 
+import qcm.actions.EnseignantAction;
+
 /**
  * Action index pour la creation d'un questionnaire
  * @author marya
  */
-public class CreerQuestionnaireIndexAction extends CreerQuestionnaireAction{
+public class CreerQuestionnaireIndexAction extends EnseignantAction{
     
     public void execute(){
 

@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 import qcm.actions.IndexAction;
 import qcm.actions.creerQuestionnaire.CreerQuestionnaireIndexAction;
+import qcm.actions.mesQuestionnaires.MesQuestionnairesEditerAction;
+import qcm.actions.mesQuestionnaires.MesQuestionnairesIndexAction;
+import qcm.actions.mesResultats.MesResultatsCorrectionAction;
+import qcm.actions.mesResultats.MesResultatsIndexAction;
 import qcm.actions.passerQuestionnaire.PasserQuestionnaireChoixAction;
 import qcm.actions.passerQuestionnaire.PasserQuestionnaireCommencerAction;
 import qcm.actions.passerQuestionnaire.PasserQuestionnaireIndexAction;
@@ -40,6 +44,15 @@ public class Router {
         uriToAction.put("/passerQuestionnaire/questionSuivante.html", PasserQuestionnaireQuestionSuivanteAction.class);
         uriToAction.put("/passerQuestionnaire/modifierReponses.html", PasserQuestionnaireModifierReponsesAction.class);
         uriToAction.put("/passerQuestionnaire/terminer.html", PasserQuestionnaireTerminerAction.class);
+
+        //Consultation des résultats
+        uriToAction.put("/mesResultats/index.html", MesResultatsIndexAction.class);
+        uriToAction.put("/mesResultats/correction.html", MesResultatsCorrectionAction.class);
+
+
+        //Consultation des questionnaires
+        uriToAction.put("/mesQuestionnaires/index.html", MesQuestionnairesIndexAction.class);
+        uriToAction.put("/mesQuestionnaires/editer.html", MesQuestionnairesEditerAction.class);
 
         //Créer un questionnaire
         uriToAction.put("/creerQuestionnaire/index.html", CreerQuestionnaireIndexAction.class);

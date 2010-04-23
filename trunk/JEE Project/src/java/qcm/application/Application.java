@@ -37,22 +37,35 @@ public class Application extends HttpServlet {
             uri = request.getRequestURI();
             uri = uri.substring(12, uri.length());
             Action action = getActionByUri(uri);
-            action.setRequest(request);
-            action.execute();
-            request.setAttribute("view", action.getView());
-            forward = "/view.jsp";
-        } catch (NullPointerException e) {
-            request.setAttribute("errorMessage", "Cette page n'existe pas : " + uri);
-        } catch (SQLException e) {
-            request.setAttribute("errorMessage", "Erreur interne  :"+e.getMessage());
-        } catch (UnknownUserException e) {
-            request.setAttribute("errorMessage", "Erreur interne : "+e.getMessage());
-        } catch (IllegalArgumentException e) {
-            request.setAttribute("errorMessage", e.getMessage());
+            if(action != null){
+                action.setRequest(request);
+                action.execute();
+                request.setAttribute("view", action.getView());
+                forward = "/view.jsp";
+            }else{
+                request.setAttribute("errorMessage", "Cette page n'existe pas : " + uri);
+                forward = "/error.jsp";
+            }
+            
+
+
         } catch (ExpiredSessionException e) {
             request.setAttribute("errorMessage", e.getMessage());
+        } catch (NullPointerException e) {
+            request.setAttribute("errorMessage", "Cette page n'existe pas : " + uri);
+            forward = "/error.jsp";
+        } catch (SQLException e) {
+            request.setAttribute("errorMessage", "Erreur interne  :"+e.getMessage());
+            forward = "/error.jsp";
+        } catch (UnknownUserException e) {
+            request.setAttribute("errorMessage", "Erreur interne : "+e.getMessage());
+            forward = "/error.jsp";
+        } catch (IllegalArgumentException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            forward = "/error.jsp";
         } catch (Exception e) {
             request.setAttribute("errorMessage", "Unknown Exception : "+e.getMessage());
+            forward = "/error.jsp";
         } finally {
             request.getRequestDispatcher(forward).forward(request, response);
         }
@@ -96,7 +109,10 @@ public class Application extends HttpServlet {
     private Action getActionByUri(String uri) {
         Action action = null;
         try {
-            action = (Action) Router.getActionByUri(uri).newInstance();
+            Class classe = Router.getActionByUri(uri);
+            if(classe != null){
+                action = (Action) classe.newInstance();
+            }
         } catch (InstantiationException ex) {
             Logger.getLogger(Router.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {

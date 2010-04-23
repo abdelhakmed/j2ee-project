@@ -20,7 +20,7 @@ public class IndexAction extends AbstractAction {
 
         String page = "/scripts/login.jsp";
 
-        if (!isUserAuthentificated()) {
+        if (!isUserAuthenticated()) {
             String login = request.getParameter("login").toString();
             String password = request.getParameter("password").toString();
             if (login == null || login.trim().isEmpty()) {

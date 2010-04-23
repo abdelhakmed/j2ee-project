@@ -6,7 +6,6 @@
 package qcm.actions.passerQuestionnaire;
 
 import java.sql.SQLException;
-import qcm.actions.AbstractAction;
 import qcm.exceptions.ExpiredSessionException;
 import qcm.exceptions.UnauthorizedActionException;
 import qcm.models.Questionnaire;
@@ -17,13 +16,9 @@ import qcm.services.ActionHelper;
  *
  * @author marya
  */
-public class PasserQuestionnaireChoixAction extends AbstractAction{
+public class PasserQuestionnaireChoixAction extends PasserQuestionnaireAction{
 
     public void execute() throws SQLException , UnauthorizedActionException , ExpiredSessionException {
-        if(!isUserAuthentificated()){
-            throw new ExpiredSessionException("Merci de vous authentifier");
-        }
-
         Questionnaire questionnaire = QuestionnaireDAO.getById(Integer.parseInt(request.getParameter("questionnaire").toString()));
         request.setAttribute("questionnaire", questionnaire);
         ActionHelper.setAttributeTheme(questionnaire.getIdTheme(), request);

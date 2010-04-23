@@ -39,34 +39,34 @@ public class CreerQuestionnaireActionTest {
     }
 
     /**
-     * Test of setRequest method, of class CreerQuestionnaireAction.
-     */
+     * Test of setRequest method, of class EnseignantAction.
+  
     @Test
     public void testSetRequest() throws Exception {
         System.out.println("setRequest");
         HttpServletRequest request = null;
-        CreerQuestionnaireAction instance = new CreerQuestionnaireActionImpl();
+        EnseignantAction instance = new CreerQuestionnaireActionImpl();
         instance.setRequest(request);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of execute method, of class CreerQuestionnaireAction.
-     */
+     * Test of execute method, of class EnseignantAction.
+    
     @Test
     public void testExecute() {
         System.out.println("execute");
-        CreerQuestionnaireAction instance = new CreerQuestionnaireActionImpl();
+        EnseignantAction instance = new CreerQuestionnaireActionImpl();
         instance.execute();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
-    public class CreerQuestionnaireActionImpl extends CreerQuestionnaireAction {
+    public class CreerQuestionnaireActionImpl extends EnseignantAction {
 
         public void execute() {
         }
-    }
+    }*/
 
 }
