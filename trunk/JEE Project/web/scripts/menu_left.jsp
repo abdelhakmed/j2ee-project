@@ -25,7 +25,7 @@ Menu de gauche à inclure
             <%
                 if (user.isCreator() || user.isAdmin()) {
             %>
-                        <a href="CreerQuestionnaire?action=applyToCreate"><li>Créer un questionnaire</li></a>
+                        <a href="<%= request.getContextPath() %>/creerQuestionnaire/index.html"><li>Créer un questionnaire</li></a>
                         <a href="<%= request.getContextPath() %>/mesQuestionnaires/index.html"><li>Mes questionnaires</li></a>
             <% }%>
                     </ul>

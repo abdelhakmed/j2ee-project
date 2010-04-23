@@ -8,7 +8,7 @@
             out.println("<ol>");
             for (Integer i : questionnaires.keySet()) {
 %>
-        <a href="<%= request.getContextPath() %>/editer.html?questionnaire=<%= i %>"><li><%= questionnaires.get(i)%></li></a>
+        <a href="<%= request.getContextPath() %>/mesQuestionnaires/editer.html?questionnaire=<%= i %>"><li><%= questionnaires.get(i)%></li></a>
 <%
             }
             out.println("</ol>");
