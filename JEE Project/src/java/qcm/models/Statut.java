@@ -6,7 +6,7 @@ package qcm.models;
  */
 public class Statut {
 
-    private int id_statut;
+    private Integer id_statut;
     private String libelle;
 
     public Statut(int id_statut, String libelle) {

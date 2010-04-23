@@ -26,7 +26,7 @@ public class Qcm {
         assert idUser > 0;
         this.idUser = idUser;
         userReponses = new HashMap<Integer, List<Integer>>();
-        this.questionnaire = Helper.getQuestionnaireById(questionnaire.getIdQuestionnaire());
+        this.questionnaire = Helper.getQuestionnaireById(idQuestionnaire);
         List<Question> questions = questionnaire.getQuestions();
         for (int i = 0; i < questions.size(); i++) {
             userReponses.put(questions.get(i).getIdQuestion(), new ArrayList<Integer>());

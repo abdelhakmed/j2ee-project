@@ -21,8 +21,17 @@ public class ActionHelper {
         request.setAttribute("themes", ThemeDAO.getAll());
     }
 
+
+    public static void setAttributeTheme(int theme , HttpServletRequest request) throws SQLException {
+        request.setAttribute("theme", ThemeDAO.getById(theme));
+    }
+
     public static void setAttributeNiveaux(HttpServletRequest request) throws SQLException {
         request.setAttribute("niveaux", NiveauDAO.getAll());
+    }
+
+    public static void setAttributeNiveau(int niveau , HttpServletRequest request) throws SQLException {
+        request.setAttribute("niveau", NiveauDAO.getById(niveau));
     }
 
     public static boolean userHasAlreadyPassedQuestionnaire(int idUser, Questionnaire q) throws SQLException {
