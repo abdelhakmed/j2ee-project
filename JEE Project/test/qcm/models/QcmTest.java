@@ -1,220 +1,97 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.models;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import qcm.persistences.QuestionDAO;
+import qcm.persistences.QuestionnaireDAO;
+import qcm.persistences.QuestionnairePasseDAO;
+import tools.QCMTestCase;
 import static org.junit.Assert.*;
 
 /**
  *
  * @author marya
  */
-public class QcmTest {
+public class QcmTest extends QCMTestCase {
 
-    public QcmTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of getQuestionnaire method, of class Qcm.
-     */
     @Test
-    public void testGetQuestionnaire() {
-        System.out.println("getQuestionnaire");
-        Qcm instance = null;
-        Questionnaire expResult = null;
-        Questionnaire result = instance.getQuestionnaire();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getIdUser method, of class Qcm.
-     */
-    @Test
-    public void testGetIdUser() {
-        System.out.println("getIdUser");
-        Qcm instance = null;
-        int expResult = 0;
-        int result = instance.getIdUser();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getNote method, of class Qcm.
-     */
-    @Test
-    public void testGetNote() throws Exception {
-        System.out.println("getNote");
-        Qcm instance = null;
-        int expResult = 0;
-        int result = instance.getNote();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of estFini method, of class Qcm.
-     */
-    @Test
-    public void testEstFini() {
-        System.out.println("estFini");
-        Qcm instance = null;
-        boolean expResult = false;
-        boolean result = instance.estFini();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setEstFini method, of class Qcm.
-     */
-    @Test
-    public void testSetEstFini() {
-        System.out.println("setEstFini");
-        boolean estFini = false;
-        Qcm instance = null;
-        instance.setEstFini(estFini);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testQcm() throws SQLException {
+        System.out.println("Qcm");
+        Qcm instance = new Qcm(1, 1);
+        ArrayList<Question> expResult = new ArrayList<Question>();
+        expResult.add(QuestionDAO.getById(1));
+        expResult.add(QuestionDAO.getById(2));
+        expResult.add(QuestionDAO.getById(3));
+        ArrayList<Question> result = QuestionnaireDAO.getQuestionsById(instance.getQuestionnaire().getIdQuestionnaire());
+        assertTrue(expResult.containsAll(result) && result.containsAll(expResult));
     }
 
     /**
      * Test of getQuestionSuivante method, of class Qcm.
      */
     @Test
-    public void testGetQuestionSuivante() {
-        System.out.println("getQuestionSuivante");
-        Qcm instance = null;
-        Integer expResult = null;
-        Integer result = instance.getQuestionSuivante();
+    public void testGetQuestionCourante() throws SQLException {
+        System.out.println("getQuestionCourante");
+        Qcm instance = new Qcm(1, 1);
+        int expResult = 1;
+        int result = instance.getQuestionSuivante();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getUserReponses method, of class Qcm.
-     */
-    @Test
-    public void testGetUserReponses() {
-        System.out.println("getUserReponses");
-        Qcm instance = null;
-        Map expResult = null;
-        Map result = instance.getUserReponses();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setUserReponses method, of class Qcm.
+     * Test of setUserReponse method, of class Qcm.
      */
     @Test
     public void testSetUserReponses() {
-        System.out.println("setUserReponses");
-        Integer idQuestion = null;
-        List<Integer> reponses = null;
-        Qcm instance = null;
+        System.out.println("setUserReponse");
+        int idQuestionnaire = 1;
+        int idQuestion = 1;
+        Qcm instance = new Qcm(idQuestionnaire, idQuestion);
+        List<Integer> reponses = new ArrayList<Integer>();
+        reponses.add(1);
+        reponses.add(2);
         instance.setUserReponses(idQuestion, reponses);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.getUserReponses().get(idQuestion).containsAll(reponses));
+        assertTrue(reponses.containsAll(instance.getUserReponses().get(idQuestion)));
     }
 
     /**
-     * Test of equals method, of class Qcm.
+     *
      */
     @Test
-    public void testEquals() {
-        System.out.println("equals");
-        Object obj = null;
-        Qcm instance = null;
-        boolean expResult = false;
-        boolean result = instance.equals(obj);
+    public void testGetNote() throws SQLException {
+        System.out.println("getNote");
+        int idQuestionnaire = 1;
+        int idQuestion = 1;
+        Qcm instance = new Qcm(idQuestionnaire, idQuestion);
+        List<Integer> reponses = new ArrayList<Integer>();
+        reponses.add(1);
+        reponses.add(3);
+        instance.setUserReponses(idQuestion, reponses);
+        int expResult = 5;
+        instance.setEstFini(true);
+        int result = instance.getNote();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of hashCode method, of class Qcm.
-     */
     @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        Qcm instance = null;
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of invariant method, of class Qcm.
-     */
-    @Test
-    public void testInvariant() {
-        System.out.println("invariant");
-        Qcm instance = null;
-        boolean expResult = false;
-        boolean result = instance.invariant();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of save method, of class Qcm.
-     */
-    @Test
-    public void testSave() throws Exception {
+    public void testSave() throws SQLException {
         System.out.println("save");
-        Qcm instance = null;
+        int idQuestionnaire = 4;
+        int idUser = 1;
+        Qcm instance = new Qcm(idQuestionnaire, idUser);
+        List<Integer> reponses = new ArrayList<Integer>();
+        reponses.add(14);
+        reponses.add(15);
+        instance.setUserReponses(21, reponses);
+        System.out.println(instance.getQuestionSuivante());
+        assert instance.invariant();
         instance.save();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.estFini());
+        assertTrue(instance.getNote() == 6);
+        assertTrue(QuestionnaireDAO.getById(4).estPasse());
+        assertTrue(QuestionnairePasseDAO.getByUser(idUser).contains(new QuestionnairePasse(4, 1)));
     }
-
-    /**
-     * Test of reset method, of class Qcm.
-     */
-    @Test
-    public void testReset() {
-        System.out.println("reset");
-        Qcm instance = null;
-        instance.reset();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
 }
