@@ -18,7 +18,7 @@ public interface Action {
      * @param request
      * @throws Exception
      */
-    public void setRequest(HttpServletRequest request) throws Exception;
+    public void setRequestAndCheckAuthorization(HttpServletRequest request) throws Exception;
 
     /**
      * renvoie la vue à inclure

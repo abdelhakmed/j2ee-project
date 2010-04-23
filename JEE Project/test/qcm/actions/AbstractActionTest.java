@@ -39,14 +39,14 @@ public class AbstractActionTest {
     }
 
     /**
-     * Test of setRequest method, of class AbstractAction.
+     * Test of setRequestAndCheckAuthorization method, of class AbstractAction.
      */
     @Test
     public void testSetRequest() throws Exception {
         System.out.println("setRequest");
         HttpServletRequest request = null;
         AbstractAction instance = new AbstractActionImpl();
-        instance.setRequest(request);
+        instance.setRequestAndCheckAuthorization(request);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

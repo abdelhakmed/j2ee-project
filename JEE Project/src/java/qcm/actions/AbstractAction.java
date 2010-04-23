@@ -22,7 +22,7 @@ public abstract class AbstractAction implements Action{
      * @param request
      * @throws Exception
      */
-    public void setRequest(HttpServletRequest request) throws Exception{
+    public void setRequestAndCheckAuthorization(HttpServletRequest request) throws Exception{
         this.request = request;
     }
 
@@ -46,7 +46,7 @@ public abstract class AbstractAction implements Action{
     public boolean isUserAuthenticated() {
         boolean result = false;
         User user = (User) request.getSession().getAttribute("user");
-        System.out.print(user);
+        System.out.print("USER = "+user);
         if(user != null){
             result = true;
         }

@@ -51,14 +51,14 @@ public class ActionTest {
     }
 
     /**
-     * Test of setRequest method, of class Action.
+     * Test of setRequestAndCheckAuthorization method, of class Action.
      */
     @Test
     public void testSetRequest() throws Exception {
         System.out.println("setRequest");
         HttpServletRequest request = null;
         Action instance = new ActionImpl();
-        instance.setRequest(request);
+        instance.setRequestAndCheckAuthorization(request);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -82,7 +82,7 @@ public class ActionTest {
         public void execute() throws Exception {
         }
 
-        public void setRequest(HttpServletRequest request) throws Exception {
+        public void setRequestAndCheckAuthorization(HttpServletRequest request) throws Exception {
         }
 
         public String getView() {

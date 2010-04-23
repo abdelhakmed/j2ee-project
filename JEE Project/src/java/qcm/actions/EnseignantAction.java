@@ -1,7 +1,6 @@
 package qcm.actions;
 
 import javax.servlet.http.HttpServletRequest;
-import qcm.actions.AbstractAction;
 import qcm.exceptions.ExpiredSessionException;
 import qcm.exceptions.UnauthorizedActionException;
 import qcm.services.ActionHelper;
@@ -17,15 +16,15 @@ public abstract class EnseignantAction extends AbstractAction {
     }
 
     @Override
-    public void setRequest(HttpServletRequest request) throws UnauthorizedActionException  , ExpiredSessionException{
-        if(!isUserAuthenticated()){
+    public void setRequestAndCheckAuthorization(HttpServletRequest request) throws Exception{
+        if(!super.isUserAuthenticated()){
             throw new ExpiredSessionException("Merci de vous authentifier");
         }
 
         if (!ActionHelper.userHasRoleToAccessRequest("Enseignant", request) || !ActionHelper.userHasRoleToAccessRequest("Administrateur", request)) {
             throw new UnauthorizedActionException("Vous n'avez pas l'autorisation requise pour cette page");
         } 
-        this.request = request;
+         super.setRequestAndCheckAuthorization(request);
     }
 
     public abstract void execute() throws Exception;
