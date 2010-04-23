@@ -20,8 +20,8 @@ Menu de gauche à inclure
 
                 <div id="navigation">
                     <ul class="menu_gauche">
-                        <a href="PasserQuestionnaire?action=afficherChoixThemesNiveau"><li>Passer un questionnaire</li></a>
-                        <a href="MesResultats?action=getQuestionnairesPasseByUser"><li>Mes résultats</li></a>
+                        <a href="<%= request.getContextPath() %>/passerQuestionnaire/index.html"><li>Passer un questionnaire</li></a>
+                        <a href="<%= request.getContextPath() %>/mesResultats/index.html"><li>Mes résultats</li></a>
             <%
                 if (user.isCreator() || user.isAdmin()) {
             %>

@@ -1,12 +1,5 @@
-<%-- 
-    Document   : login
-    Created on : 27 mars 2010, 11:35:45
-    Author     : Lou
-Fragment de page pour afficher le formulaire de login
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-                <form id="connexion_form" action="index.html" method="post" accept-charset="utf-8">
+                <form id="connexion_form" action="<%= request.getContextPath() %>/index.html" method="post" accept-charset="utf-8">
                     <fieldset id="connexion" class="">
                         <legend>Connexion</legend>
                         <%

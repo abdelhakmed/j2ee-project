@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="css" charset="utf-8" />
+        <link rel="stylesheet" href="/JEE_Project/css/screen.css" type="text/css" media="screen" title="css" charset="utf-8" />
         <title>Projet QCM</title>
     </head>
     <body>
