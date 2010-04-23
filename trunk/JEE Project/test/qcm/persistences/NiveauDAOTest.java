@@ -1,43 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.persistences;
 
+import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import qcm.models.Niveau;
+import tools.QCMTestCase;
 
 /**
  *
  * @author marya
  */
-public class NiveauDAOTest {
-
-    public NiveauDAOTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+public class NiveauDAOTest extends QCMTestCase {
 
     /**
      * Test of getAll method, of class NiveauDAO.
@@ -45,11 +19,16 @@ public class NiveauDAOTest {
     @Test
     public void testGetAll() throws Exception {
         System.out.println("getAll");
-        List expResult = null;
-        List result = NiveauDAO.getAll();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<Niveau> expResult = new ArrayList<Niveau>();
+        expResult.add(NiveauDAO.getById(1));
+        expResult.add(NiveauDAO.getById(2));
+        expResult.add(NiveauDAO.getById(3));
+        expResult.add(NiveauDAO.getById(4));
+        List<Niveau> result = NiveauDAO.getAll();
+        assertEquals(expResult.get(0), result.get(0));
+        assertEquals(expResult.get(1), result.get(1));
+        assertEquals(expResult.get(2), result.get(2));
+        assertEquals(expResult.get(3), result.get(3));
     }
 
     /**
@@ -58,12 +37,9 @@ public class NiveauDAOTest {
     @Test
     public void testGetById() throws Exception {
         System.out.println("getById");
-        int idNiveau = 0;
-        Niveau expResult = null;
-        Niveau result = NiveauDAO.getById(idNiveau);
+        Niveau expResult = new Niveau(1, "Débutant", 3, true);
+        Niveau result = NiveauDAO.getById(1);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -72,10 +48,11 @@ public class NiveauDAOTest {
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
-        Niveau niveau = null;
+        Niveau niveau = new Niveau(1, "Débutant", 3, true);
+        String nouveauLibelleTheme = "Nouveau libelle";
+        niveau.setLibelle(nouveauLibelleTheme);
         NiveauDAO.update(niveau);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(NiveauDAO.getById(1).getLibelle().equals(nouveauLibelleTheme));
     }
 
 }

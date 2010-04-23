@@ -1,42 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.persistences;
 
+import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import qcm.models.QuestionnairePasse;
+import tools.QCMTestCase;
 import static org.junit.Assert.*;
 
 /**
  *
  * @author marya
  */
-public class QuestionnairePasseDAOTest {
-
-    public QuestionnairePasseDAOTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+public class QuestionnairePasseDAOTest extends QCMTestCase {
 
     /**
      * Test of getByUser method, of class QuestionnairePasseDAO.
@@ -44,12 +19,14 @@ public class QuestionnairePasseDAOTest {
     @Test
     public void testGetByUser() throws Exception {
         System.out.println("getByUser");
-        int idUser = 0;
-        List expResult = null;
-        List result = QuestionnairePasseDAO.getByUser(idUser);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int idUser = 1;
+        List<QuestionnairePasse> expResult = new ArrayList<QuestionnairePasse>();
+        expResult.add(new QuestionnairePasse(1, 1));
+        expResult.add(new QuestionnairePasse(2, 1));
+        expResult.add(new QuestionnairePasse(3, 1));
+        List<QuestionnairePasse> result = QuestionnairePasseDAO.getByUser(idUser);
+        assertEquals(expResult.get(0), result.get(0));
+        assertEquals(expResult.get(1), result.get(1));
+        assertEquals(expResult.get(2), result.get(2));
     }
-
 }
