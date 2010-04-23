@@ -56,6 +56,8 @@ public class Router {
 
         //Créer un questionnaire
         uriToAction.put("/creerQuestionnaire/index.html", CreerQuestionnaireIndexAction.class);
+
+        //Administration
     }
 
     public static Class getActionByUri(String uri) {

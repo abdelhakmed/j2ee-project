@@ -15,14 +15,16 @@ import qcm.exceptions.ExpiredSessionException;
  */
 public abstract class PasserQuestionnaireAction  extends AbstractAction{
 
+    
+
 
     @Override
     public void setRequestAndCheckAuthorization(HttpServletRequest request) throws Exception{
-        
-        if(!super.isUserAuthenticated()){
+        super.setRequestAndCheckAuthorization(request);
+        if(!isUserAuthenticated()){
             throw new ExpiredSessionException("Merci de vous authentifier");
         }
-        super.setRequestAndCheckAuthorization(request);
+        
     }
 
     public abstract void execute() throws Exception;

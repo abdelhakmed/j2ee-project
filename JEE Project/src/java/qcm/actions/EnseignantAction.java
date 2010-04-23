@@ -17,14 +17,15 @@ public abstract class EnseignantAction extends AbstractAction {
 
     @Override
     public void setRequestAndCheckAuthorization(HttpServletRequest request) throws Exception{
-        if(!super.isUserAuthenticated()){
+        super.setRequestAndCheckAuthorization(request);
+        if(!isUserAuthenticated()){
             throw new ExpiredSessionException("Merci de vous authentifier");
         }
 
-        if (!ActionHelper.userHasRoleToAccessRequest("Enseignant", request) || !ActionHelper.userHasRoleToAccessRequest("Administrateur", request)) {
+        if (! (ActionHelper.userHasRoleToAccessRequest("Enseignant", request) || ActionHelper.userHasRoleToAccessRequest("Administrateur", request))) {
             throw new UnauthorizedActionException("Vous n'avez pas l'autorisation requise pour cette page");
         } 
-         super.setRequestAndCheckAuthorization(request);
+         
     }
 
     public abstract void execute() throws Exception;

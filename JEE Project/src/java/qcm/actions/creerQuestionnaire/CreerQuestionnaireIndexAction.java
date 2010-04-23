@@ -5,7 +5,9 @@
 
 package qcm.actions.creerQuestionnaire;
 
+import java.sql.SQLException;
 import qcm.actions.EnseignantAction;
+import qcm.services.ActionHelper;
 
 /**
  * Action index pour la creation d'un questionnaire
@@ -13,8 +15,10 @@ import qcm.actions.EnseignantAction;
  */
 public class CreerQuestionnaireIndexAction extends EnseignantAction{
     
-    public void execute(){
-
+    public void execute() throws SQLException{
+        ActionHelper.setAttributeThemes(request);
+        ActionHelper.setAttributeNiveaux(request);
+        setView("/creerQuestionnaire/choix.jsp");
     }
 
 }
