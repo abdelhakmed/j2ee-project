@@ -33,10 +33,10 @@ Menu de gauche à inclure
                 if (user.isAdmin()) {
             %>
                     <ul class="menu_gauche"><h5>Admin</h5>
-                        <a href="Admin?action=gererThemes"><li>Thèmes</li></a>
-                        <a href="Admin?action=gererNiveaux"><li>Niveau</li></a>
-                        <a href="Admin?action=gererQuestionnaires"><li>Questionnaires</li></a>
-                        <a href="Admin?action=gererUtilisateurs"><li>Utilisateurs</li></a>
+                        <a href="<%= request.getContextPath() %>/admin/themes/index.html"><li>Thèmes</li></a>
+                        <a href="<%= request.getContextPath() %>/admin/niveaux/index.html"><li>Niveau</li></a>
+                        <a href="<%= request.getContextPath() %>/admin/questionnaires/index.html"><li>Questionnaires</li></a>
+                        <a href="<%= request.getContextPath() %>/admin/users/index.html"><li>Utilisateurs</li></a>
                     </ul>
             <% }%>
                 </div>
