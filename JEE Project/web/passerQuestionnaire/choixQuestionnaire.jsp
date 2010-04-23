@@ -1,4 +1,3 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="qcm.models.Theme" %>
 <%@page import="qcm.models.Niveau" %>
 <%@page import="java.util.Map" %>
@@ -9,12 +8,12 @@
 %>
 
 <div class="choice">
-    <p>Veuillez sÃ©lectionner le thÃ¨me et / ou le niveau du questionnaire que vous souhaitez passer.</p>
-    <form id="choix_questionnaire_form" action="PasserQuestionnaire" method="post" accept-charset="utf-8">
+    <p>Veuillez sélectionner le thème et / ou le niveau du questionnaire que vous souhaitez passer.</p>
+    <form id="choix_questionnaire_form" action="<%= request.getContextPath() %>/passerQuestionnaire/listeQuestionnaires.html" method="post" accept-charset="utf-8">
 
         <table class="no-border">
             <tr>
-                <td class="static"><label for="theme">Choisissez le thÃ¨me : </label></td>
+                <td class="static"><label for="theme">Choisissez le thème : </label></td>
                 <td>
                     <select name="theme" id="theme" class="medium-input" onchange="document.getElementById('choix_questionnaire_form').submit();">
                         <option value="0"></option>
@@ -23,7 +22,7 @@
                                     if (themes != null) {
                                         for (Theme leTheme : themes) {
                                             out.println("<option value='" + leTheme.getIdTheme() + "'");
-                                            if (leTheme.getIdTheme() == theme) {
+                                            if (theme != null && leTheme.getIdTheme() == theme) {
                                                 out.print(" selected='selected' ");
                                             }
                                             out.print(">" + leTheme.getLibelle() + "</option>");
@@ -43,7 +42,7 @@
                                     if (niveaux != null) {
                                         for (Niveau leNiveau : niveaux) {
                                             out.println("<option value='" + leNiveau.getIdNiveau() + "'");
-                                            if (leNiveau.getIdNiveau() == niveau) {
+                                            if (niveau!=null && leNiveau.getIdNiveau() == niveau) {
                                                 out.print(" selected='selected' ");
                                             }
                                             out.print(">" + leNiveau.getLibelle() + "</option>");
@@ -67,10 +66,10 @@
                 out.println("<p>Cliquez sur un questionnaire pour le commencer.</p>");
                 out.println("<ol class='liste'>");
                 for (Integer idQuestionnaire : questionnaires.keySet()) {
-                    out.println("<a href='/passerQuestionnaire/choix.html?questionnaire=" + idQuestionnaire + "'><li>" + questionnaires.get(idQuestionnaire) + "</li></a>");
+                    out.println("<a href='"+request.getContextPath()+"/passerQuestionnaire/choix.html?questionnaire=" + idQuestionnaire + "'><li>" + questionnaires.get(idQuestionnaire) + "</li></a>");
                 }
                 out.println("</ol>");
             } else {
-                out.println("<p>Choisissez un thÃ¨me et/ou un niveau</p>");
+                out.println("<p>Choisissez un thème et/ou un niveau</p>");
             }
 %>
