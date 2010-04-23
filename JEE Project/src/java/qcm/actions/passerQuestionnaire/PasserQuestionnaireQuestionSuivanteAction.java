@@ -19,13 +19,9 @@ import qcm.persistences.QuestionDAO;
  *
  * @author marya
  */
-public class PasserQuestionnaireQuestionSuivanteAction extends AbstractAction{
+public class PasserQuestionnaireQuestionSuivanteAction extends PasserQuestionnaireAction{
 
     public void execute() throws SQLException , ExpiredSessionException , UnauthorizedActionException{
-
-        if(!isUserAuthentificated()){
-            throw new ExpiredSessionException("Merci de vous authentifier");
-        }
 
         Qcm qcm = (Qcm) request.getSession().getAttribute("qcm");
         String[] reponses = request.getParameterValues("reponses");

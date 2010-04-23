@@ -16,14 +16,11 @@ import qcm.services.ActionHelper;
  *
  * @author marya
  */
-public class PasserQuestionnaireListeQuestionnairesAction extends AbstractAction{
+public class PasserQuestionnaireListeQuestionnairesAction extends PasserQuestionnaireAction{
 
     
     public void execute() throws SQLException , ExpiredSessionException {
-        if(!isUserAuthentificated()){
-            throw new ExpiredSessionException("Merci de vous authentifier");
-        }
-
+        
         HashMap<Integer, String> questionnaires = null;
         Integer theme = Integer.parseInt(request.getParameter("theme").toString());
         Integer niveau = Integer.parseInt(request.getParameter("niveau").toString());

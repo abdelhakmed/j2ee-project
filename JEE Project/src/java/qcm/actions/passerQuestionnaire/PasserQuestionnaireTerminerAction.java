@@ -17,13 +17,11 @@ import qcm.services.ActionHelper;
  *
  * @author marya
  */
-public class PasserQuestionnaireTerminerAction extends AbstractAction {
+public class PasserQuestionnaireTerminerAction extends PasserQuestionnaireAction {
 
 
     public void execute() throws SQLException , ExpiredSessionException {
-        if(!isUserAuthentificated()){
-            throw new ExpiredSessionException("Merci de vous authentifier");
-        }
+        
         Qcm qcm = (Qcm) request.getSession().getAttribute("qcm");
         request.setAttribute("theme", ThemeDAO.getById(qcm.getQuestionnaire().getIdTheme()).getLibelle());
         request.setAttribute("niveau", NiveauDAO.getById(qcm.getQuestionnaire().getIdNiveau()).getLibelle());

@@ -1,5 +1,6 @@
 package qcm.actions;
 import javax.servlet.http.HttpServletRequest;
+import qcm.models.User;
 
 /**
  * Classe abstraite qui définit une action (implémente l'interface Action)
@@ -42,8 +43,14 @@ public abstract class AbstractAction implements Action{
      * @param request, Request sur laquelle on va testé l'existence de la session
      * @return true si la session n'est pas null, false sinon
      */
-    public boolean isUserAuthentificated() {
-        return request.getSession().getAttribute("user") != null;
+    public boolean isUserAuthenticated() {
+        boolean result = false;
+        User user = (User) request.getSession().getAttribute("user");
+        System.out.print(user);
+        if(user != null){
+            result = true;
+        }
+        return result;
     }
 
     public abstract void execute() throws Exception;

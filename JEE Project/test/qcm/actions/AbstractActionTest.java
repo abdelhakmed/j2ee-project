@@ -79,14 +79,14 @@ public class AbstractActionTest {
     }
 
     /**
-     * Test of isUserAuthentificated method, of class AbstractAction.
+     * Test of isUserAuthenticated method, of class AbstractAction.
      */
     @Test
     public void testIsUserAuthentificated() {
         System.out.println("isUserAuthentificated");
         AbstractAction instance = new AbstractActionImpl();
         boolean expResult = false;
-        boolean result = instance.isUserAuthentificated();
+        boolean result = instance.isUserAuthenticated();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
