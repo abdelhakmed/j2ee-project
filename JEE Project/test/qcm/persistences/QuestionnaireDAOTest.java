@@ -1,45 +1,21 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.persistences;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import java.util.Map;
 import org.junit.Test;
+import qcm.models.Question;
 import static org.junit.Assert.*;
 import qcm.models.Questionnaire;
+import qcm.models.Reponse;
+import tools.QCMTestCase;
 
 /**
  *
  * @author marya
  */
-public class QuestionnaireDAOTest {
-
-    public QuestionnaireDAOTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+public class QuestionnaireDAOTest extends QCMTestCase {
 
     /**
      * Test of getById method, of class QuestionnaireDAO.
@@ -47,12 +23,53 @@ public class QuestionnaireDAOTest {
     @Test
     public void testGetById() throws Exception {
         System.out.println("getById");
-        int idQuestionnaire = 0;
-        Questionnaire expResult = null;
+        int idQuestionnaire = 1;
+        Questionnaire questionnaire = new Questionnaire("Les exceptions en Java", 1, 1, 1);
         Questionnaire result = QuestionnaireDAO.getById(idQuestionnaire);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assert result.invariant();
+        assertTrue(result.equals(questionnaire));
+        assertFalse(result.getQuestions().isEmpty());
+        assertTrue(result.estPasse());
+    }
+
+    /**
+     * Test of getByThemeAndNiveau method, of class QuestionnaireDAO.
+     */
+    @Test
+    public void testGetQuestionnairesByThemeAndNiveau() throws Exception {
+        System.out.println("getByThemeAndNiveau");
+        int idTheme = 4;
+        int idNiveau = 1;
+        Map<Integer, String> expResult = new HashMap<Integer, String>();
+        expResult.put(4, "Test");
+        Map<Integer, String> result = QuestionnaireDAO.getQuestionnairesByThemeAndNiveau(idTheme, idNiveau);
+        assertEquals(expResult.get(4), result.get(4));
+    }
+
+    /**
+     * Test of getByTheme method, of class QuestionnaireDAO.
+     */
+    @Test
+    public void testGetQuestionnairesByTheme() throws Exception {
+        System.out.println("getByTheme");
+        int idTheme = 4;
+        Map<Integer, String> expResult = new HashMap<Integer, String>();
+        expResult.put(4, "Test");
+        Map<Integer, String> result = QuestionnaireDAO.getQuestionnairesByTheme(idTheme);
+        assertEquals(expResult.get(4), result.get(4));
+    }
+
+    /**
+     * Test of getByNiveau method, of class QuestionnaireDAO.
+     */
+    @Test
+    public void testGetQuestionnairesByNiveau() throws Exception {
+        System.out.println("getByNiveau");
+        int idNiveau = 2;
+        HashMap<Integer, String> expResult = new HashMap<Integer, String>();
+        expResult.put(2, "L'héritage en Ruby");
+        HashMap<Integer, String> result = QuestionnaireDAO.getQuestionnairesByNiveau(idNiveau);
+        assertEquals(expResult.get(2), result.get(2));
     }
 
     /**
@@ -61,55 +78,12 @@ public class QuestionnaireDAOTest {
     @Test
     public void testGetQuestionsById() throws Exception {
         System.out.println("getQuestionsById");
-        int idQuestionnaire = 0;
-        ArrayList expResult = null;
-        ArrayList result = QuestionnaireDAO.getQuestionsById(idQuestionnaire);
+        int idQuestionnaire = 2;
+        ArrayList<Question> expResult = new ArrayList<Question>();
+        expResult.add(new Question(21, "Question 11 Theme 2", 2, 1, 0, new ArrayList<Reponse>()));
+        expResult.add(new Question(21, "Question 12 Theme 2", 2, 1, 0, new ArrayList<Reponse>()));
+        ArrayList<Question> result = QuestionnaireDAO.getQuestionsById(idQuestionnaire);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getQuestionnairesByTheme method, of class QuestionnaireDAO.
-     */
-    @Test
-    public void testGetQuestionnairesByTheme() throws Exception {
-        System.out.println("getQuestionnairesByTheme");
-        int idTheme = 0;
-        HashMap expResult = null;
-        HashMap result = QuestionnaireDAO.getQuestionnairesByTheme(idTheme);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getQuestionnairesByNiveau method, of class QuestionnaireDAO.
-     */
-    @Test
-    public void testGetQuestionnairesByNiveau() throws Exception {
-        System.out.println("getQuestionnairesByNiveau");
-        int idNiveau = 0;
-        HashMap expResult = null;
-        HashMap result = QuestionnaireDAO.getQuestionnairesByNiveau(idNiveau);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getQuestionnairesByThemeAndNiveau method, of class QuestionnaireDAO.
-     */
-    @Test
-    public void testGetQuestionnairesByThemeAndNiveau() throws Exception {
-        System.out.println("getQuestionnairesByThemeAndNiveau");
-        int idTheme = 0;
-        int idNiveau = 0;
-        HashMap expResult = null;
-        HashMap result = QuestionnaireDAO.getQuestionnairesByThemeAndNiveau(idTheme, idNiveau);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -118,14 +92,12 @@ public class QuestionnaireDAOTest {
     @Test
     public void testSearch() throws Exception {
         System.out.println("search");
-        int idTheme = 0;
-        int idNiveau = 0;
-        String libelle = "";
-        Questionnaire expResult = null;
+        int idTheme = 2;
+        int idNiveau = 2;
+        String libelle = "L'héritage en Ruby";
+        Questionnaire expResult = QuestionnaireDAO.getById(2);
         Questionnaire result = QuestionnaireDAO.search(idTheme, idNiveau, libelle);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -134,10 +106,11 @@ public class QuestionnaireDAOTest {
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
-        Questionnaire q = null;
-        QuestionnaireDAO.update(q);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Questionnaire q = QuestionnaireDAO.getById(2);
+        Questionnaire q2 = QuestionnaireDAO.getById(2);
+        q2.setLibelle("Héritage en Ruby");
+        QuestionnaireDAO.update(q2);
+        assertFalse(q.equals(q2));
     }
 
     /**
@@ -146,24 +119,31 @@ public class QuestionnaireDAOTest {
     @Test
     public void testInsert() throws Exception {
         System.out.println("insert");
-        Questionnaire questionnaire = null;
+        Questionnaire questionnaire = new Questionnaire("Test insert", 1, 1, 1);
+        List<Question> questions = QuestionDAO.getByTheme(1);
+        Question question = new Question(null, "test nouvelle question", 1, 1, 0, new ArrayList<Reponse>());
+        questionnaire.addQuestion(questions.get(1));
+        questionnaire.addQuestion(questions.get(2));
+        questionnaire.addQuestion(question);
         QuestionnaireDAO.insert(questionnaire);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(questionnaire.equals(QuestionnaireDAO.getById(5)));
+        assertTrue(QuestionnaireDAO.getQuestionsById(5).contains(question));
     }
 
-    /**
-     * Test of getCreatedByUser method, of class QuestionnaireDAO.
-     */
     @Test
     public void testGetCreatedByUser() throws Exception {
         System.out.println("getCreatedByUser");
-        int idUser = 0;
-        List expResult = null;
-        List result = QuestionnaireDAO.getCreatedByUser(idUser);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int idUser = 2;
+        List<Questionnaire> expResult = new ArrayList<Questionnaire>();
+
+        expResult.add(QuestionnaireDAO.getById(3));
+        expResult.add(QuestionnaireDAO.getById(4));
+
+        List<Questionnaire> result = QuestionnaireDAO.getCreatedByUser(idUser);
+
+        for (int i = 0; i < expResult.size(); i++) {
+            assertTrue(result.get(i).equals(expResult.get(i)));
+        }
     }
 
     /**
@@ -172,11 +152,14 @@ public class QuestionnaireDAOTest {
     @Test
     public void testGetAll() throws Exception {
         System.out.println("getAll");
-        HashMap expResult = null;
-        HashMap result = QuestionnaireDAO.getAll();
+        HashMap<Integer, Questionnaire> expResult = new HashMap<Integer, Questionnaire>();
+        expResult.put(1, QuestionnaireDAO.getById(1));
+        expResult.put(2, QuestionnaireDAO.getById(2));
+        expResult.put(3, QuestionnaireDAO.getById(3));
+        expResult.put(4, QuestionnaireDAO.getById(4));
+        expResult.put(5, QuestionnaireDAO.getById(5));
+        HashMap<Integer, Questionnaire> result = QuestionnaireDAO.getAll();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -185,11 +168,15 @@ public class QuestionnaireDAOTest {
     @Test
     public void testGetAllActives() throws Exception {
         System.out.println("getAllActives");
-        HashMap expResult = null;
-        HashMap result = QuestionnaireDAO.getAllActives();
+        Questionnaire q = QuestionnaireDAO.getById(1);
+        q.setEstActif(false);
+        QuestionnaireDAO.update(q);
+        HashMap<Integer, Questionnaire> expResult = new HashMap<Integer, Questionnaire>();
+        expResult.put(2, QuestionnaireDAO.getById(2));
+        expResult.put(3, QuestionnaireDAO.getById(3));
+        expResult.put(4, QuestionnaireDAO.getById(4));
+        expResult.put(5, QuestionnaireDAO.getById(5));
+        HashMap<Integer, Questionnaire> result = QuestionnaireDAO.getAllActives();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
 }

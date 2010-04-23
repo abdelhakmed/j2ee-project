@@ -1,42 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.persistences;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import qcm.models.Reponse;
+import tools.QCMTestCase;
 
 /**
  *
  * @author marya
  */
-public class ReponseDAOTest {
-
-    public ReponseDAOTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+public class ReponseDAOTest extends QCMTestCase {
 
     /**
      * Test of getById method, of class ReponseDAO.
@@ -44,12 +17,9 @@ public class ReponseDAOTest {
     @Test
     public void testGetById() throws Exception {
         System.out.println("getById");
-        int idReponse = 0;
-        Reponse expResult = null;
+        int idReponse = 1;
+        Reponse expResult = new Reponse(1, "Réponse 1", "Descriptif Réponse 1 Question 1", false, 0, 1);
         Reponse result = ReponseDAO.getById(idReponse);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
 }

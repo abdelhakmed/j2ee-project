@@ -1,43 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.persistences;
 
+import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import qcm.models.Theme;
+import tools.QCMTestCase;
 
 /**
  *
  * @author marya
  */
-public class ThemeDAOTest {
-
-    public ThemeDAOTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+public class ThemeDAOTest extends QCMTestCase {
 
     /**
      * Test of getAll method, of class ThemeDAO.
@@ -45,11 +19,20 @@ public class ThemeDAOTest {
     @Test
     public void testGetAll() throws Exception {
         System.out.println("getAll");
-        List expResult = null;
-        List result = ThemeDAO.getAll();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<Theme> expResult = new ArrayList<Theme>();
+        expResult.add(ThemeDAO.getById(1));
+        expResult.add(ThemeDAO.getById(2));
+        expResult.add(ThemeDAO.getById(3));
+        expResult.add(ThemeDAO.getById(4));
+        expResult.add(ThemeDAO.getById(5));
+        expResult.add(ThemeDAO.getById(6));
+        List<Theme> result = ThemeDAO.getAll();
+        assertEquals(expResult.get(0), result.get(0));
+        assertEquals(expResult.get(1), result.get(1));
+        assertEquals(expResult.get(2), result.get(2));
+        assertEquals(expResult.get(3), result.get(3));
+        assertEquals(expResult.get(4), result.get(4));
+        assertEquals(expResult.get(5), result.get(5));
     }
 
     /**
@@ -58,12 +41,9 @@ public class ThemeDAOTest {
     @Test
     public void testGetById() throws Exception {
         System.out.println("getById");
-        int idTheme = 0;
-        Theme expResult = null;
-        Theme result = ThemeDAO.getById(idTheme);
+        Theme expResult = new Theme(1, 1, "Java", 1, true);
+        Theme result = ThemeDAO.getById(1);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -72,10 +52,10 @@ public class ThemeDAOTest {
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
-        Theme theme = null;
+        Theme theme = new Theme(1, 1, "Java", 1, true);
+        String nouveauLibelleTheme = "Le Java";
+        theme.setLibelle(nouveauLibelleTheme);
         ThemeDAO.update(theme);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(ThemeDAO.getById(1).getLibelle().equals(nouveauLibelleTheme));
     }
-
 }

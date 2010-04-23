@@ -1,43 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.persistences;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import qcm.models.Niveau;
+import tools.QCMTestCase;
 import static org.junit.Assert.*;
 
 /**
  *
  * @author marya
  */
-public class ModeleDAOTest {
-
-    public ModeleDAOTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+public class ModeleDAOTest extends QCMTestCase {
 
     /**
      * Test of getConnection method, of class ModeleDAO.
@@ -45,11 +19,8 @@ public class ModeleDAOTest {
     @Test
     public void testGetConnection() throws Exception {
         System.out.println("getConnection");
-        Connection expResult = null;
         Connection result = ModeleDAO.getConnection();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(result != null);
     }
 
     /**
@@ -58,12 +29,12 @@ public class ModeleDAOTest {
     @Test
     public void testExecute() throws Exception {
         System.out.println("execute");
-        String sql = "";
-        ResultSet expResult = null;
+        String sql = "SELECT id_niveau, libelle FROM niveau WHERE id_niveau = 2";
         ResultSet result = ModeleDAO.execute(sql);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(result);
+        assertTrue(result.next());
+        Niveau expResult = new Niveau(2, "Avancé", 3, true);
+        assertTrue(expResult.equals(new Niveau(result.getInt(1), result.getString(2), 3, true)));
     }
 
     /**
@@ -72,13 +43,13 @@ public class ModeleDAOTest {
     @Test
     public void testSelectById() throws Exception {
         System.out.println("selectById");
-        String sql = "";
-        int id = 0;
-        ResultSet expResult = null;
+        String sql = "SELECT libelle FROM questionnaire WHERE id_questionnaire = ?";
+        int id = 1;
+        ResultSet expResult = ModeleDAO.execute("SELECT libelle FROM questionnaire WHERE id_questionnaire = 1");
         ResultSet result = ModeleDAO.selectById(sql, id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(result);
+        assertTrue(result.next());
+        expResult.next();
+        assertEquals(expResult.getString(1), result.getString(1));
     }
-
 }

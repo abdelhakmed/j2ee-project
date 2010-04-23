@@ -1,42 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.persistences;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import qcm.models.Qcm;
+import qcm.models.QuestionnairePasse;
+import tools.QCMTestCase;
 
 /**
  *
  * @author marya
  */
-public class QcmDAOTest {
-
-    public QcmDAOTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+public class QcmDAOTest extends QCMTestCase {
 
     /**
      * Test of insert method, of class QcmDAO.
@@ -44,10 +18,12 @@ public class QcmDAOTest {
     @Test
     public void testInsert() throws Exception {
         System.out.println("insert");
-        Qcm qcm = null;
+        Qcm qcm = new Qcm(4, 3);
+        assertTrue(!qcm.estFini());
         QcmDAO.insert(qcm);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(qcm.estFini());
+        System.out.println(QuestionnairePasseDAO.getByUser(3));
+        assertTrue(QuestionnairePasseDAO.getByUser(3).contains(new QuestionnairePasse(4, 3)));
     }
 
     /**
@@ -56,13 +32,10 @@ public class QcmDAOTest {
     @Test
     public void testGetIdContenu() throws Exception {
         System.out.println("getIdContenu");
-        int idQuestionnaire = 0;
-        int idQuestion = 0;
-        Integer expResult = null;
+        int idQuestionnaire = 1;
+        int idQuestion = 1;
+        Integer expResult = 1;
         Integer result = QcmDAO.getIdContenu(idQuestionnaire, idQuestion);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
 }

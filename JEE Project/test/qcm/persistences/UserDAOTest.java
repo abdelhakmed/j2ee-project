@@ -1,43 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.persistences;
 
 import java.util.HashMap;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import qcm.models.Statut;
 import static org.junit.Assert.*;
 import qcm.models.User;
+import tools.QCMTestCase;
 
 /**
  *
  * @author marya
  */
-public class UserDAOTest {
-
-    public UserDAOTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+public class UserDAOTest extends QCMTestCase {
 
     /**
      * Test of getByLoginAndPassword method, of class UserDAO.
@@ -45,13 +19,11 @@ public class UserDAOTest {
     @Test
     public void testGetByLoginAndPassword() throws Exception {
         System.out.println("getByLoginAndPassword");
-        String login = "";
-        String password = "";
-        User expResult = null;
+        String login = "Maria";
+        String password = "maria";
+        User expResult = new User(null, login, password, "maryarabarison@gmail.com", "Rabarison", "Maria", new Statut(1, "Enseignant"), true);
         User result = UserDAO.getByLoginAndPassword(login, password);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -60,12 +32,10 @@ public class UserDAOTest {
     @Test
     public void testGetById() throws Exception {
         System.out.println("getById");
-        int idUser = 0;
-        User expResult = null;
+        int idUser = 1;
+        User expResult = new User(null, "Lou", "lou", "ferrandlou@gmail.com", "Ferrand", "Lou", new Statut(3, "Administrateur"), true);
         User result = UserDAO.getById(idUser);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -74,11 +44,21 @@ public class UserDAOTest {
     @Test
     public void testGetAll() throws Exception {
         System.out.println("getAll");
-        HashMap expResult = null;
-        HashMap result = UserDAO.getAll();
+        HashMap<Integer, User> expResult = new HashMap<Integer, User>();
+
+        expResult.put(1, UserDAO.getById(1));
+        expResult.put(2, UserDAO.getById(2));
+        expResult.put(3, UserDAO.getById(3));
+        expResult.put(4, UserDAO.getById(4));
+        expResult.put(5, UserDAO.getById(5));
+        expResult.put(6, UserDAO.getById(6));
+        expResult.put(7, UserDAO.getById(7));
+        expResult.put(8, UserDAO.getById(8));
+        expResult.put(9, UserDAO.getById(9));
+        expResult.put(10, UserDAO.getById(10));
+
+        HashMap<Integer, User> result = UserDAO.getAll();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -87,10 +67,10 @@ public class UserDAOTest {
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
-        User user = null;
+        User user = new User(1, "lou", "lou", "ferrandlou@gmail.com", "Ferrand", "Lou", new Statut(3, "Administrateur"), true);
+        String nouveauEmailUser = "test@example.com";
+        user.setEmail(nouveauEmailUser);
         UserDAO.update(user);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(UserDAO.getById(1).getEmail().equals(nouveauEmailUser));
     }
-
 }
