@@ -30,7 +30,7 @@ public class Question {
     public Question(final Integer idQuestion, final String libelle,
             final int idTheme, final int idUser, final int nbQuestionnairePasseAppelant, List<Reponse> reponses) {
         assert idQuestion == null || idQuestion >= 0 : "idQuestion doit être non négatif (reçu: " + idQuestion + ")";
-        assert libelle != null && libelle.matches("^\\s*$") : "le libellé ne doit être ni null ni vide";
+        assert libelle != null && libelle.trim().isEmpty() : "le libellé ne doit être ni null ni vide";
         this.idQuestion = idQuestion;
         this.libelle = libelle;
         this.idTheme = idTheme;
@@ -89,7 +89,7 @@ public class Question {
     }
 
     public void setLibelle(final String libelle) {
-        assert libelle != null && !libelle.matches("^\\s*$") : "le libellé ne doit être ni null ni vide";
+        assert libelle != null && !libelle.trim().isEmpty() : "le libellé ne doit être ni null ni vide";
         this.libelle = libelle;
         assert invariant();
     }
@@ -177,7 +177,7 @@ public class Question {
     protected boolean invariant() {
         assert getIdQuestion() > 0 : "Le numéro de la question doit être positif";
         assert getIdUser() > 0 : "L'identifiant de l'utilisateur doit être positif";
-        assert getLibelle() != null && !getLibelle().matches("^\\s*$") : "le libellé ne doit être ni null ni vide";
+        assert getLibelle() != null && !getLibelle().trim().isEmpty() : "le libellé ne doit être ni null ni vide";
         return true;
     }
 }

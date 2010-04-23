@@ -452,3 +452,7 @@ div#error-message {
     background-color: #FFECE7;
     margin-bottom: 5px;
 }
+
+.question_a_ajouter {
+        display: none;
+    }

@@ -3,10 +3,13 @@ package qcm.services;
 import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import qcm.exceptions.UnauthorizedActionException;
+import qcm.models.Question;
 import qcm.models.Questionnaire;
 import qcm.models.QuestionnairePasse;
 import qcm.models.User;
 import qcm.persistences.NiveauDAO;
+import qcm.persistences.QuestionDAO;
 import qcm.persistences.QuestionnairePasseDAO;
 import qcm.persistences.ThemeDAO;
 import qcm.persistences.UserDAO;
@@ -52,5 +55,13 @@ public class ActionHelper {
 
     public static User checkUserByLoginAndPassWord(String login, String passw) throws SQLException {
         return UserDAO.getByLoginAndPassword(login, passw);
+    }
+
+    public static void setAttributeQuestionsByThemeNewQuestionnaire(int idThemeQuestionnaire , HttpServletRequest request) throws Exception{
+        List<Question> questions = QuestionDAO.getByTheme(idThemeQuestionnaire);
+        if (questions.isEmpty()) {
+            throw new UnauthorizedActionException("Thème inconnu");
+        }
+        request.getSession().setAttribute("questionsByThemeNewQuestionnaire", QuestionDAO.getByTheme(idThemeQuestionnaire));
     }
 }
