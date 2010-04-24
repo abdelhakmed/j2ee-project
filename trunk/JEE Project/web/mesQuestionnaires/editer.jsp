@@ -10,7 +10,7 @@
 
 %>
 <h1><%=questionnaire.getLibelle()%></h1>
-<a href="<%= request.getContextPath() %>/mesResultats/index.html">&laquo; Retour</a>
+<a href="<%= request.getContextPath() %>/mesQuestionnaires/index.html">&laquo; Retour</a>
 <ol id="info_questionnaire">
 <%
             for (Question question : questionnaire.getQuestions()) {
