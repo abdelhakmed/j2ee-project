@@ -8,7 +8,10 @@ public class LogoutAction extends AbstractAction {
 
     @Override
     public void execute() throws Exception {
-        request.getSession().invalidate();
+        if(isUserAuthenticated()){
+            request.getSession().invalidate();
+        }
+        
         setView("/user/logout.jsp");
     }
 }
