@@ -15,6 +15,7 @@
         <%
                     for (Question question : newQuestionnaire.getQuestions()) {
                         out.println("<li>" + question.getLibelle() + "</li>");
+                        out.println(question.getReponses());
                     }
         %>
     </ul>
@@ -100,6 +101,14 @@
                     }
         %>
     </div>
+        <%
+            if(newQuestionnaire.getQuestions().size()>1){
+                %>
+    <br/>
+    <a href="<%= request.getContextPath() %>/creerQuestionnaire/enregistrement.html">Enregistrer tout</a>
+    <%
+            }
+     %>
 </div>
 
 <script type="text/javascript" charset="utf-8">

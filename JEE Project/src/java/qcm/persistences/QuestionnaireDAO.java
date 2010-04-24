@@ -224,7 +224,7 @@ public class QuestionnaireDAO extends ModeleDAO {
                         psRep.setString(2, r.getDescriptif());
                         psRep.setBoolean(3, r.estCorrecte());
                         psRep.setInt(4, r.getNote());
-                        ps.executeUpdate();
+                        psRep.executeUpdate();
                     }
                     psRep.close();
 

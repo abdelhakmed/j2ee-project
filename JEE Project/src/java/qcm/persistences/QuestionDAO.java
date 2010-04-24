@@ -1,5 +1,6 @@
 package qcm.persistences;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -63,5 +64,20 @@ public class QuestionDAO extends ModeleDAO {
             getConnection().setAutoCommit(false);
         } catch (SQLException ex) {
         }
+    }
+
+    public static Question search(Question toSearch) throws SQLException{
+        Question question= null;
+        String sql = "SELECT id_question, libelle , id_theme , id_user FROM question WHERE id_theme = ? AND libelle = ? LIMIT 0, 1";
+        PreparedStatement ordre = getConnection().prepareStatement(sql);
+        ordre.setInt(1, toSearch.getIdTheme());
+        ordre.setString(2, toSearch.getLibelle());
+        ResultSet rs = ordre.executeQuery();
+        if (rs.next()) {
+            question = new Question(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), 0, new ArrayList<Reponse>());
+        }
+        rs.close();
+        ordre.close();
+        return question;
     }
 }
