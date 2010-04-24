@@ -1,5 +1,6 @@
 package qcm.persistences;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import qcm.models.Reponse;
@@ -25,5 +26,16 @@ public class ReponseDAO extends ModeleDAO {
         }
         rs.close();
         return reponse;
+    }
+
+    public static void update(Reponse reponse) throws SQLException {
+        String sql = "UPDATE reponse SET libelle = ?, descriptif = ?, note = ?, est_correcte = ?";
+        PreparedStatement ordre = getConnection().prepareStatement(sql);
+        ordre.setString(1, reponse.getLibelle());
+        ordre.setString(2, reponse.getLibelle());
+        ordre.setInt(3, reponse.getNote());
+        ordre.setBoolean(4, reponse.estCorrecte());
+        ordre.executeUpdate();
+        ordre.close();
     }
 }

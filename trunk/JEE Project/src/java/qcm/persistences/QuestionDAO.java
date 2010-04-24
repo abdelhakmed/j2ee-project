@@ -58,13 +58,6 @@ public class QuestionDAO extends ModeleDAO {
         return questions;
     }
 
-    public static void insert(Question question) {
-        try {
-            getConnection().createStatement();
-            getConnection().setAutoCommit(false);
-        } catch (SQLException ex) {
-        }
-    }
 
     public static Question search(Question toSearch) throws SQLException{
         Question question= null;
@@ -79,5 +72,16 @@ public class QuestionDAO extends ModeleDAO {
         rs.close();
         ordre.close();
         return question;
+    }
+
+    public static void update(Question question) throws SQLException {
+        String sql = "UPDATE question SET libelle = ?";
+        PreparedStatement ordre = getConnection().prepareStatement(sql);
+        ordre.setString(1, question.getLibelle());
+        ordre.executeUpdate();
+        for (Reponse reponse : question.getReponses()) {
+            ReponseDAO.update(reponse);
+        }
+        ordre.close();
     }
 }
