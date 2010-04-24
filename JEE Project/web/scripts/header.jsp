@@ -7,7 +7,7 @@
             User user = (User) request.getSession().getAttribute("user");
             if (user == null) {
                 request.setAttribute("errorMessage", "Vous n'êtes pas connecté");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
             }
 %>
 <p id="top">Bienvenue <%= user.getPrenom()%> <%= user.getNom()%>, <a href="<%= request.getContextPath()%>/logout.html">Déconnexion</a></p>
