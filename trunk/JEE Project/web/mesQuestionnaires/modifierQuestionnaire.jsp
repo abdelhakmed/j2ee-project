@@ -2,9 +2,6 @@
 <%@page import="java.util.List" %>
 <%@page import="qcm.models.*" %>
 
-
-
-
 <%
             Questionnaire questionnaire = (Questionnaire) request.getAttribute("questionnaire");
 
@@ -25,33 +22,42 @@
 </fieldset>
 
 <div class="panel_left">
-    <%
-                out.print("<h1>Votre questionnaire : &laquo; " + questionnaire.getLibelle() + " &raquo;</h1><br/><br/>");
-    %>
+    <h1>Votre questionnaire : &laquo; <%= questionnaire.getLibelle() %> &raquo;</h1>
 
-    <form method="post" action="<%= request.getContextPath() %>/mesQuestionnaires/enregistrementQuestionnaire.html" >
-        Titre de votre questionnaire : 
-        <textarea name="libelleQuestionnaire" cols="50" rows="5">
-            <%= questionnaire.getLibelle() %>
-        </textarea>
-        Niveau : 
-        <select name="niveauQuestionnaire">
-            <%
-                for(Niveau niveau : (List<Niveau>) request.getAttribute("niveaux")){
-                    out.println("<option value='" + niveau.getIdNiveau() + "'");
-                    if(niveau.getIdNiveau() == questionnaire.getIdNiveau())
-                        out.println(" selected = 'selected' ");
-                    out.print(">" + niveau.getLibelle() + "</option>");
-                }
-            %>
-        </select>
-        <input type="hidden" name="idQuestionnaire" value="<%= questionnaire.getIdQuestionnaire() %>" />
-        <input type="submit" value="Enregistrer la modification" />
+    <p class="left">Sélectionnez une question à modifier dans le paneau de droite ou bien modifiez le titre du questionnaire ou son niveau.</p>
+
+
+    <form method="post" action="<%= request.getContextPath()%>/mesQuestionnaires/enregistrementQuestionnaire.html" id="modifier_questionnaire">
+        <table class="format">
+            <tr>
+                <td>Titre de votre questionnaire :</td>
+                <td>
+                    <textarea name="libelleQuestionnaire" cols="50" rows="5"><%= questionnaire.getLibelle()%></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Niveau :</td>
+                <td>
+                    <select name="niveauQuestionnaire">
+                        <%
+                                    for (Niveau niveau : (List<Niveau>) request.getAttribute("niveaux")) {
+                                        out.println("<option value='" + niveau.getIdNiveau() + "'");
+                                        if (niveau.getIdNiveau() == questionnaire.getIdNiveau()) {
+                                            out.println(" selected = 'selected' ");
+                                        }
+                                        out.print(">" + niveau.getLibelle() + "</option>");
+                                    }
+                        %>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <input type="hidden" name="idQuestionnaire" value="<%= questionnaire.getIdQuestionnaire()%>" />
+        <input type="submit" value="Enregistrer la modification" class="button" />
     </form>
 
     <div id="reponses">
-
-
         <%
                     for (Question q : questionnaire.getQuestions()) {
                         if (q.estModifiable()) {
@@ -68,18 +74,19 @@
 
                             List<Reponse> reponses = q.getReponses();
                             for (Reponse reponse : reponses) {
-                                    out.println("<tr>");
-                                    out.println("<td>" + reponse.getLibelle() + "</td>");
-                                    out.println("<td>" + reponse.getDescriptif() + "</td>");
-                                    out.println("<td>" + reponse.getNote() + "</td>");
-                                    out.println("<td>" + (reponse.estCorrecte() ? "Oui" : "Non") + "</td>");
-                                    out.println("</tr>");
-                             }
+                                out.println("<tr>");
+                                out.println("<td>" + reponse.getLibelle() + "</td>");
+                                out.println("<td>" + reponse.getDescriptif() + "</td>");
+                                out.println("<td>" + reponse.getNote() + "</td>");
+                                out.println("<td>" + (reponse.estCorrecte() ? "Oui" : "Non") + "</td>");
+                                out.println("</tr>");
+                            }
                             out.println("</table>");
 
-                            out.println("<form action='" + request.getContextPath() + "/mesQuestionnaire/modifierQuestion.html' method='post' accept-charset='utf-8'>");
+                            out.println("<form action='" + request.getContextPath() + "/mesQuestionnaires/modifierQuestion.html' method='post' accept-charset='utf-8'>");
                             out.println("<input type='hidden' name='idQuestion' value='" + q.getIdQuestion() + "' />");
                             out.println("<input class='button' type='submit' value='Modifier cette question' />");
+                            out.println("<a class='button' href='javascript:display_modifier_questionnaire()'>Revenir à la modification du questionnaire</a>");
                             out.println("</form>");
                             out.println("</div>");
 
@@ -90,12 +97,12 @@
 
         %>
     </div>
-
 </div>
 
 <script type="text/javascript" charset="utf-8">
     function display_question(index) {
         var questions = document.getElementsByClassName('question_a_ajouter');
+        document.getElementById('modifier_questionnaire').style.display = 'none';
         for (var i = 0; i < questions.length; i++) {
             questions[i].style.display = 'none';
         }
@@ -103,5 +110,11 @@
             document.getElementById('question_' + index).style.display = 'block';
         }
     }
-
+    function display_modifier_questionnaire() {
+        var questions = document.getElementsByClassName('question_a_ajouter');
+        document.getElementById('modifier_questionnaire').style.display = 'block';
+        for (var i = 0; i < questions.length; i++) {
+            questions[i].style.display = 'none';
+        }
+    }
 </script>

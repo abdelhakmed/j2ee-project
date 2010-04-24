@@ -7,30 +7,35 @@
             Questionnaire questionnaire = (Questionnaire) request.getAttribute("questionnaire");
             if (questionnaire != null) {
 %>
-<h1><%=questionnaire.getLibelle()%></h1>
+<h3><%=questionnaire.getLibelle()%></h3>
 
-<h2>Niveau de ce questionnaire : <%= ((Niveau) request.getAttribute("niveau")).getLibelle()%> </h2>
+<p>Niveau : <%= ((Niveau) request.getAttribute("niveau")).getLibelle()%></p>
 
-<a href="<%= request.getContextPath()%>/mesQuestionnaires/index.html">&laquo; Retour</a>
+<a class="button" href="<%= request.getContextPath()%>/mesQuestionnaires/index.html">&laquo; Retour</a>
 
 <%
                 if (!questionnaire.estPasse()) {
-                    out.println("<a href='" + request.getContextPath() + "/mesQuestionnaires/modifierQuestionnaire.html?questionnaire=" + questionnaire.getIdQuestionnaire() + "'>Modifier ce questionnaire</a>");
+                    out.println("<a class='button' href='" + request.getContextPath() + "/mesQuestionnaires/modifierQuestionnaire.html?questionnaire=" + questionnaire.getIdQuestionnaire() + "'>Modifier ce questionnaire</a>");
                 }
 
 %>
-<ol id="info_questionnaire">
+<ol class="info_questionnaire">
     <%
                     for (Question question : questionnaire.getQuestions()) {
-                        out.println("<li>" + question.getLibelle() + "<ul class='liste'>");
+                        out.println("<li>" + question.getLibelle() + "<ul class='liste info_questionnaire'>");
                         for (Reponse reponse : question.getReponses()) {
                             out.println("<li>");
                             if (reponse.estCorrecte()) {
                                 out.println("<strong class='bon'>" + reponse.getLibelle());
-                                out.println(" (" + reponse.getDescriptif() + ")</strong>");
+                                if (!reponse.getDescriptif().equals("")) {
+                                    out.println(" (" + reponse.getDescriptif() + ")");
+                                }
+                                out.println("</strong>");
                             } else {
                                 out.println(reponse.getLibelle());
-                                out.println(" (" + reponse.getDescriptif() + ")");
+                                if (!reponse.getDescriptif().equals("")) {
+                                    out.println(" (" + reponse.getDescriptif() + ")");
+                                }
                             }
                             out.println("</li>");
                         }
