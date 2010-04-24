@@ -25,6 +25,7 @@ public class MesQuestionnairesEditerAction extends EnseignantAction{
             throw new UnauthorizedActionException("Vous n'avez pas le droit d'éditer ce questionnaire car vous n'êtes pas son créateur.");
         }
         request.setAttribute("questionnaire", questionnaire);
+        ActionHelper.setAttributeNiveau(questionnaire.getIdNiveau(), request);
         setView("/mesQuestionnaires/editer.jsp");
     }
 
