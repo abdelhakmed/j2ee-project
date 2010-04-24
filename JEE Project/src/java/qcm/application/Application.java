@@ -37,27 +37,27 @@ public class Application extends HttpServlet {
             uri = request.getRequestURI();
             uri = uri.substring(12, uri.length());
             Action action = getActionByUri(uri);
-            if(action != null){
+            if (action != null) {
                 action.setRequestAndCheckAuthorization(request);
                 action.execute();
                 request.setAttribute("view", action.getView());
                 forward = "/view.jsp";
-            }else{
+            } else {
                 request.setAttribute("errorMessage", "Cette page n'existe pas : " + uri);
                 forward = "/error.jsp";
             }
-            
+
 
 
         } catch (ExpiredSessionException e) {
             request.setAttribute("errorMessage", e.getMessage());
             e.printStackTrace();
         } catch (UnknownUserException e) {
-            request.setAttribute("errorMessage", "Erreur interne : "+e.getMessage());
+            request.setAttribute("errorMessage", "Erreur interne : " + e.getMessage());
             forward = "/error.jsp";
             e.printStackTrace();
         } catch (UnauthorizedActionException e) {
-            request.setAttribute("errorMessage", "Erreur interne : "+e.getMessage());
+            request.setAttribute("errorMessage", "Erreur interne : " + e.getMessage());
             forward = "/error.jsp";
             e.printStackTrace();
         } catch (Exception e) {
@@ -103,12 +103,12 @@ public class Application extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-    
+
     private Action getActionByUri(String uri) {
         Action action = null;
         try {
             Class classe = Router.getActionByUri(uri);
-            if(classe != null){
+            if (classe != null) {
                 action = (Action) classe.newInstance();
             }
         } catch (InstantiationException ex) {

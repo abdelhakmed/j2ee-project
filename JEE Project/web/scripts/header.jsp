@@ -10,7 +10,7 @@
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
 %>
-<p id="top">Bienvenue <%= user.getPrenom()%> <%= user.getNom()%>, <a href="Accueil?action=logout">Déconnexion</a></p>
+<p id="top">Bienvenue <%= user.getPrenom()%> <%= user.getNom()%>, <a href="<%= request.getContextPath()%>/logout.html">Déconnexion</a></p>
 <div id="logo">
     <h1><a href="index.jsp">iQCM</a></h1>
 </div>
