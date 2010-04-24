@@ -33,6 +33,9 @@ public class CreerQuestionnaireCreerQuestionAction extends EnseignantAction{
         }
         Questionnaire newQuestionnaire = (Questionnaire) request.getSession().getAttribute("newQuestionnaire");
         Question nouvelleQuestion = new Question(null, libelleQuestion, newQuestionnaire.getIdTheme(), ActionHelper.getIdUser(request), 0, new ArrayList<Reponse>());
+        if (newQuestionnaire.getQuestions().contains(nouvelleQuestion)) {
+            throw new UnauthorizedActionException("Cette question existe déjà pour ce questionnaire");
+        }
         if(QuestionDAO.search(nouvelleQuestion) != null){
             throw new UnauthorizedActionException("Une question du même libelle et du même thème existe déjà");
         }

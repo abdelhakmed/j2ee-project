@@ -15,28 +15,24 @@ Menu de gauche à inclure
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
                 <div id="navigation">
-                </div>
-
-
-                <div id="navigation">
                     <ul class="menu_gauche">
-                        <a href="<%= request.getContextPath() %>/passerQuestionnaire/index.html"><li>Passer un questionnaire</li></a>
-                        <a href="<%= request.getContextPath() %>/mesResultats/index.html"><li>Mes résultats</li></a>
-            <%
-                if (user.isCreator() || user.isAdmin()) {
-            %>
-                        <a href="<%= request.getContextPath() %>/creerQuestionnaire/index.html"><li>Créer un questionnaire</li></a>
-                        <a href="<%= request.getContextPath() %>/mesQuestionnaires/index.html"><li>Mes questionnaires</li></a>
-            <% }%>
+                        <a href="<%= request.getContextPath()%>/passerQuestionnaire/index.html"><li>Passer un questionnaire</li></a>
+                        <a href="<%= request.getContextPath()%>/mesResultats/index.html"><li>Mes résultats</li></a>
+                        <%
+                                    if (user.isCreator() || user.isAdmin()) {
+                        %>
+                        <a href="<%= request.getContextPath()%>/creerQuestionnaire/index.html"><li>Créer un questionnaire</li></a>
+                        <a href="<%= request.getContextPath()%>/mesQuestionnaires/index.html"><li>Mes questionnaires</li></a>
+                        <% }%>
                     </ul>
-            <%
-                if (user.isAdmin()) {
-            %>
+                    <%
+                                if (user.isAdmin()) {
+                    %>
                     <ul class="menu_gauche"><h5>Admin</h5>
-                        <a href="<%= request.getContextPath() %>/admin/themes/index.html"><li>Thèmes</li></a>
-                        <a href="<%= request.getContextPath() %>/admin/niveaux/index.html"><li>Niveau</li></a>
-                        <a href="<%= request.getContextPath() %>/admin/questionnaires/index.html"><li>Questionnaires</li></a>
-                        <a href="<%= request.getContextPath() %>/admin/users/index.html"><li>Utilisateurs</li></a>
+                        <a href="<%= request.getContextPath()%>/admin/themes/index.html"><li>Thèmes</li></a>
+                        <a href="<%= request.getContextPath()%>/admin/niveaux/index.html"><li>Niveau</li></a>
+                        <a href="<%= request.getContextPath()%>/admin/questionnaires/index.html"><li>Questionnaires</li></a>
+                        <a href="<%= request.getContextPath()%>/admin/users/index.html"><li>Utilisateurs</li></a>
                     </ul>
-            <% }%>
+                    <% }%>
                 </div>

@@ -3,10 +3,9 @@
 <%@page import="qcm.models.Niveau" %>
 <%@page import="qcm.models.Theme" %>
 
-
 <div class="choice">
     <p>Veuillez sélectionner le thème et le niveau du questionnaire que vous souhaitez ajouter dans la base de données. </p>
-    <form id="choix_questionnaire_form" action="<%= request.getContextPath() %>/creerQuestionnaire/nouveau.html" method="post" accept-charset="utf-8">
+    <form id="choix_questionnaire_form" action="<%= request.getContextPath()%>/creerQuestionnaire/nouveau.html" method="post" accept-charset="utf-8">
         <table>
             <tr>
                 <td class="static"><label for="theme">Choisissez le thème : </label></td>
@@ -14,14 +13,14 @@
                     <select name="theme" id="theme" class="medium-input">
                         <option></option>
                         <%
-                                List<Theme> themes = (List<Theme>) request.getAttribute("themes");
-                                if (themes != null) {
-                                    for (Theme leTheme : themes) {
-                                        out.println("<option value='" + leTheme.getIdTheme() + "'");
-                                        out.print(">" + leTheme.getLibelle() + "</option>");
+                                    List<Theme> themes = (List<Theme>) request.getAttribute("themes");
+                                    if (themes != null) {
+                                        for (Theme leTheme : themes) {
+                                            out.println("<option value='" + leTheme.getIdTheme() + "'");
+                                            out.print(">" + leTheme.getLibelle() + "</option>");
+                                        }
                                     }
-                                }
-                         %>
+                        %>
                     </select>
                 </td>
             </tr>
@@ -55,4 +54,3 @@
     </form>
 </div>
 <div class="line"></div>
-             

@@ -1,8 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="qcm.models.*" %>
 <%@page import="java.util.List" %>
-
-
-
 
 <%
             List<Question> questionsByThemeNewQuestionnaire = (List<Question>) request.getSession().getAttribute("questionsByThemeNewQuestionnaire");
@@ -15,7 +13,6 @@
         <%
                     for (Question question : newQuestionnaire.getQuestions()) {
                         out.println("<li>" + question.getLibelle() + "</li>");
-                        out.println(question.getReponses());
                     }
         %>
     </ul>
@@ -28,39 +25,39 @@
                     out.print("<h1>Nouveau questionnaire : &laquo; " + newQuestionnaire.getLibelle() + " &raquo;</h1><br/><br/>");
     %>
 
-    <label for="question">Sélectionner une question existante à ajouter dans votre questionnaire :</label>
+    <label for="question">SÃ©lectionner une question existante Ã  ajouter dans votre questionnaire :</label>
     <br/><br/>
     <select name="question" id="question" onchange="display_question()" >
-        <option>Choisissez une question à ajouter</option>
+        <option>Choisissez une question Ã  ajouter</option>
         <option value="0">Ajouter une nouvelle question</option>
 
         <%
-                                                if (questionsByThemeNewQuestionnaire != null) {
-                                                    for (int k = 0; k < questionsByThemeNewQuestionnaire.size(); k++) {
-                                                        out.println("<option value='" + questionsByThemeNewQuestionnaire.get(k).getIdQuestion() + "'>");
-                                                        out.print(questionsByThemeNewQuestionnaire.get(k).getLibelle());
-                                                        out.print("</option>");
-                                                    }
+                            if (questionsByThemeNewQuestionnaire != null) {
+                                for (int k = 0; k < questionsByThemeNewQuestionnaire.size(); k++) {
+                                    out.println("<option value='" + questionsByThemeNewQuestionnaire.get(k).getIdQuestion() + "'>");
+                                    out.print(questionsByThemeNewQuestionnaire.get(k).getLibelle());
+                                    out.print("</option>");
+                                }
 
         %>
     </select>
 
     <div id="reponses">
-        <form id="question_0" class="question_a_ajouter" action="<%= request.getContextPath() %>/creerQuestionnaire/ajouterReponses.html" method="post">
+        <form id="question_0" class="question_a_ajouter" action="<%= request.getContextPath()%>/creerQuestionnaire/ajouterReponses.html" method="post">
             <table>
                 <tr>
-                    <td colspan="2"><label for="libelleQuestion">Libellé de la question : </label></td>
+                    <td colspan="2"><label for="libelleQuestion">LibellÃ© de la question : </label></td>
                 </tr>
                 <tr>
                     <td colspan="2"><textarea id="libelleQuestion" name="libelleQuestion" cols="50" rows="5"></textarea></td>
                 </tr>
                 <tr>
-                    <td><label for="nbReponses">Nombre de réponses à cette question</label></td>
+                    <td><label for="nbReponses">Nombre de rÃ©ponses Ã  cette question</label></td>
                     <td><input type="text" id="nbReponses" name="nbReponses" size="3" class="medium-input" /></td>
                 </tr>
             </table>
             <input type='hidden' name='action' value='applyToAddNewQuestion' />
-            <input class='button' type='submit' value='Ajouter les réponses' />
+            <input class='button' type='submit' value='Ajouter les rÃ©ponses' />
         </form>
 
         <%
@@ -70,10 +67,10 @@
 
                                 out.println("<table id='question_a_ajouter' class='format question-a-ajouter'>");
                                 out.println("<tr>");
-                                out.println("<th class='libelle'>Libellé</th>");
+                                out.println("<th class='libelle'>LibellÃ©</th>");
                                 out.println("<th class='descriptif'>Descriptif</th>");
                                 out.println("<th class='note'>Note</th>");
-                                out.println("<th class='correcte'>Réponse correcte</th>");
+                                out.println("<th class='correcte'>RÃ©ponse correcte</th>");
                                 out.println("</tr>");
 
                                 List<Reponse> reponses = q.getReponses();
@@ -89,7 +86,7 @@
                                 }
                                 out.println("</table>");
 
-                                out.println("<form action='"+request.getContextPath()+"/creerQuestionnaire/ajouterQuestion.html' method='post' accept-charset='utf-8'>");
+                                out.println("<form action='" + request.getContextPath() + "/creerQuestionnaire/ajouterQuestion.html' method='post' accept-charset='utf-8'>");
                                 out.println("<input type='hidden' name='idQuestionToAdd' value='" + q.getIdQuestion() + "' />");
                                 out.println("<input class='button' type='submit' value='Ajouter cette question' />");
                                 out.println("</form>");
@@ -97,19 +94,19 @@
                             }
                         }
                     } else {
-                        out.println("Un questionnaire correspondant à vos critères existe déjà");
+                        out.println("Un questionnaire correspondant Ã  vos critÃ¨res existe dÃ©jÃ ");
                     }
         %>
     </div>
-        <%
-            if(newQuestionnaire.getQuestions().size()>1){
-                %>
-    <br/>
-    <a href="<%= request.getContextPath() %>/creerQuestionnaire/enregistrement.html">Enregistrer tout</a>
-    <%
-            }
-     %>
 </div>
+<%
+            if (newQuestionnaire.getQuestions().size() > 1) {
+%>
+<div id="terminer" class="clear">
+    <a class="button" href="/JEE_Project/creerQuestionnaire/enregistrement.html">Enregistrer tout</a>
+</div>
+<%                }
+%>
 
 <script type="text/javascript" charset="utf-8">
     function display_question() {
@@ -121,12 +118,5 @@
         if (index >= 0) {
             document.getElementById('question_' + index).style.display = 'block';
         }
-    }
-    function ajouter_reponse() {
-        var liste_reponses = document.getElementById('liste_reponses');
-        var newChild = document.createElement("p");
-        newChild.innerHTML = "blablabla";
-        console.log(liste_reponses.lastChild.lastChild);
-        liste_reponses.lastChild.insertBefore(newChild, liste_reponses.lastChild);
     }
 </script>

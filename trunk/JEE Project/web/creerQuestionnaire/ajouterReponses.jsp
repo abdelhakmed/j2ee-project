@@ -1,19 +1,29 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
             int nbReponses = Integer.parseInt(request.getAttribute("nbReponses").toString());
             String libelleQuestion = (String) request.getAttribute("libelleQuestion");
 %>
-<h4>Ajouter les réponses</h4>
-<form action="<%= request.getContextPath() %>/creerQuestionnaire/creerQuestion.html" method="post">
-    <p><em>Rappel de la question : </em><input type="text" value="<%= libelleQuestion %>" name="libelleQuestion"/></p>
+<h4>Ajouter les rÃ©ponses</h4>
+<form action="<%= request.getContextPath()%>/creerQuestionnaire/creerQuestion.html" method="post">
+    <table>
+        <tr>
+            <td>
+                <em>Rappel de la question : </em>
+            </td>
+            <td>
+                <textarea id="libelleQuestion" name="libelleQuestion" cols="69" rows="5"><%= libelleQuestion%></textarea>
+            </td>
+        </tr>
+    </table>
 
     <table id="question_a_ajouter" class="format question-a-ajouter">
         <tr>
-            <th>Réponse</th>
-            <th>Libellé</th>
+            <th>RÃ©ponse</th>
+            <th>LibellÃ©</th>
             <th>Descriptif</th>
             <th>Note</th>
-            <th>Réponse correcte</th>
+            <th>RÃ©ponse correcte</th>
         </tr>
         <%
                     for (int i = 1; i <= nbReponses; i++) {
@@ -28,5 +38,5 @@
         %>
     </table>
     <input type="hidden" name="nbReponses" value="<%= nbReponses%>" />
-    <input type="submit" name="action" value="Ajouter ces réponses" class="button" />
+    <input type="submit" name="action" value="Ajouter ces rÃ©ponses" class="button" />
 </form>
