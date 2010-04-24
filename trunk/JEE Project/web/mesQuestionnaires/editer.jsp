@@ -10,7 +10,17 @@
 
 %>
 <h1><%=questionnaire.getLibelle()%></h1>
+
+<h2>Niveau de ce questionnaire : <%= ((Niveau) request.getAttribute("niveau")).getLibelle() %> </h2>
+
 <a href="<%= request.getContextPath() %>/mesQuestionnaires/index.html">&laquo; Retour</a>
+
+<%
+    if(!questionnaire.estPasse()){
+                out.println("<a href='"+request.getContextPath()+"/mesQuestionnaires/modifierQuestionnaire.html?questionnaire="+questionnaire.getIdQuestionnaire()+"'>Modifier ce questionnaire</a>");
+    }
+
+%>
 <ol id="info_questionnaire">
 <%
             for (Question question : questionnaire.getQuestions()) {
@@ -31,10 +41,7 @@
     %>
 </ol>
 <%
-            if(!questionnaire.estPasse()){
-                        out.println("<br/> Ce questionnaire est modifiable");
-
-            }
+            
             
             
             
