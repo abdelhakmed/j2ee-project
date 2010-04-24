@@ -23,6 +23,7 @@
         <th>Email</th>
         <th>Mot de passe</th>
         <th>Statut</th>
+        <th>Modifier</th>
         <th>Contrôle</th>
     </tr>
     <%
@@ -36,7 +37,11 @@
         <td><%= user.getEmail()%></td>
         <td><%= user.getPassword()%></td>
         <td><%= user.getStatut().getLibelle()%></td>
-
+        <td class="centered">
+            <a href="<%= request.getContextPath()%>/admin/users/editer.html?id=<%= user.getIdUser()%>">Modifier
+                <img src="<%= request.getContextPath()%>/img/edit_16.png" alt="Modifier les informations concernant l'utilisateur" />
+            </a>
+        </td>
         <td class="centered">
             <%
                                             if (user.estActif()) {

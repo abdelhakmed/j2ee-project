@@ -1,14 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package qcm.actions;
 
 /**
  *
  * @author marya
  */
-public class LogoutAction {
+public class LogoutAction extends AbstractAction {
 
+    @Override
+    public void execute() throws Exception {
+        request.getSession().invalidate();
+        setView("/user/logout.jsp");
+    }
 }

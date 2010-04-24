@@ -23,6 +23,7 @@ public class Router {
         actionToUri = new HashMap<Class, String>();
 
         uriToAction.put("/index.html", IndexAction.class);
+        uriToAction.put("/logout.html", LogoutAction.class);
 
         //Passer un questionnaire
         uriToAction.put("/passerQuestionnaire/index.html", PasserQuestionnaireIndexAction.class);
