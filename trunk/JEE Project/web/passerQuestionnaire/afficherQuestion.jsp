@@ -54,7 +54,6 @@
     <input type="hidden" name="idQuestion" value="<%= questionCourante.getIdQuestion()%>"/>
 </form>
 <div id="temps_restant">
-    <p>Il vous reste XX questions.</p>
     <form action="<%= request.getContextPath() %>/passerQuestionnaire/terminer.html" method="post" accept-charset="utf-8">
         <input class="button" type="submit" value="Terminer maintenant &rarr;" />
     </form>
