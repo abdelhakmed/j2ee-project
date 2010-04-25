@@ -27,4 +27,20 @@ public class QuestionnairePasseDAO extends ModeleDAO {
         rs.close();
         return qP;
     }
+
+    public static List<QuestionnairePasse> findUsageById(int idQuestionnaire) throws SQLException {
+        List<QuestionnairePasse> qP = new ArrayList<QuestionnairePasse>();
+        String sql = "SELECT questionnaire_passe.id_questionnaire, questionnaire.libelle, questionnaire_passe.id_user, "
+                + "questionnaire_passe.note, questionnaire_passe.date , questionnaire_passe.temps "
+                + "FROM questionnaire_passe "
+                + "INNER JOIN questionnaire "
+                + "ON questionnaire.id_questionnaire = questionnaire_passe.id_questionnaire "
+                + "WHERE questionnaire_passe.id_questionnaire = ? ORDER BY date";
+        ResultSet rs = selectById(sql, idQuestionnaire);
+        while (rs.next()) {
+            qP.add(new QuestionnairePasse(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getInt(6)));
+        }
+        rs.close();
+        return qP;
+    }
 }
