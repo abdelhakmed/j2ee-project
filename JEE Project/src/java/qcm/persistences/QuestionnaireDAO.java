@@ -313,25 +313,56 @@ public class QuestionnaireDAO extends ModeleDAO {
         return questionnaires;
     }
 
-
-
-    public static void addQuestion(int idQuestionnaire, Question question) throws SQLException{
+    public static void addQuestion(int idQuestionnaire, Question question) throws SQLException {
         String sql = "";
         PreparedStatement ps = null;
-        if(question.getIdQuestion() == null){
-            sql = "INSERT INTO question(libelle,id_theme,id_user) VALUES (?,?,?)";
-            ps = getConnection().prepareStatement(sql);
-            ps.setString(1, question.getLibelle());
-            ps.setInt(2, question.getIdTheme());
-            ps.setInt(3, question.getIdUser());
-        }else{
+
+        if (question.getIdQuestion() == null) {
+            Connection connexion = getConnection();
+            try {
+
+                connexion.setAutoCommit(false);
+                sql = "INSERT INTO question(libelle,id_theme,id_user) VALUES (?,?,?)";
+                ps = getConnection().prepareStatement(sql);
+                ps.setString(1, question.getLibelle());
+                ps.setInt(2, question.getIdTheme());
+                ps.setInt(3, question.getIdUser());
+                ps.executeUpdate();
+                ResultSet rsQuestion = connexion.createStatement().executeQuery("SELECT LAST_INSERT_ID() FROM question");
+                rsQuestion.next();
+                int idQuestion = rsQuestion.getInt(1);
+                if (idQuestion <= 0) {
+                    throw new SQLException("impossible d'enregistrer les informations concernant la question " + question.getLibelle());
+                }
+                String sqlRep = "INSERT INTO reponse(libelle, descriptif, est_correcte, note, id_question) "
+                        + " VALUES(?, ?, ?, ?, ?)";
+                ps = getConnection().prepareStatement(sqlRep);
+                ps.setInt(5, idQuestion);
+                for (Reponse r : question.getReponses()) {
+                    ps.setString(1, r.getLibelle());
+                    ps.setString(2, r.getDescriptif());
+                    ps.setBoolean(3, r.estCorrecte());
+                    ps.setInt(4, r.getNote());
+                    ps.executeUpdate();
+                }
+                addQuestion(idQuestionnaire, QuestionDAO.getById(idQuestion));
+                connexion.commit();
+            } catch (SQLException e) {
+                if (connexion != null) {
+                    connexion.rollback();
+                }
+                throw e;
+            }
+
+        } else {
             assert QuestionDAO.getById(question.getIdQuestion()).equals(question);
             sql = "INSERT INTO contenu(id_questionnaire,id_question)";
             ps = getConnection().prepareStatement(sql);
             ps.setInt(1, idQuestionnaire);
             ps.setInt(2, question.getIdQuestion());
+            ps.executeUpdate();
         }
-        ps.executeUpdate();
+
         ps.close();
     }
 }
