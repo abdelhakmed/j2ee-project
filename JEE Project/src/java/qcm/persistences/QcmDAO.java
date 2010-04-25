@@ -83,4 +83,10 @@ public class QcmDAO extends ModeleDAO {
         ordre.close();
         return result;
     }
+
+     public static void delete(int idQuestionnaire, int idQuestion) throws SQLException{
+        int idContenu = getIdContenu(idQuestionnaire, idQuestion);
+        String sql = "DELETE FROM contenu WHERE id_contenu = "+idContenu;
+        getConnection().createStatement().execute(sql);
+    }
 }

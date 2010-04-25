@@ -45,6 +45,8 @@ public class Router {
         uriToAction.put("/mesQuestionnaires/enregistrementQuestionnaire.html", MesQuestionnairesEnregistrementQuestionnaireAction.class);
         uriToAction.put("/mesQuestionnaires/modifierQuestion.html", MesQuestionnairesModificationQuestionAction.class);
         uriToAction.put("/mesQuestionnaires/enregistrementQuestion.html", MesQuestionnairesEnregistrementQuestionAction.class);
+        uriToAction.put("/mesQuestionnaires/suppressionQuestion.html", MesQuestionnairesSuppressionQuestionAction.class);
+
 
         //Créer un questionnaire
         uriToAction.put("/creerQuestionnaire/index.html", CreerQuestionnaireIndexAction.class);
