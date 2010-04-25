@@ -47,7 +47,7 @@
     </select>
 
     <div id="reponses">
-        <form id="question_0" class="question_a_ajouter" action="<%= request.getContextPath()%>/creerQuestionnaire/ajouterReponses.html" method="post">
+        <form id="question_0" class="question_a_ajouter" action="<%= request.getContextPath()%>/mesQuestionnaires/ajouterReponses.html" method="post">
             <table>
                 <tr>
                     <td colspan="2"><label for="libelleQuestion">Libellé de la question : </label></td>
@@ -60,7 +60,7 @@
                     <td><input type="text" id="nbReponses" name="nbReponses" size="3" class="medium-input" /></td>
                 </tr>
             </table>
-            <input type='hidden' name='action' value='applyToAddNewQuestion' />
+            <input type="hidden" value="<%= questionnaire.getIdQuestionnaire() %>"  name="idQuestionnaire"/>
             <input class='button' type='submit' value='Ajouter les réponses' />
         </form>
 
@@ -90,15 +90,14 @@
                                 }
                                 out.println("</table>");
 
-                                out.println("<form action='" + request.getContextPath() + "/creerQuestionnaire/ajouterQuestion.html' method='post' accept-charset='utf-8'>");
+                                out.println("<form action='" + request.getContextPath() + "/mesQuestionnaires/ajouterQuestion.html' method='post' accept-charset='utf-8'>");
                                 out.println("<input type='hidden' name='idQuestionToAdd' value='" + q.getIdQuestion() + "' />");
+                                out.println("<input type='hidden' name='idQuestionnaire' value='" + questionnaire.getIdQuestionnaire() + "' />");
                                 out.println("<input class='button' type='submit' value='Ajouter cette question' />");
                                 out.println("</form>");
                                 out.println("</div>");
                             }
                         }
-                    } else {
-                        out.println("Un questionnaire correspondant à vos critères existe déjà");
                     }
         %>
     </div>
