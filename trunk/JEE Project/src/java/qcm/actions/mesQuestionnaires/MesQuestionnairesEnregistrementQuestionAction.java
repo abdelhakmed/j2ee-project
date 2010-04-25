@@ -33,7 +33,11 @@ public class MesQuestionnairesEnregistrementQuestionAction extends EnseignantAct
         if(!question.estModifiable()){
              throw new UnauthorizedActionException("Cette question n'est pas modifiable car elle appartient à un questionnaire déjà passé.");
         }
-
+        String libelleQuestion = (String)  request.getParameter("libelleQuestion");
+        question.setLibelle(libelleQuestion);
+        if(QuestionDAO.search(question) != null){
+            throw new UnauthorizedActionException("Une question de ce même libellé existe déjà");
+        }
         String libelleReponse = null;
         String descriptifReponse = null;
         Integer noteReponse = 0;

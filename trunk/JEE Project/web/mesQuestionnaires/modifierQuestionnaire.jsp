@@ -23,7 +23,7 @@
 </fieldset>
 
 <div id="temps_restant">
-    <form method="post" action="<%=  request.getContextPath()%>/mesQuestionnaires/ajoutQuestion.html">
+    <form method="post" action="<%=  request.getContextPath()%>/mesQuestionnaires/ajoutsQuestions.html">
         <input type="submit" value="Ajouter une question" />
         <input type="hidden" name="idQuestionnaire" value="<%= questionnaire.getIdQuestionnaire()%>" />
     </form>
@@ -96,7 +96,9 @@
                             out.println("<input type='hidden' name='idQuestion' value='" + q.getIdQuestion() + "' />");
                             out.println("<input class='button' type='submit' value='Modifier cette question' />");
                             out.println("<a class='button' href='javascript:display_modifier_questionnaire()'>Revenir à la modification du questionnaire</a>");
-                            out.println("<a class='button' href='" + request.getContextPath() + "/mesQuestionnaires/suppressionQuestion.html?idQuestionnaire=" + questionnaire.getIdQuestionnaire() + "&idQuestion=" + q.getIdQuestion() + "'>Supprimer cette question</a>");
+                            if (questionnaire.getQuestions().size() > 1) {
+                                    out.println("<a class='button' href='" + request.getContextPath() + "/mesQuestionnaires/suppressionQuestion.html?idQuestionnaire=" + questionnaire.getIdQuestionnaire() + "&idQuestion=" + q.getIdQuestion() + "'>Supprimer cette question</a>");
+                            }
                             out.println("</form>");
                             out.println("</div>");
 
