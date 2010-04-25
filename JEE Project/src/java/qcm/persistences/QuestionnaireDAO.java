@@ -356,7 +356,7 @@ public class QuestionnaireDAO extends ModeleDAO {
 
         } else {
             assert QuestionDAO.getById(question.getIdQuestion()).equals(question);
-            sql = "INSERT INTO contenu(id_questionnaire,id_question)";
+            sql = "INSERT INTO contenu(id_questionnaire,id_question) VALUES (?,?)";
             ps = getConnection().prepareStatement(sql);
             ps.setInt(1, idQuestionnaire);
             ps.setInt(2, question.getIdQuestion());
