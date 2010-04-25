@@ -29,12 +29,13 @@ public class ReponseDAO extends ModeleDAO {
     }
 
     public static void update(Reponse reponse) throws SQLException {
-        String sql = "UPDATE reponse SET libelle = ?, descriptif = ?, note = ?, est_correcte = ?";
+        String sql = "UPDATE reponse SET libelle = ?, descriptif = ?, note = ?, est_correcte = ? WHERE id_reponse=?";
         PreparedStatement ordre = getConnection().prepareStatement(sql);
         ordre.setString(1, reponse.getLibelle());
         ordre.setString(2, reponse.getLibelle());
         ordre.setInt(3, reponse.getNote());
         ordre.setBoolean(4, reponse.estCorrecte());
+        ordre.setInt(5, reponse.getIdReponse());
         ordre.executeUpdate();
         ordre.close();
     }

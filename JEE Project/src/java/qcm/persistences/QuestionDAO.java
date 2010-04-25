@@ -75,9 +75,10 @@ public class QuestionDAO extends ModeleDAO {
     }
 
     public static void update(Question question) throws SQLException {
-        String sql = "UPDATE question SET libelle = ?";
+        String sql = "UPDATE question SET libelle = ? WHERE id_question = ?";
         PreparedStatement ordre = getConnection().prepareStatement(sql);
         ordre.setString(1, question.getLibelle());
+        ordre.setInt(2, question.getIdQuestion());
         ordre.executeUpdate();
         for (Reponse reponse : question.getReponses()) {
             ReponseDAO.update(reponse);
