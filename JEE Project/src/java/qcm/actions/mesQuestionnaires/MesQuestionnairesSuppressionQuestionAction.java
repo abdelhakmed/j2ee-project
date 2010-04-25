@@ -7,6 +7,7 @@ package qcm.actions.mesQuestionnaires;
 
 import qcm.actions.EnseignantAction;
 import qcm.exceptions.UnauthorizedActionException;
+import qcm.models.Questionnaire;
 import qcm.persistences.QcmDAO;
 import qcm.persistences.QuestionnaireDAO;
 import qcm.services.ActionHelper;
@@ -25,6 +26,10 @@ public class MesQuestionnairesSuppressionQuestionAction extends EnseignantAction
         }
         if(idQuestionnaire == null){
             throw  new UnauthorizedActionException("Merci de spécifier la question à supprimer");
+        }
+        Questionnaire questionnaire = QuestionnaireDAO.getById(idQuestionnaire);
+        if(questionnaire.getQuestions().size()<=1){
+             throw  new UnauthorizedActionException("Vous devez au moins avoir 2 questions dans votre questionnaire");
         }
         QcmDAO.delete(idQuestionnaire, idQuestion);
         request.setAttribute("questionnaire", idQuestionnaire);
