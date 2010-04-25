@@ -312,4 +312,26 @@ public class QuestionnaireDAO extends ModeleDAO {
         }
         return questionnaires;
     }
+
+
+
+    public static void addQuestion(int idQuestionnaire, Question question) throws SQLException{
+        String sql = "";
+        PreparedStatement ps = null;
+        if(question.getIdQuestion() == null){
+            sql = "INSERT INTO question(libelle,id_theme,id_user) VALUES (?,?,?)";
+            ps = getConnection().prepareStatement(sql);
+            ps.setString(1, question.getLibelle());
+            ps.setInt(2, question.getIdTheme());
+            ps.setInt(3, question.getIdUser());
+        }else{
+            assert QuestionDAO.getById(question.getIdQuestion()).equals(question);
+            sql = "INSERT INTO contenu(id_questionnaire,id_question)";
+            ps = getConnection().prepareStatement(sql);
+            ps.setInt(1, idQuestionnaire);
+            ps.setInt(2, question.getIdQuestion());
+        }
+        ps.executeUpdate();
+        ps.close();
+    }
 }
