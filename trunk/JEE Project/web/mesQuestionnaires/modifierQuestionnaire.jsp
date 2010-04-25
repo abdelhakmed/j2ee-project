@@ -60,7 +60,7 @@
     <div id="reponses">
         <%
                     for (Question q : questionnaire.getQuestions()) {
-                        if (q.estModifiable()) {
+                        if (q.estModifiable() && q.getIdUser()== questionnaire.getIdUser()) {
 
                             out.println("<div id='question_" + q.getIdQuestion() + "' class='question_a_ajouter'>");
 
