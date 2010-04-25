@@ -19,10 +19,19 @@
                     }
         %>
     </ul>
+
 </fieldset>
 
+<div id="temps_restant">
+    <form method="post" action="<%=  request.getContextPath()%>/mesQuestionnaires/ajoutQuestion.html">
+        <input type="submit" value="Ajouter une question" />
+        <input type="hidden" name="idQuestionnaire" value="<%= questionnaire.getIdQuestionnaire()%>" />
+    </form>
+</div>
+
+
 <div class="panel_left">
-    <h1>Votre questionnaire : &laquo; <%= questionnaire.getLibelle() %> &raquo;</h1>
+    <h1>Votre questionnaire : &laquo; <%= questionnaire.getLibelle()%> &raquo;</h1>
 
     <p class="left">Sélectionnez une question à modifier dans le paneau de droite ou bien modifiez le titre du questionnaire ou son niveau.</p>
 
@@ -60,7 +69,7 @@
     <div id="reponses">
         <%
                     for (Question q : questionnaire.getQuestions()) {
-                        if (q.estModifiable() && q.getIdUser()== questionnaire.getIdUser()) {
+                        if (q.estModifiable() && q.getIdUser() == questionnaire.getIdUser()) {
 
                             out.println("<div id='question_" + q.getIdQuestion() + "' class='question_a_ajouter'>");
 
@@ -87,6 +96,7 @@
                             out.println("<input type='hidden' name='idQuestion' value='" + q.getIdQuestion() + "' />");
                             out.println("<input class='button' type='submit' value='Modifier cette question' />");
                             out.println("<a class='button' href='javascript:display_modifier_questionnaire()'>Revenir à la modification du questionnaire</a>");
+                            out.println("<a class='button' href='" + request.getContextPath() + "/mesQuestionnaires/suppressionQuestion.html?idQuestionnaire=" + questionnaire.getIdQuestionnaire() + "&idQuestion=" + q.getIdQuestion() + "'>Supprimer cette question</a>");
                             out.println("</form>");
                             out.println("</div>");
 
