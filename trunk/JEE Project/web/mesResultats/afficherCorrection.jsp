@@ -8,23 +8,29 @@
 
             if (questionnaire != null) {%>
 <h1><%=questionnaire.getLibelle()%></h1>
-<a href="<%= request.getContextPath() %>/mesResultats/index.html">&laquo; Retour</a>
-<ol id="info_questionnaire">
+<a class="button" href="<%= request.getContextPath() %>/mesResultats/index.html">&laquo; Retour</a>
+<ol class="info_questionnaire">
 <%
             for (Question question : questionnaire.getQuestions()) {
-                out.println("<li>" + question.getLibelle() + "<ul class='liste'>");
+                out.println("<li><strong>" + question.getLibelle() + "</strong>");
+                out.println("<table class='format'>");
+                out.println("<tr>");
+                out.println("<th>Réponse</th>");
+                out.println("<th>Descriptif</th>");
+                out.println("</tr>");
                 for (Reponse reponse : question.getReponses()) {
-                    out.println("<li>");
+                    out.println("<tr>");
                     if (reponse.estCorrecte()) {
-                        out.println("<strong class='bon'>" + reponse.getLibelle());
-                        out.println(" (" + reponse.getDescriptif() + ")</strong>");
+                        out.println("<td><strong class='bon'>" + reponse.getLibelle() + "</strong></td>");
+                        out.println("<td>(" + reponse.getDescriptif() + ")</td>");
                     } else {
-                        out.println(reponse.getLibelle());
-                        out.println(" (" + reponse.getDescriptif() + ")");
+                        out.println("<td>" + reponse.getLibelle() + "</td>");
+                        out.println("<td>(" + reponse.getDescriptif() + ")</td>");
                     }
-                    out.println("</li>");
+                    out.println("</tr>");
                 }
-                out.println("</ul></li>");
+                out.println("</table>");
+                out.println("</li>");
             }
     %>
 </ol>

@@ -17,7 +17,7 @@
         <a href="<%= request.getContextPath() %>/mesQuestionnaires/editer.html?questionnaire=<%= i %>"><%= questionnaires.get(i)%></a>
     </td>
     <td class="centered">
-        <a href=""><img src="<%= request.getContextPath() %>/img/stats.png" alt="Consulter les statistiques" /></a>
+        <a href="<%= request.getContextPath() %>/mesQuestionnaires/statistiques.html?questionnaire=<%= i %>"><img src="<%= request.getContextPath() %>/img/stats.png" alt="Consulter les statistiques" /></a>
     </td>
 </tr>
 <%
