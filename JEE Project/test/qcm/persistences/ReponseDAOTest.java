@@ -22,4 +22,17 @@ public class ReponseDAOTest extends QCMTestCase {
         Reponse result = ReponseDAO.getById(idReponse);
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of update method, of class ReponseDAO.
+     */
+    @Test
+    public void testUpdate() throws Exception {
+        System.out.println("update");
+        String nouveauLibelle = "Nouvelle reponse";
+        Reponse reponse = new Reponse(1, "Réponse 1", "Descriptif Réponse 1 Question 1", false, 0, 1);
+        reponse.setLibelle(nouveauLibelle);
+        ReponseDAO.update(reponse);
+        assertTrue(ReponseDAO.getById(1).getLibelle().equals(nouveauLibelle));
+    }
 }

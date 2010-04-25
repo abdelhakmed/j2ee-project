@@ -56,4 +56,29 @@ public class QuestionDAOTest extends QCMTestCase {
         List<Question> result = QuestionDAO.getByTheme(idTheme);
         assertEquals(expResult.get(0), result.get(0));
     }
+
+    /**
+     * Test of update method, of class QuestionDAO.
+     */
+    @Test
+    public void testUpdate() throws Exception {
+        System.out.println("update");
+        String nouveauLibelle = "Nouvelle question";
+        Question question = new Question(1, "Question 1 Theme 1", 1, 1, 0, new ArrayList<Reponse>());
+        question.setLibelle(nouveauLibelle);
+        QuestionDAO.update(question);
+        assertTrue(QuestionDAO.getById(1).getLibelle().equals(nouveauLibelle));
+    }
+
+    /**
+     * Test of search method, of class QuestionDAO.
+     */
+    @Test
+    public void testSearch() throws Exception {
+        System.out.println("search");
+        Question toSearch = new Question(1, "Question 1 Theme 1", 1, 1, 0, new ArrayList<Reponse>());
+        Question expResult = QuestionDAO.getById(1);
+        Question result = QuestionDAO.search(toSearch);
+        assertEquals(expResult, result);
+    }
 }
