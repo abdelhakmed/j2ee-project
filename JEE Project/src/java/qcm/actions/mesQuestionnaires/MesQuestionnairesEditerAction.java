@@ -6,10 +6,15 @@
 package qcm.actions.mesQuestionnaires;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import qcm.actions.EnseignantAction;
 import qcm.exceptions.UnauthorizedActionException;
+import qcm.models.Question;
 import qcm.models.Questionnaire;
+import qcm.models.Reponse;
 import qcm.persistences.QuestionnaireDAO;
+import qcm.persistences.QuestionnairePasseDAO;
 import qcm.services.ActionHelper;
 
 /**
@@ -28,7 +33,16 @@ public class MesQuestionnairesEditerAction extends EnseignantAction{
         request.setAttribute("questionnaire", questionnaire);
         ActionHelper.setAttributeNiveau(questionnaire.getIdNiveau(), request);
 
+        Map<Integer, Integer> usersResponses = new HashMap<Integer, Integer>();
+
+        for(Question q: questionnaire.getQuestions()){
+            for(Reponse r : q.getReponses()){
+                usersResponses.put(r.getIdReponse(), QuestionnairePasseDAO.getNbUsersByResponse(r.getIdReponse(), q.getIdQuestion(), idQuestionnaire));
+            }
+        }
+
         request.getSession().setAttribute("questionnaireEdite", idQuestionnaire);
+        request.setAttribute("usersResponses", usersResponses);
         setView("/mesQuestionnaires/editer.jsp");
     }
 
