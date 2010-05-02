@@ -7,8 +7,8 @@
 <h4>Statistiques pour le questionnaire</h4>
 
 <%
-         final List<QuestionnairePasse> usages = (List<QuestionnairePasse>) request.getAttribute("usages");
-         final Map<Integer, String> users = (Map<Integer , String>) request.getAttribute("users");
+            final List<QuestionnairePasse> usages = (List<QuestionnairePasse>) request.getAttribute("usages");
+            final Map<Integer, String> users = (Map<Integer, String>) request.getAttribute("users");
 %>
 
 <div id="placeholder" style="width:auto;height:300px;"></div>
@@ -32,8 +32,8 @@
         }
         var serie = [
     <%
-                for (int i= 0; i<usages.size(); i++) {
-                    out.println("[[" + (i+1) + "," + usages.get(i).getNote() + "]],");
+                for (int i = 0; i < usages.size(); i++) {
+                    out.println("[[" + (i + 1) + "," + usages.get(i).getNote() + "]],");
                 }
     %>
             ];
@@ -55,32 +55,21 @@
             var placeholder = $("#placeholder");
             $.plot(placeholder, data, options);
 
-            var previousPoint = null;
-            $("#placeholder").bind("plothover", function (event, pos, item) {
-                $("#x").text(pos.x.toFixed(2));
-                $("#y").text(pos.y.toFixed(2));
-
-                if (item) {
-                    if (previousPoint != item.datapoint) {
-                        previousPoint = item.datapoint;
-
-                        $("#tooltip").remove();
-                        var x = item.datapoint[0], y = item.datapoint[1];
-                        showTooltip(item.pageX, item.pageY, "Utilisateur " + x + " a obtenu " + y);
-                    }
-                }
-                else {
-                    $("#tooltip").remove();
-                    previousPoint = null;
-                }
-            });
         });
 </script>
-            <br/><br/>
-
-            <%
-
-                for (int i= 0; i<usages.size(); i++) {
-                    out.println((i+1) + " :: " + users.get(usages.get(i).getIdUser()) +" :: " + usages.get(i).getNote()+" <br/>" );
+<table class="format">
+    <tr>
+        <th>Numéro</th>
+        <th>Utilisateur</th>
+        <th>Note</th>
+    </tr>
+    <%
+                for (int i = 0; i < usages.size(); i++) {
+                    out.println("<tr>");
+                    out.println("<td>" + (i + 1) + "</td>");
+                    out.println("<td>" + users.get(usages.get(i).getIdUser()) + "</td>");
+                    out.println("<td>" + usages.get(i).getNote() + "</td>");
+                    out.println("</tr>");
                 }
-            %>
+    %>
+</table>

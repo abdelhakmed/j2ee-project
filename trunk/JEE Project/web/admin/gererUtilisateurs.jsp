@@ -15,6 +15,9 @@
             HashMap<Integer, User> users = (HashMap) request.getAttribute("users");
             if (users != null) {
 %>
+
+<a class="button" href="<%= request.getContextPath()%>/admin/users/ajouter.html">Ajouter un utilisateur</a>
+
 <table class="format">
     <tr>
         <th>Login</th>

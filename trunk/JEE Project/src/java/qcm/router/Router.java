@@ -72,10 +72,12 @@ public class Router {
         uriToAction.put("/admin/niveaux/controle.html", AdminNiveauxControleAction.class);
         uriToAction.put("/admin/questionnaires/controle.html", AdminQuestionnairesControleAction.class);
 
-        uriToAction.put("/admin/users/editer.html", AdminUsersEditAction.class); // Pas encore implémenté
+        uriToAction.put("/admin/users/editer.html", AdminUsersEditAction.class);
         uriToAction.put("/admin/themes/editer.html", AdminThemesEditAction.class);
         uriToAction.put("/admin/niveaux/editer.html", AdminNiveauxEditAction.class);
         uriToAction.put("/admin/questionnaires/editer.html", AdminQuestionnairesEditAction.class); // Pas encore implémenté
+
+        uriToAction.put("/admin/users/ajouter.html", AdminUsersAddAction.class);
     }
 
     public static Class getActionByUri(String uri) {

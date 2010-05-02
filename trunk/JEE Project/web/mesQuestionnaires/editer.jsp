@@ -22,24 +22,30 @@
 <ol class="info_questionnaire">
     <%
                     for (Question question : questionnaire.getQuestions()) {
-                        out.println("<li>" + question.getLibelle() + "<ul class='liste info_questionnaire'>");
-                        for (Reponse reponse : question.getReponses()) {
-                            out.println("<li>");
-                            if (reponse.estCorrecte()) {
-                                out.println("<strong class='bon'>" + reponse.getLibelle());
-                                if (!reponse.getDescriptif().equals("")) {
-                                    out.println(" (" + reponse.getDescriptif() + ")");
-                                }
-                                out.println("</strong>");
-                            } else {
-                                out.println(reponse.getLibelle());
-                                if (!reponse.getDescriptif().equals("")) {
-                                    out.println(" (" + reponse.getDescriptif() + ")");
-                                }
-                            }
-                            out.println("</li>");
-                        }
-                        out.println("</ul></li>");
+    %>
+    <li> <%= question.getLibelle() %>
+        <table class="format">
+            <tr>
+                <th>Libellé</th>
+                <th>Descriptif</th>
+                <th>% de réponse</th>
+            </tr>
+            <%
+                                    for (Reponse reponse : question.getReponses()) {
+                                        out.println("<tr>");
+                                        if (reponse.estCorrecte()) {
+                                            out.println("<td><strong class='bon'>" + reponse.getLibelle() + "</strong></td>");
+                                        } else {
+                                            out.println("<td><strong>" + reponse.getLibelle() + "</strong></td>");
+                                        }
+                                        out.println("<td>" + reponse.getDescriptif() + "</td>");
+                                        out.println("<td></td>");
+                                        out.println("</tr>");
+                                    }
+            %>
+        </table>
+    </li>
+    <%
                     }
     %>
 </ol>
