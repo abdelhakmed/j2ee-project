@@ -9,7 +9,7 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <h4>Gérer les niveaux des questionnaires</h4>
-<%--<jsp:include page="scripts/errorViewHelper.jsp" />--%>
+<jsp:include page="/scripts/errorViewHelper.jsp" />
 
 <%
             List<Niveau> niveaux = (ArrayList) request.getAttribute("niveaux");

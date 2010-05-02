@@ -8,7 +8,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <h4>Gérer les questionnaires</h4>
-<%--<jsp:include page="scripts/errorViewHelper.jsp" />--%>
+<jsp:include page="/scripts/errorViewHelper.jsp" />
 
 <%
             HashMap<Integer, Questionnaire> questionnaires = (HashMap) request.getAttribute("questionnaires");

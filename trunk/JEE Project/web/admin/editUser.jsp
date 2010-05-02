@@ -7,20 +7,18 @@
 <%@page import="qcm.models.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <h4>Modifier le compte utilisateur</h4>
-<%--<jsp:include page="scripts/errorViewHelper.jsp" />--%>
+<jsp:include page="/scripts/errorViewHelper.jsp" />
 <%
             User user = (User) request.getAttribute("user");
 
 %>
 <p>Appliquez les modifications nécessaires sur ce compte utilisateur :</p>
 <div  class="choice">
-    <%--<jsp:useBean id="user" class="qcm.models.User" />--%>
     <form action="<%= request.getContextPath()%>/admin/users/editer.html" method="post">
         <table>
             <tr>
                 <td><label for="libelle"><strong>Login : </strong></label></td>
                 <td><input type="text" name="login" id="login" value="<%= user.getLogin()%>" size="50" class="medium-input" /></td>
-                    <%--<td><input type="text" name="login" id="login" value="<%= user.getLogin() %>" size="50" class="medium-input" value='<jsp:getProperty name="user" property="login" />' /></td>--%>
             </tr>
             <tr>
                 <td><label for="libelle"><strong>Nom : </strong></label></td>

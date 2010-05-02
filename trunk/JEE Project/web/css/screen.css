@@ -462,3 +462,9 @@ div#terminer {
 	float: right;
 	width: 160px;
 }
+ul.clean {
+    list-style-type: none;
+}
+.error-input {
+    border: 1px solid red;
+}

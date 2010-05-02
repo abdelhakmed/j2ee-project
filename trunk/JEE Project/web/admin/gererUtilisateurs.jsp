@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <h4>Gérer les utilisateurs</h4>
-<%--<jsp:include page="<%= request.getContextPath() %>/scripts/errorViewHelper.jsp" />--%>
+<jsp:include page="/scripts/errorViewHelper.jsp" />
 
 <%
             HashMap<Integer, User> users = (HashMap) request.getAttribute("users");

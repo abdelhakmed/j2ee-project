@@ -11,13 +11,10 @@ import qcm.models.Statut;
  * @author Lou
  */
 public class StatutDAO extends ModeleDAO {
-    
+
     public static List<Statut> getAll() throws SQLException {
         List<Statut> statuts = new ArrayList<Statut>();
-        String sql = "SELECT statut.id_statut, statut.libelle"
-                + "FROM statut "
-                + "GROUP BY statut.id_statut "
-                + "ORDER BY statut.id_statut ASC";
+        String sql = "SELECT id_statut, libelle FROM statut ORDER BY id_statut ASC";
         ResultSet rs = execute(sql);
         while (rs.next()) {
             Statut statut = new Statut(
@@ -29,4 +26,14 @@ public class StatutDAO extends ModeleDAO {
         return statuts;
     }
 
+    public static Statut getById(int idStatut) throws SQLException {
+        Statut statut = null;
+        String sql = "SELECT id_statut, libelle FROM statut WHERE id_statut = ?";
+        ResultSet rs = selectById(sql, idStatut);
+        if (rs.next()) {
+            statut = new Statut(rs.getInt("id_statut"), rs.getString("libelle"));
+        }
+        rs.close();
+        return statut;
+    }
 }

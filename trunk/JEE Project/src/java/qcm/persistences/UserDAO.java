@@ -99,4 +99,19 @@ public class UserDAO extends ModeleDAO {
         ps.executeUpdate();
         ps.close();
     }
+
+    public static void insert(User user) throws SQLException {
+        String sql = "INSERT INTO user (id_user, login, nom, prenom, password, email, est_actif, id_statut) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement ordre = getConnection().prepareStatement(sql);
+        ordre.setString(1, user.getLogin());
+        ordre.setString(2, user.getNom());
+        ordre.setString(3, user.getPrenom());
+        ordre.setString(4, user.getPassword());
+        ordre.setString(5, user.getEmail());
+        ordre.setBoolean(6, user.estActif());
+        ordre.setInt(7, user.getStatut().getId_statut());
+
+        ordre.executeUpdate();
+        ordre.close();
+    }
 }
