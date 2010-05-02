@@ -38,8 +38,7 @@ public class MesQuestionnairesEnregistrementQuestionnaireAction extends Enseigna
         questionnaire.setLibelle(libelleQuestionnaire);
         questionnaire.setIdNiveau(niveauQuestionnaire);
         Helper.save(questionnaire);
-        request.setAttribute("questionnaire", questionnaire);
-        ActionHelper.setAttributeNiveau(questionnaire.getIdNiveau(), request);
-        setView("/mesQuestionnaires/editer.jsp");
+        request.setAttribute("questionnaire" , idQuestionnaire);
+        setView("/mesQuestionnaires/actionEffectue.jsp");
     }
 }
