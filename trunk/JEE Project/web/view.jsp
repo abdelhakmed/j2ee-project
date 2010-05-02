@@ -19,7 +19,7 @@
             <div id="body">
                 <jsp:include page="scripts/menu_left.jsp" />
                 <div id="contenu">
-                    <jsp:include page="<%= (String) request.getAttribute("view")%>" />
+                    <jsp:include page="<%= layout%>" />
                 </div>
             </div>
 
