@@ -1,16 +1,14 @@
-<%-- 
-    Document   : statistiques
-    Created on : 25 avr. 2010, 16:02:49
-    Author     : marya
---%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
 <%@page import="qcm.models.QuestionnairePasse"%>
 
 <h4>Statistiques pour le questionnaire</h4>
 
 <%
-            List<QuestionnairePasse> usages = (List<QuestionnairePasse>) request.getAttribute("usages");
+         final List<QuestionnairePasse> usages = (List<QuestionnairePasse>) request.getAttribute("usages");
+         final Map<Integer, String> users = (Map<Integer , String>) request.getAttribute("users");
 %>
 
 <div id="placeholder" style="width:auto;height:300px;"></div>
@@ -34,8 +32,8 @@
         }
         var serie = [
     <%
-                for (QuestionnairePasse q : usages) {
-                    out.println("[[" + q.getIdUser() + "," + q.getNote() + "]],");
+                for (int i= 0; i<usages.size(); i++) {
+                    out.println("[[" + (i+1) + "," + usages.get(i).getNote() + "]],");
                 }
     %>
             ];
@@ -78,3 +76,11 @@
             });
         });
 </script>
+            <br/><br/>
+
+            <%
+
+                for (int i= 0; i<usages.size(); i++) {
+                    out.println((i+1) + " :: " + users.get(usages.get(i).getIdUser()) +" :: " + usages.get(i).getNote()+" <br/>" );
+                }
+            %>
