@@ -77,5 +77,5 @@
                 }
     %>
 </dl>
-<a href="<%= request.getContextPath() %>/index.html">&laquo; Retour à l'accueil</a>
+<a class="button" href="<%= request.getContextPath() %>/index.html">Retour à l'accueil</a>
                

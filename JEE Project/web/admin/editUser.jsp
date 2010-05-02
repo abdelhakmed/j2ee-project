@@ -6,13 +6,13 @@
 
 <%@page import="qcm.models.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<h4>Modifier le niveau</h4>
+<h4>Modifier le compte utilisateur</h4>
 <%--<jsp:include page="scripts/errorViewHelper.jsp" />--%>
 <%
             User user = (User) request.getAttribute("user");
 
 %>
-<p>Appliquez les modifications nécessaires sur le libellé du thème :</p>
+<p>Appliquez les modifications nécessaires sur ce compte utilisateur :</p>
 <div  class="choice">
     <%--<jsp:useBean id="user" class="qcm.models.User" />--%>
     <form action="<%= request.getContextPath()%>/admin/users/editer.html" method="post">
