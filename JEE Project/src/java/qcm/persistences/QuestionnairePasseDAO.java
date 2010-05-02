@@ -48,8 +48,8 @@ public class QuestionnairePasseDAO extends ModeleDAO {
     public static int getNbUsersByResponse(int idReponse, int idQuestion, int idQuestionnaire) throws SQLException{
         int nbUsers = 0;
         int idContenu = QcmDAO.getIdContenu(idQuestionnaire, idQuestion);
-        String sql = "SELECT COUNT(id_user) AS nb FROM user_reponse WHERE id_contenu=?";
-        ResultSet rs = selectById(sql, idContenu);
+        String sql = "SELECT COUNT(id_user) AS nb FROM user_reponse WHERE id_contenu = "+idContenu+" AND id_reponse = ?";
+        ResultSet rs = selectById(sql, idReponse);
         if(rs.next()){
             nbUsers = rs.getInt("nb");
         }

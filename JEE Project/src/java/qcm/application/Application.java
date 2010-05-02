@@ -36,7 +36,7 @@ public class Application extends HttpServlet {
         try {
 
             uri = request.getRequestURI();
-            uri = uri.substring(12, uri.length());
+            uri = uri.substring(request.getContextPath().length(), uri.length());
             Action action = getActionByUri(uri);
             if (action != null) {
                 action.setRequestAndCheckAuthorization(request);
