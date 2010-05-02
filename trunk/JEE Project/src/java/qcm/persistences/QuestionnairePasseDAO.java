@@ -28,7 +28,7 @@ public class QuestionnairePasseDAO extends ModeleDAO {
         return qP;
     }
 
-    public static List<QuestionnairePasse> findUsageById(int idQuestionnaire) throws SQLException {
+    public static List<QuestionnairePasse> getByQuestionnaire(int idQuestionnaire) throws SQLException {
         List<QuestionnairePasse> qP = new ArrayList<QuestionnairePasse>();
         String sql = "SELECT questionnaire_passe.id_questionnaire, questionnaire.libelle, questionnaire_passe.id_user, "
                 + "questionnaire_passe.note, questionnaire_passe.date , questionnaire_passe.temps "
@@ -42,5 +42,17 @@ public class QuestionnairePasseDAO extends ModeleDAO {
         }
         rs.close();
         return qP;
+    }
+
+
+    public static int getNbUsersByResponse(int idReponse, int idQuestion, int idQuestionnaire) throws SQLException{
+        int nbUsers = 0;
+        int idContenu = QcmDAO.getIdContenu(idQuestionnaire, idQuestion);
+        String sql = "SELECT COUNT(id_user) AS nb FROM user_reponse WHERE id_contenu=?";
+        ResultSet rs = selectById(sql, idContenu);
+        if(rs.next()){
+            nbUsers = rs.getInt("nb");
+        }
+        return nbUsers;
     }
 }

@@ -27,7 +27,7 @@ public class MesQuestionnairesStatistiquesAction extends EnseignantAction {
         if(QuestionnaireDAO.getById(idQuestionnaire).getIdUser() != ActionHelper.getIdUser(request)){
              throw new UnauthorizedActionException("Vous n'avez pas le droit de visualiser le statistique de ce questionnaire car vous n'êtes pas son créateur");
         }
-        List<QuestionnairePasse> usages = QuestionnairePasseDAO.findUsageById(idQuestionnaire);
+        List<QuestionnairePasse> usages = QuestionnairePasseDAO.getByQuestionnaire(idQuestionnaire);
         Map<Integer, String> users = new HashMap<Integer, String>();
         for(QuestionnairePasse qP : usages){
             User u = UserDAO.getById(qP.getIdUser());
