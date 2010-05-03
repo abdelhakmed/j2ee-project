@@ -9,13 +9,17 @@
 <%
             final List<QuestionnairePasse> usages = (List<QuestionnairePasse>) request.getAttribute("usages");
             final Map<Integer, String> users = (Map<Integer, String>) request.getAttribute("users");
+
+            final Integer moyenne = (Integer) request.getAttribute("moyenne");
+            final Integer mediane = (Integer) request.getAttribute("mediane");
 %>
 
-<div id="placeholder" style="width:auto;height:300px;"></div>
+<div id="graph" style="width:auto;height:300px;"></div>
 
 <a class="button" href="<%= request.getContextPath()%>/mesQuestionnaires/index.html">Retour</a>
 <script language="javascript" type="text/javascript" src="<%= request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 <script language="javascript" type="text/javascript" src="<%= request.getContextPath()%>/js/flot/jquery.flot.min.js"></script>
+<script language="javascript" type="text/javascript" src="<%= request.getContextPath()%>/js/flot/jquery.flot.threshold.min.js"></script>
 <script id="source" language="javascript" type="text/javascript">
     $(function () {
         function showTooltip(x, y, contents) {
@@ -30,32 +34,52 @@
                 
             }).appendTo("body").fadeIn(5);
         }
-        var serie = [
+        var notes = [
     <%
-                for (int i = 0; i < usages.size(); i++) {
-                    out.println("[[" + (i + 1) + "," + usages.get(i).getNote() + "]],");
-                }
+            for (int i = 0; i < usages.size(); i++) {
+                out.println("[" + (i + 1) + "," + usages.get(i).getNote() + "],");
+            }
     %>
-            ];
-            var data = serie;
-            var options = {
-                series: {
-                    bars: {
-                        show: true,
-                        hoverable: true,
-                        barWidth: 0.8,
-                        align: 'center'
-                    }
-                },
-                grid: { hoverable: true, autoHighlight: true },
-                xaxis: { tickDecimals: 0 },
-                yaxis: { tickDecimals: 0 }
-            };
-            
-            var placeholder = $("#placeholder");
-            $.plot(placeholder, data, options);
+        ];
+        var moyenne = [];
+        for (var i = 0; i <= notes.length + 1; i++) {
+            moyenne.push([i, <%= moyenne%>])
+        }
 
-        });
+        var data = [
+            {
+                data: notes,
+                bars: {
+                    show: true,
+                    hoverable: true,
+                    barWidth: 0.8,
+                    align: 'center'
+                },
+                label: "Notes",
+                color: "#aaa"
+            }, {
+                data:moyenne,
+                lines: { show: true },
+                label: "Moyenne",
+                color: "#c23",
+                shadowSize: 0
+            }
+        ];
+
+        var options = {
+            grid: {
+                hoverable: true,
+                autoHighlight: true,
+                labelMargin: 5,
+                backgroundColor: { colors: ["#fff", "#eee"] }
+            },
+            xaxis: { tickDecimals: 0 },
+            yaxis: { tickDecimals: 0 }
+        };
+
+        var placeholder = $("#graph");
+        $.plot(placeholder, data, options);
+    });
 </script>
 <table class="format">
     <tr>

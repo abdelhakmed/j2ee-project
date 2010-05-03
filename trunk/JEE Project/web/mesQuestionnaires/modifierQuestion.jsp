@@ -14,11 +14,11 @@
                 <em>Libellé de la question : </em>
             </td>
             <td>
-                <textarea id="libelleQuestion" name="libelleQuestion" cols="69" rows="5"><%= question.getLibelle() %></textarea>
+                <textarea id="libelleQuestion" name="libelleQuestion" cols="69" rows="5"><%= question.getLibelle()%></textarea>
             </td>
         </tr>
     </table>
-    <input type="hidden" name="idQuestion" value="<%= question.getIdQuestion() %>" />
+    <input type="hidden" name="idQuestion" value="<%= question.getIdQuestion()%>" />
     <table id="question_a_ajouter" class="format question-a-ajouter">
         <tr>
             <th>Réponse</th>
@@ -28,7 +28,7 @@
             <th>Réponse correcte</th>
         </tr>
         <%
-                    int index=1;
+                    int index = 1;
                     List<Reponse> reponses = question.getReponses();
                     for (Reponse reponse : reponses) {
                         out.println("<tr>");
@@ -37,7 +37,7 @@
                         out.println("<td><input type='text' name='descriptifReponse_" + reponse.getIdReponse() + "' value='" + reponse.getDescriptif() + "' class='medium-input' size='27' /></td>");
                         out.println("<td><input type='text' name='noteReponse_" + reponse.getIdReponse() + "' value='" + reponse.getNote() + "' class='medium-input' size='4' /></td>");
                         out.println("<td class='centered'><input type='checkbox' name='estCorrecteReponse_" + reponse.getIdReponse() + "'");
-                        if(reponse.estCorrecte()){
+                        if (reponse.estCorrecte()) {
                             out.println(" checked = 'checked' ");
                         }
                         out.println(" class='medium-input' /></td>");
@@ -48,7 +48,5 @@
     </table>
     <input type="submit" name="action" value="Enregistrer les modifications" class="button" />
 </form>
-    <br/>
-    <br/>
 
-    <a href="<%= request.getContextPath() %>/mesQuestionnaires/index.html">Retour à la liste de vos questionnaires</a>
+<a class="button" href="<%= request.getContextPath()%>/mesQuestionnaires/index.html">&laquo; Retour à la liste de vos questionnaires</a>

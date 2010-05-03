@@ -142,6 +142,9 @@ public class Qcm {
                 score += Helper.getNoteByReponse(reponse);
             }
         }
+        if (score < 0) {
+            score = 0;
+        }
         note = score;
     }
 }

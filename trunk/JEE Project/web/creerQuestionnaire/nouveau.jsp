@@ -27,7 +27,7 @@
 
     <label for="question">Sélectionner une question existante à ajouter dans votre questionnaire :</label>
     <br/><br/>
-    <select name="question" id="question" onchange="display_question()" >
+    <select name="question" id="question" onchange="display_question()" style="width:300px">
         <option>Choisissez une question à ajouter</option>
         <option value="0">Ajouter une nouvelle question</option>
 
