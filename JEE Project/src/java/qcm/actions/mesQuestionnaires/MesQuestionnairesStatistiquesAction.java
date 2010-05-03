@@ -21,21 +21,40 @@ public class MesQuestionnairesStatistiquesAction extends EnseignantAction {
     @Override
     public void execute() throws Exception {
         Integer idQuestionnaire = Integer.parseInt(request.getParameter("questionnaire"));
-        if(idQuestionnaire == null){
+        if (idQuestionnaire == null) {
             throw new UnauthorizedActionException("Merci de renseigner le questionnaire");
         }
-        if(QuestionnaireDAO.getById(idQuestionnaire).getIdUser() != ActionHelper.getIdUser(request)){
-             throw new UnauthorizedActionException("Vous n'avez pas le droit de visualiser le statistique de ce questionnaire car vous n'êtes pas son créateur");
+        if (QuestionnaireDAO.getById(idQuestionnaire).getIdUser() != ActionHelper.getIdUser(request)) {
+            throw new UnauthorizedActionException("Vous n'avez pas le droit de visualiser le statistique de ce questionnaire car vous n'êtes pas son créateur");
         }
         List<QuestionnairePasse> usages = QuestionnairePasseDAO.getByQuestionnaire(idQuestionnaire);
         Map<Integer, String> users = new HashMap<Integer, String>();
-        for(QuestionnairePasse qP : usages){
+        for (QuestionnairePasse qP : usages) {
             User u = UserDAO.getById(qP.getIdUser());
-            users.put(u.getIdUser(),u.getPrenom()+" "+u.getNom());
+            users.put(u.getIdUser(), u.getPrenom() + " " + u.getNom());
         }
+        int noteMax = 0;
+        int noteMin = Integer.MAX_VALUE;
+        int moyenne = 0;
+        if (usages.size() > 0) {
+            for (QuestionnairePasse q : usages) {
+                int noteCourante = q.getNote();
+                moyenne += noteCourante;
+                if (noteCourante < noteMax) {
+                    noteMax = noteCourante;
+                }
+                if (noteCourante > noteMin) {
+                    noteMax = noteCourante;
+                }
+            }
+            moyenne = moyenne / usages.size();
+        }
+        int mediane = (noteMax + noteMin) / 2;
+        request.setAttribute("moyenne", moyenne);
+        request.setAttribute("mediane", mediane);
+
         request.setAttribute("usages", usages);
         request.setAttribute("users", users);
         setView("/mesQuestionnaires/statistiques.jsp");
     }
-
 }

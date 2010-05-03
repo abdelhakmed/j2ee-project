@@ -181,7 +181,7 @@ fieldset#modifier_reponses ul.questions {
     margin-left: 10px;
 }
 fieldset#modifier_reponses ul.questions li {
-	margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 div#navigation {
     float:left;
@@ -458,9 +458,19 @@ div#error-message {
 .question_a_ajouter { display: none; }
 
 div#terminer {
-	margin-top: 15px;
-	float: right;
-	width: 160px;
+    margin-top: 15px;
+    float: right;
+    width: 160px;
+}
+div.modal {
+    position: absolute;
+    right: 285px;
+    top: 450px;
+}
+a.modal {
+    position: absolute;
+    right: 270px;
+    top: 480px;
 }
 ul.clean {
     list-style-type: none;
