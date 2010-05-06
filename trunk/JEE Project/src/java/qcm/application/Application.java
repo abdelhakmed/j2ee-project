@@ -54,11 +54,11 @@ public class Application extends HttpServlet {
             request.setAttribute("errorMessage", e.getMessage());
             e.printStackTrace();
         } catch (UnknownUserException e) {
-            request.setAttribute("errorMessage", "Erreur interne : " + e.getMessage());
+            request.setAttribute("errorMessage", "Unknown user : " + e.getMessage());
             forward = "/error.jsp";
             e.printStackTrace();
         } catch (UnauthorizedActionException e) {
-            request.setAttribute("errorMessage", "Erreur interne : " + e.getMessage());
+            request.setAttribute("errorMessage", "Access denied : " + e.getMessage());
             forward = "/error.jsp";
             e.printStackTrace();
         } catch (Exception e) {

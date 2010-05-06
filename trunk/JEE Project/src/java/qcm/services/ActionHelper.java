@@ -21,7 +21,7 @@ import qcm.persistences.UserDAO;
 public class ActionHelper {
 
     public static void setAttributeThemes(HttpServletRequest request) throws SQLException {
-        request.setAttribute("themes", ThemeDAO.getAll());
+        request.setAttribute("themes", ThemeDAO.getAllActif());
     }
 
 
@@ -30,7 +30,7 @@ public class ActionHelper {
     }
 
     public static void setAttributeNiveaux(HttpServletRequest request) throws SQLException {
-        request.setAttribute("niveaux", NiveauDAO.getAll());
+        request.setAttribute("niveaux", NiveauDAO.getAllActif());
     }
 
     public static void setAttributeNiveau(int niveau , HttpServletRequest request) throws SQLException {

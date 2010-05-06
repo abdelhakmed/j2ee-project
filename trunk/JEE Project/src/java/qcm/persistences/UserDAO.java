@@ -20,7 +20,7 @@ public class UserDAO extends ModeleDAO {
         String sql = "SELECT user.id_user, user.login, user.password, user.email, user.nom, user.prenom, user.est_actif, statut.id_statut, statut.libelle "
                 + "FROM user "
                 + " INNER JOIN statut ON user.id_statut=statut.id_statut"
-                + " WHERE user.login=? and user.password=?";
+                + " WHERE user.login=? AND user.password=? AND est_actif=1";
         PreparedStatement ordre = connexion.prepareStatement(sql);
         ordre.setString(1, login);
         ordre.setString(2, password);

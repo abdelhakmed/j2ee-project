@@ -16,11 +16,9 @@ import qcm.actions.mesQuestionnaires.*;
 public class Router {
 
     private static Map<String, Class> uriToAction;
-    private static Map<Class, String> actionToUri;
 
     static {
         uriToAction = new HashMap<String, Class>();
-        actionToUri = new HashMap<Class, String>();
 
         uriToAction.put("/index.html", IndexAction.class);
         uriToAction.put("/logout.html", LogoutAction.class);
@@ -84,7 +82,5 @@ public class Router {
         return uriToAction.get(uri);
     }
 
-    public static String getUriByAction(Class T) {
-        return actionToUri.get(T);
-    }
+    
 }

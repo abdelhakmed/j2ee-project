@@ -43,6 +43,7 @@ public class CreerQuestionnaireCreerQuestionAction extends EnseignantAction{
         String descriptifReponse = null;
         Integer noteReponse = 0;
         boolean estCorrecte = false;
+        boolean existeEstCorecte = false;
         for(int i = 1 ; i<=nbReponses ; i++){
             libelleReponse = (String) request.getParameter("libelleReponse_" + i);
             descriptifReponse = (String) request.getParameter("descriptifReponse_" + i);
@@ -52,6 +53,10 @@ public class CreerQuestionnaireCreerQuestionAction extends EnseignantAction{
             }
             estCorrecte = request.getParameterValues("estCorrecteReponse_" + i) != null ;
             nouvelleQuestion.getReponses().add(new Reponse(null, libelleReponse, descriptifReponse, estCorrecte, noteReponse, null));
+            existeEstCorecte = existeEstCorecte || estCorrecte;
+        }
+        if(!existeEstCorecte){
+            throw new UnauthorizedActionException("Merci de spécifier au moins une bonne réponse");
         }
         newQuestionnaire.addQuestion(nouvelleQuestion);
         request.getSession().setAttribute("newQuestionnaire" , newQuestionnaire);

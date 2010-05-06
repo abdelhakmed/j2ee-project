@@ -35,6 +35,29 @@ public class ThemeDAO extends ModeleDAO {
         return themes;
     }
 
+    public static List<Theme> getAllActif() throws SQLException {
+        List<Theme> themes = new ArrayList<Theme>();
+        String sql = "SELECT theme.id_theme, theme.id_user, theme.libelle, theme.est_actif, COUNT(questionnaire.id_theme) AS compteur "
+                + "FROM theme "
+                + "LEFT OUTER JOIN questionnaire "
+                + "ON questionnaire.id_theme = theme.id_theme "
+                + "WHERE theme.est_actif=1 "
+                + "GROUP BY theme.id_theme "
+                + "ORDER BY theme.id_theme ASC";
+        ResultSet rs = execute(sql);
+        while (rs.next()) {
+            Theme theme = new Theme(
+                    rs.getInt("id_theme"),
+                    rs.getInt("id_user"),
+                    rs.getString("libelle"),
+                    rs.getInt("compteur"),
+                    rs.getBoolean("est_actif"));
+            themes.add(theme);
+        }
+        rs.close();
+        return themes;
+    }
+
     public static Theme getById(int idTheme) throws SQLException {
         Theme theme = null;
         String sql = "SELECT theme.id_theme, theme.id_user, theme.libelle, theme.est_actif, COUNT(questionnaire.id_theme) AS compteur "
