@@ -6,6 +6,8 @@
             Questionnaire questionnaire = (Questionnaire) request.getAttribute("questionnaire");
 
 %>
+<a class="button" href="<%= request.getContextPath()%>/mesQuestionnaires/editer.html?questionnaire=<%= questionnaire.getIdQuestionnaire() %>">Retour</a>
+
 <fieldset id="modifier_reponses" class="">
     <legend>Questions modifiables</legend>
     <ul class="questions">

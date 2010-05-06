@@ -86,6 +86,7 @@
         <th>Numéro</th>
         <th>Utilisateur</th>
         <th>Note</th>
+        <th>Date</th>
     </tr>
     <%
                 for (int i = 0; i < usages.size(); i++) {
@@ -93,6 +94,7 @@
                     out.println("<td>" + (i + 1) + "</td>");
                     out.println("<td>" + users.get(usages.get(i).getIdUser()) + "</td>");
                     out.println("<td>" + usages.get(i).getNote() + "</td>");
+                    out.println("<td>" + usages.get(i).getDate() + "</td>");
                     out.println("</tr>");
                 }
     %>
