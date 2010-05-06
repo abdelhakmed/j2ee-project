@@ -27,7 +27,6 @@ public class MesQuestionnairesIndexAction extends EnseignantAction{
          Map<Integer , String> mapQuestionnaires = new HashMap<Integer, String>();
          for(Questionnaire q: questionnaires){
             mapQuestionnaires.put(q.getIdQuestionnaire(), q.getLibelle());
-            System.out.print(q);
          }
          request.setAttribute("mapQuestionnaires", mapQuestionnaires);
          setView("/mesQuestionnaires/mesQuestionnaires.jsp");
