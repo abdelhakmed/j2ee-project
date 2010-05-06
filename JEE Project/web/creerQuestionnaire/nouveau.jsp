@@ -5,7 +5,6 @@
 <%
             List<Question> questionsByThemeNewQuestionnaire = (List<Question>) request.getSession().getAttribute("questionsByThemeNewQuestionnaire");
             Questionnaire newQuestionnaire = (Questionnaire) request.getSession().getAttribute("newQuestionnaire");
-
 %>
 <fieldset id="modifier_reponses" class="">
     <legend>Questions du questionnaire</legend>

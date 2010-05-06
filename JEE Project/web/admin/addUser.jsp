@@ -66,7 +66,7 @@
             </tr>
             <tr>
                 <td><label for="password2"><strong>Vérification du mot de passe : </strong></label></td>
-                <td><input type="text" name="password2" id="password2" size="50" class="medium-input
+                <td><input type="password" name="password2" id="password2" size="50" class="medium-input
                            <% if ((errors != null) && errors.get("passwordVerification").isEmpty()) {
                                            out.print("error-input");
                                        }

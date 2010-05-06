@@ -21,7 +21,7 @@ public class QuestionDAO extends ModeleDAO {
                 + "FROM question "
                 + "INNER JOIN contenu ON contenu.id_question = question.id_question "
                 + "INNER JOIN questionnaire_passe ON questionnaire_passe.id_questionnaire = contenu.id_questionnaire "
-                + "WHERE question.id_question =?";
+                + "WHERE question.id_question = ?";
         ResultSet rs = selectById(sql, idQuestion);
         if (rs.next()) {
             question = new Question(
@@ -55,12 +55,12 @@ public class QuestionDAO extends ModeleDAO {
             questions.add(getById(rs.getInt(1)));
         }
         rs.close();
+        System.out.println(questions);
         return questions;
     }
 
-
-    public static Question search(Question toSearch) throws SQLException{
-        Question question= null;
+    public static Question search(Question toSearch) throws SQLException {
+        Question question = null;
         String sql = "SELECT id_question, libelle , id_theme , id_user FROM question WHERE id_theme = ? AND libelle = ? LIMIT 0, 1";
         PreparedStatement ordre = getConnection().prepareStatement(sql);
         ordre.setInt(1, toSearch.getIdTheme());
