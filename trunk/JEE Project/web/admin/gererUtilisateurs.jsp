@@ -47,6 +47,9 @@
         </td>
         <td class="centered">
             <%
+            
+            User userCourant = (User) request.getSession().getAttribute("user");
+            if (userCourant.getIdUser() != user.getIdUser()) {
                                             if (user.estActif()) {
                                                 out.println("<span class='bon'>Actif</span>");
                                             } else {
@@ -63,7 +66,9 @@
             </form>
         </td>
     </tr>
-    <% }%>
+    <%      }
+        }
+    %>
 </table>
 <%
             }

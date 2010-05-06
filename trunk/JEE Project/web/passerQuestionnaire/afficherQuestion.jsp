@@ -3,7 +3,7 @@
 <%@page import="qcm.models.*" %>
 <%
     Question questionCourante = (Question) request.getAttribute("questionCourante");
-    Qcm qcm = (Qcm) request.getSession().getAttribute("qcm");
+    final Qcm qcm = (Qcm) request.getSession().getAttribute("qcm");
     if(!qcm.estFini()){
 %>
 <fieldset id="modifier_reponses" class="">

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import qcm.services.Helper;
 
 /**
@@ -31,7 +33,8 @@ public class Qcm {
         for (int i = 0; i < questions.size(); i++) {
             userReponses.put(questions.get(i).getIdQuestion(), new ArrayList<Integer>());
         }
-        iterateur = userReponses.keySet().iterator();
+        SortedSet set = new TreeSet(userReponses.keySet());
+        iterateur = set.iterator();
         this.estFini = false;
         assert invariant();
     }

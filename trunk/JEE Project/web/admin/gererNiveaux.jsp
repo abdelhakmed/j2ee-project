@@ -31,7 +31,7 @@
                                             if (niveau.getUtilisations() == 0) {
         %>
         <td class="centered">
-            <a href="<%= request.getContextPath()%>/admin/themes/editer.html?id=<%= niveau.getIdNiveau()%>">Modifier
+            <a href="<%= request.getContextPath()%>/admin/niveaux/editer.html?id=<%= niveau.getIdNiveau()%>">Modifier
                 <img src="<%= request.getContextPath()%>/img/edit_16.png" alt="Modifier le libellé du niveau" />
             </a>
         </td>

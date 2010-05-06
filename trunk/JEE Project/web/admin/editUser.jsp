@@ -47,7 +47,7 @@
             </tr>
             <tr>
                 <td><label for="libelle"><strong>Mot de passe : </strong></label></td>
-                <td><input type="text" name="password" id="password" value="<%= user.getPassword()%>" size="50" class="medium-input" /></td>
+                <td><input type="password" name="password" id="password" value="<%= user.getPassword()%>" size="50" class="medium-input" /></td>
             </tr>
         </table>
         <input type="hidden" name="id" value="<%= user.getIdUser()%>" />

@@ -27,8 +27,8 @@ public class QuestionnaireDAO extends ModeleDAO {
     public static Questionnaire getById(int idQuestionnaire) throws SQLException {
         Questionnaire questionnaire = null;
         String sql = "SELECT questionnaire.libelle,questionnaire.date_creation,questionnaire.limite_temps,questionnaire.est_actif,"
-                + "questionnaire.id_theme,questionnaire.id_user,questionnaire.id_niveau, COUNT(questionnaire_passe.id_questionnaire) AS nbPasseParUser "
-                + "FROM questionnaire INNER JOIN questionnaire_passe ON questionnaire_passe.id_questionnaire=questionnaire.id_questionnaire WHERE questionnaire.id_questionnaire = ?";
+                + " questionnaire.id_theme,questionnaire.id_user,questionnaire.id_niveau, COUNT(questionnaire_passe.id_questionnaire) AS nbPasseParUser"
+                + " FROM questionnaire INNER JOIN questionnaire_passe ON questionnaire_passe.id_questionnaire=questionnaire.id_questionnaire WHERE questionnaire.id_questionnaire = ?";
         ResultSet rs = selectById(sql, idQuestionnaire);
         if (rs.next()) {
             questionnaire = new Questionnaire(
@@ -58,7 +58,7 @@ public class QuestionnaireDAO extends ModeleDAO {
         String sql = "SELECT contenu.id_question, question.id_theme AS theme_question, questionnaire.id_theme AS theme_questionnaire FROM contenu";
         sql += " INNER JOIN question ON (question.id_question=contenu.id_question)";
         sql += " INNER JOIN questionnaire ON (questionnaire.id_questionnaire=contenu.id_questionnaire)";
-        sql += " WHERE contenu.id_questionnaire = ? ORDER BY id_contenu ASC";
+        sql += " WHERE contenu.id_questionnaire = ? ORDER BY contenu.id_question ASC";
         ResultSet rs = selectById(sql, idQuestionnaire);
 
         while (rs.next()) {

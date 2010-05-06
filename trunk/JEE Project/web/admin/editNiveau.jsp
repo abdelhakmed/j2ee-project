@@ -7,7 +7,7 @@
 <%@page import="qcm.models.Niveau"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <h4>Modifier le niveau</h4>
-<jsp:include page="scripts/errorViewHelper.jsp" />
+
 <%
             Niveau niveau = (Niveau) request.getAttribute("niveau");
 %>
@@ -17,7 +17,7 @@
         <table>
             <tr>
                 <td class="static"><label for="libelle">Libellé : </label></td>
-                <td><input type="text" name="libelle" id="libelle" value="<%= niveau.getLibelle()%>"/></td>
+                <td><input type="text" name="libelle" id="libelle" value="<%= niveau.getLibelle()%>" size="50" class="medium-input" /></td>
             </tr>
         </table>
         <input type="hidden" name="id" value="<%= niveau.getIdNiveau()%>" />
