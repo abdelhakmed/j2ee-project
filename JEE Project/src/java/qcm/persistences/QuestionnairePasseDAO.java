@@ -35,7 +35,7 @@ public class QuestionnairePasseDAO extends ModeleDAO {
                 + "FROM questionnaire_passe "
                 + "INNER JOIN questionnaire "
                 + "ON questionnaire.id_questionnaire = questionnaire_passe.id_questionnaire "
-                + "WHERE questionnaire_passe.id_questionnaire = ? ORDER BY questionnaire_passe.id_user";
+                + "WHERE questionnaire_passe.id_questionnaire = ? ORDER BY questionnaire_passe.date DESC";
         ResultSet rs = selectById(sql, idQuestionnaire);
         while (rs.next()) {
             qP.add(new QuestionnairePasse(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getInt(6)));

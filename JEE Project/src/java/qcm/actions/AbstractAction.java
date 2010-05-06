@@ -1,6 +1,5 @@
 package qcm.actions;
 import javax.servlet.http.HttpServletRequest;
-import qcm.models.User;
 
 /**
  * Classe abstraite qui définit une action (implémente l'interface Action)
