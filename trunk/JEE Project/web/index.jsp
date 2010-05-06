@@ -14,7 +14,7 @@
         <div id="content">
             <p id="top">Bienvenue, merci de vous authentifier.</p>
             <div id="logo">
-                <h1><a href="<%= request.getContextPath() %>/index.html">iQCM</a></h1>
+                <h1><a href="<%= request.getContextPath() %>">iQCM</a></h1>
             </div>
             <ul id="menu">
                 <li><a href="<%= request.getContextPath() %>/index.html">Accueil</a></li>

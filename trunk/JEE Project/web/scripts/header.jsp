@@ -12,17 +12,12 @@
 %>
 <p id="top">Bienvenue <%= user.getPrenom()%> <%= user.getNom()%>, <a href="<%= request.getContextPath()%>/logout.html">Déconnexion</a></p>
 <div id="logo">
-    <h1><a href="index.jsp">iQCM</a></h1>
+    <h1><a href="<%= request.getContextPath()%>/index.html">iQCM</a></h1>
 </div>
 <ul id="menu">
-    <%
-                if (user.getStatut().getLibelle().equals("Administrateur")) {
-                    out.println("<li><a href='#'>Administrateur</a></li>");
-                }
-    %>
-    <li><a href="Accueil?action=retourAccueil">Accueil</a></li>
-    <li><a href="#">Actualité</a></li>
-    <li><a href="#">A propos</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="<%= request.getContextPath()%>/index.html">Accueil</a></li>
+    <li><a href="<%= request.getContextPath()%>/index.html">Actualité</a></li>
+    <li><a href="<%= request.getContextPath()%>/index.html">A propos</a></li>
+    <li><a href="<%= request.getContextPath()%>/index.html">Contact</a></li>
 </ul>
 <div class="line"></div>
