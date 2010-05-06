@@ -17,7 +17,7 @@
                 <h1><a href="<%= request.getContextPath() %>">iQCM</a></h1>
             </div>
             <ul id="menu">
-                <li><a href="<%= request.getContextPath() %>/index.html">Accueil</a></li>
+                <li><a href="<%= request.getContextPath() %>">Accueil</a></li>
                 <li><a href="<%= request.getContextPath() %>/actualite.html">Actualité</a></li>
                 <li><a href="<%= request.getContextPath() %>/apropos.html">A propos</a></li>
                 <li><a href="<%= request.getContextPath() %>/contact.html">Contact</a></li>
